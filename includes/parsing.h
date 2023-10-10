@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/09 12:46:22 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:52:02 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,25 @@ typedef struct s_map		t_map;
 typedef struct s_player		t_player;
 typedef struct s_elements	t_elements;
 
-// parsing
-void		parsing(char *map, t_cub *cub);
+// setup_structures
 t_cub		*setup_cub(void);
 t_map		*setup_map(void);
 t_elements	*setup_elements(void);
-void		alloc_rays(t_cub *cub);
+
+// parsing
+void		parsing(char *map, t_cub *cub);
+int			parsing_checker(t_cub *cub);
 
 // map_parsing_0
-int			map_checker(t_cub *cub);
 int			get_map_index(char **map);
 int			is_wrong_char(char c);
 int			map_is_closed(char **map);
 int			check_sides_char_map(char **map, int i, int u, int r);
 
 //	map_parsing_1
+int			map_is_valid(char	**map);
+int			check_for_spawn(char **map);
+int			ft_array_len_int(int	**array, char **map);
 
 // map_is_possible
 int			check_sides_int_array(t_cub *cub, int count, int i, int u);
@@ -45,7 +49,6 @@ int			**init_int_array(char **map);
 int			is_digit(char c);
 int			is_alpha(char c);
 int			is_space(char c);
-int			ft_array_len_int(int	**array, char **map);
 int			ft_array_len(char	**array);
 
 // parsing_utils_1
@@ -65,6 +68,7 @@ void		print_elements(t_elements *elements);
 // elements_parsing
 char		*element_type(char *line);
 void		sort_element(t_cub	*cub, char *line);
+int			element_checker(t_elements *elements);
 
 // color_parsing
 int			convert_rgb(char *line);
@@ -76,4 +80,5 @@ void		store_color(t_elements *elements, char *line);
 void		store_text_path(t_elements *elements, char *line);
 int			is_texture(char *line, int i);
 void		open_texture_path(t_elements *elements, char *line, char c);
+void		load_textures(t_elements *elements);
 #endif

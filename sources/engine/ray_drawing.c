@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ray_drawing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/09 00:27:12 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:24:50 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	alloc_rays(t_cub *cub)
+{
+	int	i;
+
+	i = -1;
+	while (++i < NB_RAY)
+		cub->ray_array[i] = malloc(sizeof(t_line));
+	cub->ray_array[i] = NULL;
+}
 
 mlx_image_t	**setup_array_line(void)
 {

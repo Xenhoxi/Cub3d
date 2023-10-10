@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:26:08 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/04 23:43:36 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:39:32 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	check_ext(char	*file_name, char	*ext)
 
 	j = 0;
 	i = 0;
-	while (file_name[i])
+	while (file_name[i] && file_name[i] != '\n')
 		i++;
 	if (i < 5)
 	{
@@ -93,7 +93,7 @@ int	check_ext(char	*file_name, char	*ext)
 	{
 		if (file_name[i] != ext[j])
 		{
-			ft_printf("Error\nWrong file extension\n");
+			ft_printf("Error\nWrong file extension, it should be %s\n", ext);
 			return (1);
 		}
 		i++;

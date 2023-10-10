@@ -6,7 +6,7 @@
 #    By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 23:49:19 by ljerinec          #+#    #+#              #
-#    Updated: 2023/10/09 12:32:14 by sammeuss         ###   ########.fr        #
+#    Updated: 2023/10/09 17:32:18 by sammeuss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SOURCES =	sources/main.c \
 			sources/parsing/color_parsing.c \
 			sources/parsing/map_is_possible.c \
 			sources/parsing/elements_parsing.c \
+			sources/parsing/setup_structures.c \
 			sources/engine/minimap.c \
 			sources/engine/minimap_utils.c \
 			sources/engine/player_movement.c \

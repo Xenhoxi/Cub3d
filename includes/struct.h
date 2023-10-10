@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/09 12:32:59 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:09:21 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,16 @@ typedef struct s_line
 
 typedef struct s_elements
 {
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
-	int		floor_color;
-	int		ceiling_color;
+	char			*north_path;
+	char			*south_path;
+	char			*west_path;
+	char			*east_path;
+	mlx_texture_t	*north_texture;
+	mlx_texture_t	*south_texture;
+	mlx_texture_t	*east_texture;
+	mlx_texture_t	*west_texture;
+	int				floor_color;
+	int				ceiling_color;
 }	t_elements;
 
 typedef struct s_player
