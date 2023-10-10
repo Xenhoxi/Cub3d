@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/09 15:09:21 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:57:52 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 typedef struct s_line
 {
 	mlx_image_t	*img;
+	char		side;
+	double		reel_dist;
 	int			pixels;
 	int			map_x;
 	int			map_y;

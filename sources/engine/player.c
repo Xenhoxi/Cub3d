@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:09:37 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/09 00:34:23 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:20:56 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void	init_player(t_cub *cub)
 	cub->player->angle = ((2 * PI / 4));
 	cub->player->dir_x = cos(cub->player->angle);
 	cub->player->dir_y = sin(cub->player->angle);
+	cub->player->ray_on = 0;
 	printf("Player initialized\n");
 }
 

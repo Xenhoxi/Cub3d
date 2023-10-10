@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/09 17:24:50 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:58:16 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,34 @@ void	calcul_offset(t_cub *cub, t_line *line)
 	}
 }
 
+void	ray_calculus(t_cub *cub, t_line *line, double *fdist)
+{
+	while (1)
+	{
+		if (cub->map->map[line->map_y][line->map_x] == '1')
+			break ;
+		if (line->lenght_x < line->lenght_y)
+		{
+			*fdist = line->lenght_x;
+			line->lenght_x += line->sx * TSMAP;
+			line->map_x += line->step_x;
+			line->side = '0';
+		}
+		else
+		{
+			*fdist = line->lenght_y;
+			line->lenght_y += line->sy * TSMAP;
+			line->map_y += line->step_y;
+			line->side = '1';
+		}
+	}
+}
+
 void	draw_rays(t_cub *cub)
 {
 	t_line		*line;
-	double		actual;
 	double		fdist;
+	double		actual;
 	double		end;
 	int			i;
 
@@ -94,27 +117,15 @@ void	draw_rays(t_cub *cub)
 		line = cub->ray_array[i];
 		scale_for_ray(cub, actual, line);
 		calcul_offset(cub, line);
-		while (1)
-		{
-			if (cub->map->map[line->map_y][line->map_x] == '1')
-				break ;
-			if (line->lenght_x < line->lenght_y)
-			{
-				fdist = line->lenght_x;
-				line->lenght_x += line->sx * TSMAP;
-				line->map_x += line->step_x;
-			}
-			else
-			{
-				fdist = line->lenght_y;
-				line->lenght_y += line->sy * TSMAP;
-				line->map_y += line->step_y;
-			}
-		}
+		ray_calculus(cub, line, &fdist);
 		line->end_x = cub->player->pos_x + line->dir_x * fdist;
 		line->end_y = cub->player->pos_y + line->dir_y * fdist;
 		if (cub->player->ray_on)
 			draw_rayline(cub, line);
+		if (line->side == '0')
+			line->reel_dist = fdist - line->sx;
+		else
+			line->reel_dist = fdist - line->sy;
 		i++;
 		actual += (PI / 3) / ((NB_RAY) - 1);
 	}

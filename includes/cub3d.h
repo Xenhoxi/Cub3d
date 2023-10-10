@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/09 17:24:23 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:57:42 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@
 # define TSMAP 50
 # define PM_SIZE 20
 
+/*-----------------*/
+/*  STRUCT S_LINE  */
+/*-----------------*/
 /*
 	img;
 	pixels; Nb pixel a draw

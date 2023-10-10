@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/09 13:45:05 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:58:09 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_load(t_cub *cub)
 {
 	minimap(cub);
 	init_player(cub);
+	draw_direction(cub);
 }
 
 void	ft_update(void *param)
