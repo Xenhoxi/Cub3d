@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/10 13:52:02 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/11 15:33:08 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,5 @@ void		store_color(t_elements *elements, char *line);
 // texture_parsing
 void		store_text_path(t_elements *elements, char *line);
 int			is_texture(char *line, int i);
-void		open_texture_path(t_elements *elements, char *line, char c);
-void		load_textures(t_elements *elements);
+void		load_texture(t_elements *elements, char c);
 #endif
