@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_drawing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/10 13:58:16 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/11 13:59:41 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	calcul_offset(t_cub *cub, t_line *line)
 	if (line->dir_x < 0)
 	{
 		line->step_x = -1;
-		line->lenght_x = (line->s_x - (line->map_x) * TSMAP) * line->sx;
+		line->lenght_x = (line->s_x - ((line->map_x) * TSMAP)) * line->sx;
 	}
 	else
 	{
@@ -122,12 +122,9 @@ void	draw_rays(t_cub *cub)
 		line->end_y = cub->player->pos_y + line->dir_y * fdist;
 		if (cub->player->ray_on)
 			draw_rayline(cub, line);
-		if (line->side == '0')
-			line->reel_dist = fdist - line->sx;
-		else
-			line->reel_dist = fdist - line->sy;
 		i++;
 		actual += (PI / 3) / ((NB_RAY) - 1);
+		draw_vision(cub, line, fdist);
 	}
 }
 

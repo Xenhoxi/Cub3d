@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/10 13:57:42 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/11 13:59:37 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define WIN_HEIGHT 920
 # define WIN_WIDTH 1280
 # define SPEED_SIDE 1.5
+# define H 1280
 # define SPEED 1.8
 # define TRUE 1
 # define FALSE 0
@@ -65,6 +66,9 @@
 	end_x; Position de fin du segment en X
 	end_y; Position de fin du segment en Y
 */
+
+// draw_env
+void		draw_vision(t_cub *cub, t_line *line, int fdist);
 
 // ray_drawing
 void		draw_rays(t_cub *cub);

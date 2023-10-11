@@ -6,7 +6,7 @@
 #    By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 23:49:19 by ljerinec          #+#    #+#              #
-#    Updated: 2023/10/10 13:59:31 by sammeuss         ###   ########.fr        #
+#    Updated: 2023/10/11 15:42:25 by sammeuss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SOURCES =	sources/main.c \
 			sources/engine/player_movement.c \
 			sources/engine/player.c \
 			sources/engine/ray_drawing.c \
+			sources/engine/draw_environnement.c \
 			sources/freeing/free_utils.c \
 
 OBJ_DIR = object/
@@ -40,8 +41,8 @@ CUB3D = cub3d
 LIBFT_DIR = includes/libft/libft.a
 FT_PRINTF_DIR = includes/ft_printf/ft_printf.a
 INCLUDES_DIR = includes/
-#MLX42_INC = -lglfw -L /Users/ljerinec/.brew/Cellar/glfw/3.3.8/lib/
-MLX42_INC = -lglfw -L /opt/homebrew/Cellar/glfw/3.3.8/lib
+MLX42_INC = -lglfw -L /Users/ljerinec/.brew/Cellar/glfw/3.3.8/lib/
+# MLX42_INC = -lglfw -L /opt/homebrew/Cellar/glfw/3.3.8/lib
 MLX42_DIR = MLX42/build/libmlx42.a
 
 ####################COMPILATION STYLING####################
