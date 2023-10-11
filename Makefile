@@ -6,7 +6,7 @@
 #    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 23:49:19 by ljerinec          #+#    #+#              #
-#    Updated: 2023/10/09 13:44:12 by ljerinec         ###   ########.fr        #
+#    Updated: 2023/10/10 11:23:35 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SOURCES =	sources/main.c \
 			sources/engine/player_movement.c \
 			sources/engine/player.c \
 			sources/engine/ray_drawing.c \
+			sources/engine/draw_environnement.c \
 			sources/freeing/free_utils.c \
 
 OBJ_DIR = object/
