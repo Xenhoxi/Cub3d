@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:09:25 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/07 15:25:49 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:25:00 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,6 @@ int	is_wrong_char(char c)
 	return (0);
 }
 
-int	map_checker(t_cub *cub)
-{
-	(void)cub;
-	if (!cub->map->map)
-		return (printf("Error\nMap missing\n"));
-	if (map_is_closed(cub->map->map))
-		return (1);
-	// if (!map_is_possible(cub->map->map, cub))
-	return (0);
-}
-
 int	map_is_closed(char **map)
 {
 	int	i;
@@ -71,7 +60,7 @@ int	map_is_closed(char **map)
 			{
 				if (check_sides_char_map(map, i, u, r) != 4)
 				{
-					printf("Error\nMap is not close\n");
+					printf("Error\nMap is not closed\n");
 					return (1);
 				}
 			}

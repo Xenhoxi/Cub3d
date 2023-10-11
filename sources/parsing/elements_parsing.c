@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/07 15:21:52 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:01:18 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,29 @@
 
 void	sort_element(t_cub	*cub, char *line)
 {
-	char	*type;
+	static int		parsing_map;
+	char			*type;
 
 	type = element_type(line);
 	if (!line || !type)
 		return ;
 	else if (!ft_strncmp(type, "TEXTURE_PATH", 13))
+	{
+		if (parsing_map == 1)
+			return ((void)printf("Error\nMap is always last element\n"));
 		store_text_path(cub->elements, line);
+	}
 	else if (!ft_strncmp(type, "MAP", 4))
+	{
+		parsing_map = 1;
 		cub->map->map = array_join(cub->map->map, line);
+	}
 	else if (!ft_strncmp(type, "COLOR", 6))
+	{
+		if (parsing_map == 1)
+			return ((void)printf("Error\n`Map is always last element\n"));
 		store_color(cub->elements, line);
+	}
 	else if (line[0] != '\n')
 		printf("%s\n", type);
 }
@@ -53,4 +65,16 @@ char	*element_type(char *line)
 	else
 		return ("WRONG ELEMENT SYNTAX");
 	return (NULL);
+}
+
+int	element_checker(t_elements *elements)
+{
+	if (elements->ceiling_color != 0)
+		if (elements->floor_color != 0)
+			if (elements->east_path != NULL)
+				if (elements->north_path != NULL)
+					if (elements->south_path != NULL)
+						if (elements->west_path != NULL)
+							return (0);
+	return (1);
 }

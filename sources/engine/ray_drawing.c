@@ -6,11 +6,21 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/10 14:48:20 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/11 13:59:41 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	alloc_rays(t_cub *cub)
+{
+	int	i;
+
+	i = -1;
+	while (++i < NB_RAY)
+		cub->ray_array[i] = malloc(sizeof(t_line));
+	cub->ray_array[i] = NULL;
+}
 
 mlx_image_t	**setup_array_line(void)
 {

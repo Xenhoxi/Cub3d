@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/10 15:35:24 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/11 13:59:37 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void		draw_vision(t_cub *cub, t_line *line, int fdist);
 void		draw_rays(t_cub *cub);
 void		draw_rayline(t_cub *cub, t_line *line);
 mlx_image_t	**setup_array_line(void);
-
+void		alloc_rays(t_cub *cub);
 // minimap
 void		minimap(t_cub *cub);
 void		draw_minimap(t_map *map, mlx_t *mlx, mlx_image_t *img_1, mlx_image_t *img_0);

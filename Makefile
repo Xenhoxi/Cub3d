@@ -6,7 +6,7 @@
 #    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 23:49:19 by ljerinec          #+#    #+#              #
-#    Updated: 2023/10/10 11:23:35 by ljerinec         ###   ########.fr        #
+#    Updated: 2023/10/11 13:59:33 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SOURCES =	sources/main.c \
 			sources/parsing/color_parsing.c \
 			sources/parsing/map_is_possible.c \
 			sources/parsing/elements_parsing.c \
+			sources/parsing/setup_structures.c \
 			sources/engine/minimap.c \
 			sources/engine/minimap_utils.c \
 			sources/engine/player_movement.c \
@@ -40,8 +41,8 @@ CUB3D = cub3d
 LIBFT_DIR = includes/libft/libft.a
 FT_PRINTF_DIR = includes/ft_printf/ft_printf.a
 INCLUDES_DIR = includes/
-MLX42_INC = -lglfw -L /Users/ljerinec/.brew/Cellar/glfw/3.3.8/lib/
-# MLX42_INC = -lglfw -L /opt/homebrew/Cellar/glfw/3.3.8/lib
+# MLX42_INC = -lglfw -L /Users/ljerinec/.brew/Cellar/glfw/3.3.8/lib/
+MLX42_INC = -lglfw -L /opt/homebrew/Cellar/glfw/3.3.8/lib
 MLX42_DIR = MLX42/build/libmlx42.a
 
 ####################COMPILATION STYLING####################

@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:45:48 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/09 12:37:37 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:27:52 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	print_elements(t_elements *elements)
 {
 	printf("ceiling color = %d\n", elements->ceiling_color);
 	printf("floor color = %d\n", elements->floor_color);
-	printf("north = %s\n", elements->north);
-	printf("south = %s\n", elements->south);
-	printf("east = %s\n", elements->east);
-	printf("west = %s\n", elements->west);
+	printf("north_path = %s\n", elements->north_path);
+	printf("south_path = %s\n", elements->south_path);
+	printf("east_path = %s\n", elements->east_path);
+	printf("west_path = %s\n", elements->west_path);
 }

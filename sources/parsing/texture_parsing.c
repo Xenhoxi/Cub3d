@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/07 14:17:11 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:54:46 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	store_text_path(t_elements *elements, char *line)
 {
+	if (check_ext(line, ".png") == 1)
+		return ;
 	while (!is_alpha(*line))
 		line++;
 	if (!ft_strncmp(line, "NO", 2))
@@ -25,7 +27,7 @@ void	store_text_path(t_elements *elements, char *line)
 	else if (!ft_strncmp(line, "WE", 2))
 		open_texture_path(elements, line, 'W');
 	else
-		printf("Error\nWrong texture identifier\n");
+		printf("Error\nWrong texture identifier or format\n");
 }
 
 int	is_texture(char *line, int i)
@@ -47,25 +49,39 @@ void	open_texture_path(t_elements *elements, char *line, char c)
 	while (*line != '.')
 		line++;
 	if (!line || line[1] != '/')
-		printf("Error\nPath to texture should look like ./path\n");
+		printf("Error\nPath to texture syntax is -> ./path\n");
 	if (c == 'N')
 	{
 		if (!open_file(line))
-			elements->north = ft_strdup(line);
+			elements->north_path = ft_strdup(line);
 	}
 	else if (c == 'S')
 	{
 		if (!open_file(line))
-			elements->south = ft_strdup(line);
+			elements->south_path = ft_strdup(line);
 	}
 	else if (c == 'E')
 	{
 		if (!open_file(line))
-			elements->east = ft_strdup(line);
+			elements->east_path = ft_strdup(line);
 	}
 	else if (c == 'W')
 	{
 		if (!open_file(line))
-			elements->west = ft_strdup(line);
+			elements->west_path = ft_strdup(line);
 	}
+}
+
+void	load_textures(t_elements *elements)
+{
+	if (elements->east_path && elements->north_path
+		&& elements->south_path && elements->west_path)
+	{
+		mlx_load_png(elements->east_path);
+		mlx_load_png(elements->west_path);
+		mlx_load_png(elements->south_path);
+		mlx_load_png(elements->north_path);
+		return ;
+	}	
+	printf("Error\nMissing some textures, can't load them\n");
 }
