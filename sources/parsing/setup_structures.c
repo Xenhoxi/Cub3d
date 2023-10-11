@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_structures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/09 17:32:46 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:44:56 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ t_cub	*setup_cub(void)
 	cub->player->dir_y = 0;
 	cub->game_on = 0;
 	cub->parsing_error = 0;
-	printf("Angle = %f\n", cub->player->angle);
-	printf("dir_x = %f, dir_y = %f\n", cub->player->dir_x, cub->player->dir_y);
 	return (cub);
 }
 
