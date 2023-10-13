@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/10 13:57:52 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:03:23 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 typedef struct s_line
 {
+	int			i;
+	mlx_image_t	*img_text;
 	mlx_image_t	*img;
 	char		side;
 	double		reel_dist;

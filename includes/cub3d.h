@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/11 13:59:37 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:10:47 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define WIN_HEIGHT 920
 # define WIN_WIDTH 1280
 # define SPEED_SIDE 1.5
-# define H 1280
+# define H 920
 # define SPEED 1.8
 # define TRUE 1
 # define FALSE 0

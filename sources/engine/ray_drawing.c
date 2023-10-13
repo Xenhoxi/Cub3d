@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/11 13:59:41 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:11:49 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	draw_rays(t_cub *cub)
 	while (actual <= end)
 	{
 		line = cub->ray_array[i];
+		line->i = i;
 		scale_for_ray(cub, actual, line);
 		calcul_offset(cub, line);
 		ray_calculus(cub, line, &fdist);
@@ -122,9 +123,9 @@ void	draw_rays(t_cub *cub)
 		line->end_y = cub->player->pos_y + line->dir_y * fdist;
 		if (cub->player->ray_on)
 			draw_rayline(cub, line);
+		draw_vision(cub, line, fdist);
 		i++;
 		actual += (PI / 3) / ((NB_RAY) - 1);
-		draw_vision(cub, line, fdist);
 	}
 }
 
