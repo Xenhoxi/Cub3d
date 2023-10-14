@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/11 11:43:47 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/14 18:45:26 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_update(void *param)
 
 void	run(t_cub *cub)
 {
-	cub->mlx = mlx_init(1280, 920, "Black ops 2 Zombies", true);
+	cub->mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "Black ops 2 Zombies", true);
 	if (!cub->mlx)
 		exit(EXIT_FAILURE);
 	ft_load(cub);
