@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/17 16:10:14 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 18:40:38 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,22 @@ void	draw_vision(t_cub *cub, t_line *line)
 	int	draw_end;
 
 	(void) cub;
-	line_height = (int)(H / line->reel_dist);
-	draw_start = (-line_height / 2) + H / 2;
+	line_height = (int)(WIN_HEIGHT / line->reel_dist);
+	draw_start = (-line_height / 2) + WIN_HEIGHT / 2;
 	if (draw_start < 0)
 		draw_start = 0;
-	draw_end = line_height / 2 + H / 2;
-	if (draw_end >= H)
-		draw_end = H - 1;
+	draw_end = line_height / 2 + WIN_HEIGHT / 2;
+	if (draw_end >= WIN_HEIGHT)
+		draw_end = WIN_HEIGHT - 1;
 	drawline(cub, line, draw_start, draw_end);
 	// int texNum;
 	// texNum = cub->map->map[line->map_x][line->map_y];
 
 	// double wallX;
 	// if (line->side == '0')
-	// 	wallX = line->sx + line->reel_dist * line->dir_y;
+		// wallX = line->sx + line->reel_dist * line->dir_y;
 	// else
-	// 	wallX = line->sx + line->reel_dist * line->dir_y;
+		// wallX = line->sx + line->reel_dist * line->dir_y;
 	// wallX -= floor((wallX));
 
 	// int texX = wallX * 100;

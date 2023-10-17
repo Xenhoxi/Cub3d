@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/17 16:16:19 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:58:21 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	dda_algorithm(t_cub *cub, t_line *line)
 		{
 			line->lenght_x += line->sx;
 			line->map_x += line->step_x;
-			if (line->dir_x < 0)
+			if (line->dir_x < 0) // '0'
 				line->side = 'W';
 			else
 				line->side = 'E';
@@ -80,7 +80,7 @@ void	dda_algorithm(t_cub *cub, t_line *line)
 		{
 			line->lenght_y += line->sy;
 			line->map_y += line->step_y;
-			if (line->dir_y < 0)
+			if (line->dir_y < 0)  // '1'
 				line->side = 'S';
 			else
 				line->side = 'N';

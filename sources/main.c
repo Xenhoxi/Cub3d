@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/17 16:11:58 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 18:52:12 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_load(t_cub *cub)
 	init_player(cub);
 	draw_rays(cub);
 	mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
-	// minimap(cub);
+	minimap(cub);
 	// draw_direction(cub);
 }
 
@@ -96,7 +96,7 @@ int	main(int argc, char **argv)
 	if (argc != 2 || check_file(argv))
 		return (1);
 	parsing(argv[1], cub);
-	// if (!cub->parsing_error)
+	if (!cub->parsing_error)
 		run(cub);
 	return (0);
 }
