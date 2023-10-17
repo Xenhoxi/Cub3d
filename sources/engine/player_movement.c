@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:31 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/09 00:29:58 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/14 19:27:43 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	move_left(t_cub *cub)
 	mlx_t	*mlx;
 
 	mlx = cub->mlx;
-	cub->player->pos_x += (cos(cub->player->angle - (2 * PI / 4))) * SPEED_SIDE;
-	cub->player->pos_y += (sin(cub->player->angle - (2 * PI / 4))) * SPEED_SIDE;
+	cub->player->pos_x += (cos(cub->player->angle - (2 * PI / 4))) * SPEED;
+	cub->player->pos_y += (sin(cub->player->angle - (2 * PI / 4))) * SPEED;
 	if (!mlx_is_key_down(mlx, MLX_KEY_W) && !mlx_is_key_down(mlx, MLX_KEY_S)
 		&& mlx_is_key_down(mlx, MLX_KEY_A) && !mlx_is_key_down(mlx, MLX_KEY_D)
 		&& !mlx_is_key_down(mlx, MLX_KEY_LEFT)
@@ -68,8 +68,8 @@ void	move_right(t_cub *cub)
 	mlx_t	*mlx;
 
 	mlx = cub->mlx;
-	cub->player->pos_x -= (cos(cub->player->angle - (2 * PI / 4))) * SPEED_SIDE;
-	cub->player->pos_y -= (sin(cub->player->angle - (2 * PI / 4))) * SPEED_SIDE;
+	cub->player->pos_x -= (cos(cub->player->angle - (2 * PI / 4))) * SPEED;
+	cub->player->pos_y -= (sin(cub->player->angle - (2 * PI / 4))) * SPEED;
 	if (!mlx_is_key_down(mlx, MLX_KEY_W) && !mlx_is_key_down(mlx, MLX_KEY_S)
 		&& !mlx_is_key_down(mlx, MLX_KEY_A) && mlx_is_key_down(mlx, MLX_KEY_D)
 		&& !mlx_is_key_down(mlx, MLX_KEY_LEFT)

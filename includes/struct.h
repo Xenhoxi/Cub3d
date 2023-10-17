@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/13 16:03:23 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/14 19:15:50 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct s_player
 	double		dir_x;
 	double		dir_y;
 	double		angle;
+	double		plane_x;
+	double		plane_y;
 }	t_player;
 
 typedef struct s_map

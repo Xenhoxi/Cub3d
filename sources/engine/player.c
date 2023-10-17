@@ -6,42 +6,63 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:09:37 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/09 14:20:56 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 14:29:39 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	player_rotation(t_cub *cub)
+void	right_rotation(t_cub *cub)
 {
 	mlx_t	*mlx;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	mlx = cub->mlx;
-	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
+	cub->player->angle += ROTSPEED;
+	if (cub->player->angle > 2 * PI)
+		cub->player->angle -= 2 * PI;
+	else if (cub->player->angle < 0)
+		cub->player->angle += 2 * PI;	
+	cub->player->dir_x = cos(cub->player->angle);
+	cub->player->dir_y = sin(cub->player->angle);
+	old_dir_x = cub->player->dir_x;
+	cub->player->dir_x = cub->player->dir_x * cos(-ROTSPEED) - cub->player->dir_y * sin(-ROTSPEED);
+	cub->player->dir_y = old_dir_x * sin(-ROTSPEED) + cub->player->dir_y * cos(-ROTSPEED);
+	old_plane_x = cub->player->plane_x;
+	cub->player->plane_x = cub->player->plane_x * cos(-ROTSPEED) - cub->player->plane_y * sin(-ROTSPEED);
+	cub->player->plane_y = old_plane_x * sin(-ROTSPEED) + cub->player->plane_y * cos(-ROTSPEED);
+	if (!mlx_is_key_down(mlx, MLX_KEY_LEFT))
 	{
-		cub->player->angle += 0.05;
-		if (cub->player->angle > 2 * PI)
-			cub->player->angle -= 2 * PI;
-		cub->player->dir_x = cos(cub->player->angle);
-		cub->player->dir_y = sin(cub->player->angle);
-		if (!mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		{
-			draw_direction(cub);
-			draw_rays(cub);
-		}
+		draw_direction(cub);
+		draw_rays(cub);
 	}
-	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
+}
+
+void	left_rotation(t_cub *cub)
+{
+	mlx_t	*mlx;
+	double	old_dir_x;
+	double	old_plane_x;
+
+	mlx = cub->mlx;
+	cub->player->angle -= ROTSPEED;
+	if (cub->player->angle < 0)
+		cub->player->angle += 2 * PI;
+	else if (cub->player->angle > 2 * PI)
+		cub->player->angle -= 2 * PI;
+	cub->player->dir_x = cos(cub->player->angle);
+	cub->player->dir_y = sin(cub->player->angle);
+	old_dir_x = cub->player->dir_x;
+	cub->player->dir_x = cub->player->dir_x * cos(ROTSPEED) - cub->player->dir_y * sin(ROTSPEED);
+	cub->player->dir_y = old_dir_x * sin(ROTSPEED) + cub->player->dir_y * cos(ROTSPEED);
+	old_plane_x = cub->player->plane_x;
+	cub->player->plane_x = cub->player->plane_x * cos(ROTSPEED) - cub->player->plane_y * sin(ROTSPEED);
+	cub->player->plane_y = old_plane_x * sin(ROTSPEED) + cub->player->plane_y * cos(ROTSPEED);
+	if (!mlx_is_key_down(mlx, MLX_KEY_RIGHT))
 	{
-		cub->player->angle -= 0.05;
-		if (cub->player->angle < 0)
-			cub->player->angle += 2 * PI;
-		cub->player->dir_x = cos(cub->player->angle);
-		cub->player->dir_y = sin(cub->player->angle);
-		if (!mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		{
-			draw_direction(cub);
-			draw_rays(cub);
-		}
+		draw_direction(cub);
+		draw_rays(cub);
 	}
 }
 
@@ -60,6 +81,10 @@ void	player_update(t_cub *cub)
 		move_forward(cub);
 	if (mlx_is_key_down(mlx, MLX_KEY_S))
 		move_backward(cub);
+	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
+		right_rotation(cub);
+	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
+		left_rotation(cub);
 	if (mlx_is_key_down(mlx, MLX_KEY_K))
 	{
 		cub->player->ray_on = 1;
@@ -71,7 +96,6 @@ void	player_update(t_cub *cub)
 			mlx_delete_image(cub->mlx, cub->ray_array[i]->img);
 		cub->player->ray_on = 0;
 	}
-	player_rotation(cub);
 }
 
 int	entity_hitbox(char **map, int x, int y)
@@ -94,8 +118,8 @@ void	draw_direction(t_cub *cub)
 
 	line.end_x = cub->player->pos_x + (cub->player->dir_x * 10);
 	line.end_y = cub->player->pos_y + (cub->player->dir_y * 10);
-	line.s_x = cub->player->pos_x;
-	line.s_y = cub->player->pos_y;
+	line.s_x = cub->player->pos_x * TSMAP;
+	line.s_y = cub->player->pos_y * TSMAP;
 	line.dx = line.end_x - cub->player->pos_x;
 	line.dy = line.end_y - cub->player->pos_y;
 	line.pixels = sqrt((line.dx * line.dx) + (line.dy * line.dy));
@@ -124,11 +148,13 @@ void	init_player(t_cub *cub)
 
 	find_spawn(cub->map->map, &y, &x);
 	player = cub->player;
-	player->pos_x = (x * TSMAP + TSMAP / 2);
-	player->pos_y = (y * TSMAP + TSMAP / 2);
-	cub->player->angle = ((2 * PI / 4));
+	player->pos_x = x;
+	player->pos_y = y;
+	cub->player->angle = -((2 * PI / 4));
 	cub->player->dir_x = cos(cub->player->angle);
 	cub->player->dir_y = sin(cub->player->angle);
+	cub->player->plane_x = 0;
+	cub->player->plane_y = 0.66;
 	cub->player->ray_on = 0;
 	printf("Player initialized\n");
 }
