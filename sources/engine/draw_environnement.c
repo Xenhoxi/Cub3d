@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/17 18:40:38 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 22:20:09 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	drawline(t_cub *cub, t_line *line, int draw_start, int draw_end)
 
 void	draw_vision(t_cub *cub, t_line *line)
 {
-	int	line_height;
-	int	draw_start;
-	int	draw_end;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 
 	(void) cub;
 	line_height = (int)(WIN_HEIGHT / line->reel_dist);
@@ -56,17 +56,20 @@ void	draw_vision(t_cub *cub, t_line *line)
 	if (draw_end >= WIN_HEIGHT)
 		draw_end = WIN_HEIGHT - 1;
 	drawline(cub, line, draw_start, draw_end);
-	// int texNum;
-	// texNum = cub->map->map[line->map_x][line->map_y];
 
-	// double wallX;
-	// if (line->side == '0')
-		// wallX = line->sx + line->reel_dist * line->dir_y;
+	// double	wallX;
+	// if (line->side == 'W' || line->side == 'E')
+	// 	wallX = line->s_y + line->reel_dist * line->dir_y;
 	// else
-		// wallX = line->sx + line->reel_dist * line->dir_y;
+	// 	wallX = line->s_x + line->reel_dist * line->dir_x;
 	// wallX -= floor((wallX));
 
-	// int texX = wallX * 100;
-	// if(line->side == 0 && line->dir_x > 0) texX = H - texX - 1;
-	// if(line->side == 1 && line->dir_y < 0) texX = H - texX - 1;
+	// int texX = wallX * TEX_SIZE;
+	// if((line->side == 'W' || line->side == 'E') && line->dir_x > 0)
+	// 	texX = WIN_HEIGHT - texX - 1;
+	// if((line->side == 'N' || line->side == 'S') && line->dir_y < 0)
+	// 	texX = WIN_HEIGHT - texX - 1;
+	// double	step = 1.0 * TEX_SIZE / line_height;
+	// double	texPos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
+
 }

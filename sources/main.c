@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/17 18:52:12 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 21:42:39 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,17 @@ void	draw_outdoor(t_cub *cub)
 	mlx_image_to_window(cub->mlx, img_celling, 0, 0);
 }
 
+void	load_texture_tmp(t_elements *elements)
+{
+	elements->east_texture = mlx_load_png("./sources/textures/beige_wall.png");
+	elements->west_texture = mlx_load_png("./sources/textures/dark_wall.png");
+	elements->south_texture = mlx_load_png("./sources/textures/yellow_wall.png");
+	elements->north_texture = mlx_load_png("./sources/textures/gray_wall.png");
+}
+
 void	ft_load(t_cub *cub)
 {
+	load_texture_tmp(cub->elements);
 	cub->windows_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
 	draw_outdoor(cub);
 	init_player(cub);
@@ -96,7 +105,7 @@ int	main(int argc, char **argv)
 	if (argc != 2 || check_file(argv))
 		return (1);
 	parsing(argv[1], cub);
-	if (!cub->parsing_error)
+	// if (!cub->parsing_error)
 		run(cub);
 	return (0);
 }

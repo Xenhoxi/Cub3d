@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:09:37 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/17 14:29:39 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 23:10:15 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	right_rotation(t_cub *cub)
 {
-	mlx_t	*mlx;
 	double	old_dir_x;
 	double	old_plane_x;
 
-	mlx = cub->mlx;
 	cub->player->angle += ROTSPEED;
 	if (cub->player->angle > 2 * PI)
 		cub->player->angle -= 2 * PI;
@@ -32,20 +30,13 @@ void	right_rotation(t_cub *cub)
 	old_plane_x = cub->player->plane_x;
 	cub->player->plane_x = cub->player->plane_x * cos(-ROTSPEED) - cub->player->plane_y * sin(-ROTSPEED);
 	cub->player->plane_y = old_plane_x * sin(-ROTSPEED) + cub->player->plane_y * cos(-ROTSPEED);
-	if (!mlx_is_key_down(mlx, MLX_KEY_LEFT))
-	{
-		draw_direction(cub);
-		draw_rays(cub);
-	}
 }
 
 void	left_rotation(t_cub *cub)
 {
-	mlx_t	*mlx;
 	double	old_dir_x;
 	double	old_plane_x;
 
-	mlx = cub->mlx;
 	cub->player->angle -= ROTSPEED;
 	if (cub->player->angle < 0)
 		cub->player->angle += 2 * PI;
@@ -59,11 +50,6 @@ void	left_rotation(t_cub *cub)
 	old_plane_x = cub->player->plane_x;
 	cub->player->plane_x = cub->player->plane_x * cos(ROTSPEED) - cub->player->plane_y * sin(ROTSPEED);
 	cub->player->plane_y = old_plane_x * sin(ROTSPEED) + cub->player->plane_y * cos(ROTSPEED);
-	if (!mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-	{
-		draw_direction(cub);
-		draw_rays(cub);
-	}
 }
 
 void	player_update(t_cub *cub)
@@ -95,6 +81,14 @@ void	player_update(t_cub *cub)
 		while (cub->ray_array[++i])
 			mlx_delete_image(cub->mlx, cub->ray_array[i]->img);
 		cub->player->ray_on = 0;
+	}
+	if (mlx_is_key_down(mlx, MLX_KEY_A) || mlx_is_key_down(mlx, MLX_KEY_D)
+		|| mlx_is_key_down(mlx, MLX_KEY_S) || mlx_is_key_down(mlx, MLX_KEY_W)
+		|| mlx_is_key_down(mlx, MLX_KEY_LEFT)
+		|| mlx_is_key_down(mlx, MLX_KEY_RIGHT))
+	{
+		draw_direction(cub);
+		draw_rays(cub);
 	}
 }
 
@@ -148,8 +142,8 @@ void	init_player(t_cub *cub)
 
 	find_spawn(cub->map->map, &y, &x);
 	player = cub->player;
-	player->pos_x = x;
-	player->pos_y = y;
+	player->pos_x = x + 0.5;
+	player->pos_y = y + 0.5;
 	cub->player->angle = -((2 * PI / 4));
 	cub->player->dir_x = cos(cub->player->angle);
 	cub->player->dir_y = sin(cub->player->angle);

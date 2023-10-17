@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/17 17:57:14 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 22:15:39 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define PI 3.14159265359
 # define WIN_HEIGHT 920
 # define WIN_WIDTH 1280
-# define SPEED_SIDE 0.05
+# define TEX_SIZE 70
 # define ROTSPEED 0.04
 # define SPEED 0.05
 # define TRUE 1
