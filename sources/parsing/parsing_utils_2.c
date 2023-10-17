@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:45:48 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/09 18:27:52 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:10:51 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	open_file(char *path)
 
 void	print_elements(t_elements *elements)
 {
-	printf("ceiling color = %d\n", elements->ceiling_color);
-	printf("floor color = %d\n", elements->floor_color);
+	printf("ceiling color = %llu\n", elements->ceiling_color);
+	printf("floor color = %llu\n", elements->floor_color);
 	printf("north_path = %s\n", elements->north_path);
 	printf("south_path = %s\n", elements->south_path);
 	printf("east_path = %s\n", elements->east_path);

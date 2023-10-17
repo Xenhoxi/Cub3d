@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/11 15:33:08 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:10:22 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		sort_element(t_cub	*cub, char *line);
 int			element_checker(t_elements *elements);
 
 // color_parsing
-int			convert_rgb(char *line);
+uint64_t	convert_rgb(char *line);
 int			is_color(char *line, int i);
 int			color_check(int nb_count, int comma_count);
 void		store_color(t_elements *elements, char *line);

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/14 19:15:50 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:55:36 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef struct s_elements
 	mlx_texture_t	*south_texture;
 	mlx_texture_t	*east_texture;
 	mlx_texture_t	*west_texture;
-	int				floor_color;
-	int				ceiling_color;
+	uint64_t		floor_color;
+	uint64_t		ceiling_color;
 }	t_elements;
 
 typedef struct s_player
@@ -90,6 +90,7 @@ typedef struct s_map
 typedef struct s_cub
 {
 	mlx_t			*mlx;
+	mlx_image_t		*windows_img;
 	mlx_texture_t	*texture;
 	t_player		*player;
 	t_map			*map;

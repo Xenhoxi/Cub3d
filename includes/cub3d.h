@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/17 14:37:36 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:19:51 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 // Engine
 # define TS 64
 # define PI 3.14159265359
-# define WIN_HEIGHT 480
-# define WIN_WIDTH 600
+# define WIN_HEIGHT 920
+# define WIN_WIDTH 1280
 # define SPEED_SIDE 0.1
 # define ROTSPEED 0.04
-# define H 480
+# define H 920
 # define SPEED 0.1
 # define TRUE 1
 # define FALSE 0

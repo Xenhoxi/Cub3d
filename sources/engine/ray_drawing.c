@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/17 14:37:09 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:16:19 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,8 @@ void	alloc_rays(t_cub *cub)
 
 void	scale_for_ray(t_cub *cub, t_line *line)
 {
-	double	camera_x;
-
-	camera_x = 2.0 * line->i / (double)WIN_WIDTH - 1;
-	(void) camera_x;
-	// printf("cub dir_x %f cub dir_y %f\n", cub->player->dir_x, cub->player->dir_y);
-	line->dir_x = cos(line->angle);// + cub->player->plane_x * camera_x;//* camera_x;
-	line->dir_y = sin(line->angle);// + cub->player->plane_y * camera_x; //* camera_x;
-	// line->dir_x = cub->player->dir_x;
-	// line->dir_y = cub->player->dir_y;
-	printf("line dir_x %f line dir_y %f\n", line->dir_x, line->dir_y);
-	// if (line->dir_x > 1)
-	// 	line->dir_x -= 2;
-	// else if (line->dir_x < -1)
-	// 	line->dir_x += 2;
-	// if (line->dir_y> 1)
-	// 	line->dir_y -= 2;
-	// else if (line->dir_y < -1)
-		// line->dir_y += 2;
-
+	line->dir_x = cos(line->angle);
+	line->dir_y = sin(line->angle);
 	line->s_x = cub->player->pos_x;
 	line->s_y = cub->player->pos_y;
 	line->map_x = ((int)cub->player->pos_x);
@@ -88,22 +71,27 @@ void	dda_algorithm(t_cub *cub, t_line *line)
 		{
 			line->lenght_x += line->sx;
 			line->map_x += line->step_x;
-			line->side = '0';
+			if (line->dir_x < 0)
+				line->side = 'W';
+			else
+				line->side = 'E';
 		}
 		else
 		{
 			line->lenght_y += line->sy;
 			line->map_y += line->step_y;
-			line->side = '1';
+			if (line->dir_y < 0)
+				line->side = 'S';
+			else
+				line->side = 'N';
 		}
 		if (cub->map->map[line->map_y][line->map_x] == '1')
 			break ;
 	}
-	if (line->side == '0')
+	if (line->side == 'E' || line->side == 'W')
 		line->reel_dist = line->lenght_x - line->sx;
 	else
 		line->reel_dist = line->lenght_y - line->sy;
-	printf("distance final = %f\n", line->reel_dist);
 }
 
 void	draw_rays(t_cub *cub)
@@ -114,15 +102,9 @@ void	draw_rays(t_cub *cub)
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
-		printf("------Rays %d------\n", i);
 		line = cub->ray_array[i];
 		line->i = i;
 		line->angle = ((cub->player->angle - (PI / 6)) + (((PI / 3) / WIN_WIDTH) * i));
-		printf("line angle = %f\n", line->angle);
-		// if (line->angle > 2 * PI)
-		// 	line->angle -= 2 * PI;
-		// else if (line->angle < 0)
-		// 	line->angle += 2 * PI;
 		scale_for_ray(cub, line);
 		calcul_offset(line);
 		dda_algorithm(cub, line);
@@ -137,8 +119,6 @@ void	draw_rayline(t_cub *cub, t_line *line)
 {
 	line->end_x = cub->player->pos_x * TSMAP + line->dir_x * line->reel_dist * TSMAP;
 	line->end_y = cub->player->pos_y * TSMAP + line->dir_y * line->reel_dist * TSMAP;
-	// printf("------Rays------\n");
-	// printf("end_x %f end_y %f\n", line->end_x, line->end_y);
 	line->s_x = cub->player->pos_x * TSMAP;
 	line->s_y = cub->player->pos_y * TSMAP;
 	line->dx = line->end_x - line->s_x;

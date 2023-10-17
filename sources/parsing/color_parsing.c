@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   color_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:32:16 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/10 14:15:56 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:35:09 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	convert_rgb(char *line)
+uint64_t	convert_rgb(char *line)
 {
 	int				r;
 	int				g;
@@ -37,7 +37,7 @@ int	convert_rgb(char *line)
 	b = ft_atoi(ft_substr(line, start, 3));
 	if (b > 255 || b < 0)
 		return (printf("Error\nColor should be between 0 and 255\n"), 0);
-	return ((r << 16) | (g << 8) | b);
+	return ((r << 24) | (g << 16) | (b << 8) | 255);
 }
 
 int	is_color(char *line, int i)

@@ -3,8 +3,8 @@ NO ./sources/textures/gray_wall.png
 WE ./sources/textures/dark_wall.png
 EA ./sources/textures/beige_wall.png
 
-F 255,255,000                                     
-C 001,001,000 
+F 000,255,000 
+C 000,000,255                                     
 
 1111111111111111111
 1000000000000000001
