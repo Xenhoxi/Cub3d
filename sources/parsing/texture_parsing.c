@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/11 15:39:08 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/18 09:38:50 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	load_texture(t_elements *elements, char c)
 	else if (c == 'S')
 		mlx_load_png(elements->south_path);
 	else if (c == 'N')
-		mlx_load_png(elements->north_path);	
+		mlx_load_png(elements->north_path);
 	else
 		printf("Error\nMissing texture, can't load\n");
 }
