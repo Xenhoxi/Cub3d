@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/18 13:32:31 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:34:46 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	test(t_cub *cub)
 	while (++i < 20)
 	{
 		while (++u < 20)
-			mlx_put_pixel(img, i, u, cub->elements->east_texture->pixels);
+			mlx_put_pixel(img, i, u, cub->elements->east_texture->pixels[1]);
 		u = -1;
 	}
 	mlx_image_to_window(cub->mlx, img, 0, 0);
@@ -42,14 +42,14 @@ void	test(t_cub *cub)
 void	ft_load(t_cub *cub)
 {
 	load_texture_tmp(cub->elements);
-	// cub->windows_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
-	// draw_outdoor(cub);
+	cub->windows_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+	draw_outdoor(cub);
 	init_player(cub);
-	// draw_rays(cub);
-	// mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
-	// minimap(cub);
-	test(cub);
-	// draw_direction(cub);
+	draw_rays(cub);
+	mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
+	minimap(cub);
+	// test(cub);
+	draw_direction(cub);
 }
 
 void	ft_update(void *param)
