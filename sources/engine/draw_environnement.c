@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/17 22:20:09 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:17:54 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,44 @@ void	draw_vision(t_cub *cub, t_line *line)
 	// double	step = 1.0 * TEX_SIZE / line_height;
 	// double	texPos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
 
+}
+
+mlx_image_t	*create_img_cf(int width, int height, mlx_t *mlx, uint64_t color)
+{
+	int			x;
+	int			y;
+	mlx_image_t	*img;
+
+	x = -1;
+	y = -1;
+	img = mlx_new_image(mlx, width, height);
+	if (!img)
+		return (NULL);
+	while (++y < height)
+	{
+		while (++x < width)
+			mlx_put_pixel(img, x, y, color);
+		x = -1;
+	}
+	return (img);
+}
+
+void	draw_outdoor(t_cub *cub)
+{
+	mlx_image_t	*img_celling;
+	mlx_image_t	*img_floor;
+	
+	printf("c = %llu et f = %llu\n", cub->elements->ceiling_color, cub->elements->floor_color);
+	img_celling = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2, cub->mlx, cub->elements->ceiling_color);
+	img_floor = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2, cub->mlx, cub->elements->floor_color);
+	mlx_image_to_window(cub->mlx, img_floor, 0, WIN_HEIGHT / 2);
+	mlx_image_to_window(cub->mlx, img_celling, 0, 0);
+}
+
+void	load_texture_tmp(t_elements *elements)
+{
+	elements->east_texture = mlx_load_png("./sources/textures/beige_wall.png");
+	elements->west_texture = mlx_load_png("./sources/textures/dark_wall.png");
+	elements->south_texture = mlx_load_png("./sources/textures/yellow_wall.png");
+	elements->north_texture = mlx_load_png("./sources/textures/gray_wall.png");
 }
