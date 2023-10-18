@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/11 13:59:41 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 22:45:36 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,132 +17,119 @@ void	alloc_rays(t_cub *cub)
 	int	i;
 
 	i = -1;
-	while (++i < NB_RAY)
+	while (++i < WIN_WIDTH)
 		cub->ray_array[i] = malloc(sizeof(t_line));
 	cub->ray_array[i] = NULL;
 }
 
-mlx_image_t	**setup_array_line(void)
+void	scale_for_ray(t_cub *cub, t_line *line)
 {
-	mlx_image_t	**array;
-
-	array = malloc(sizeof(mlx_image_t *) * ((NB_RAY) + 100));
-	return (array);
-}
-
-void	scale_for_ray(t_cub *cub, double new_angle, t_line *line)
-{
-	line->angle = new_angle;
 	line->dir_x = cos(line->angle);
 	line->dir_y = sin(line->angle);
-	line->end_x = cub->player->pos_x + (line->dir_x * TSMAP);
-	line->end_y = cub->player->pos_y + (line->dir_y * TSMAP);
 	line->s_x = cub->player->pos_x;
 	line->s_y = cub->player->pos_y;
-	line->dx = line->end_x - cub->player->pos_x;
-	line->dy = line->end_y - cub->player->pos_y;
-	line->pixels = sqrt((line->dx * line->dx) + (line->dy * line->dy));
-	line->dx_p = line->dx;
-	line->dy_p = line->dy;
-	line->dx_p /= line->pixels;
-	line->dy_p /= line->pixels;
-	line->sx = sqrt(1 + pow(line->dy / line->dx, 2));
-	line->sy = sqrt(1 + pow(line->dx / line->dy, 2));
+	line->map_x = ((int)cub->player->pos_x);
+	line->map_y = ((int)cub->player->pos_y);
+	line->sx = 1e30;
+	if (line->sx != 0)
+		line->sx = fabs(1.0 / line->dir_x);
+	line->sy = 1e30;
+	if (line->sy != 0)
+		line->sy = fabs(1.0 / line->dir_y);
 }
 
 // Offset sur la premiere case + setup case dans laquelle je suis
-void	calcul_offset(t_cub *cub, t_line *line)
+void	calcul_offset(t_line *line)
 {
-	line->map_x = ((int)cub->player->pos_x) / TSMAP;
-	line->map_y = ((int)cub->player->pos_y) / TSMAP;
 	if (line->dir_x < 0)
 	{
 		line->step_x = -1;
-		line->lenght_x = (line->s_x - ((line->map_x) * TSMAP)) * line->sx;
+		line->lenght_x = (line->s_x - line->map_x) * line->sx;
 	}
 	else
 	{
 		line->step_x = 1;
-		line->lenght_x = (((line->map_x + 1) * TSMAP) - line->s_x) * line->sx;
+		line->lenght_x = (line->map_x + 1.0 - line->s_x) * line->sx;
 	}
 	if (line->dir_y < 0)
 	{
 		line->step_y = -1;
-		line->lenght_y = (line->s_y - (line->map_y) * TSMAP) * line->sy;
+		line->lenght_y = (line->s_y - line->map_y) * line->sy;
 	}
 	else
 	{
 		line->step_y = 1;
-		line->lenght_y = (((line->map_y + 1) * TSMAP) - line->s_y) * line->sy;
+		line->lenght_y = (line->map_y + 1.0 - line->s_y) * line->sy;
 	}
 }
 
-void	ray_calculus(t_cub *cub, t_line *line, double *fdist)
+void	dda_algorithm(t_cub *cub, t_line *line)
 {
 	while (1)
 	{
-		if (cub->map->map[line->map_y][line->map_x] == '1')
-			break ;
 		if (line->lenght_x < line->lenght_y)
 		{
-			*fdist = line->lenght_x;
-			line->lenght_x += line->sx * TSMAP;
+			line->lenght_x += line->sx;
 			line->map_x += line->step_x;
-			line->side = '0';
+			if (line->dir_x < 0) // '0'
+				line->side = 'W';
+			else
+				line->side = 'E';
 		}
 		else
 		{
-			*fdist = line->lenght_y;
-			line->lenght_y += line->sy * TSMAP;
+			line->lenght_y += line->sy;
 			line->map_y += line->step_y;
-			line->side = '1';
+			if (line->dir_y < 0)  // '1'
+				line->side = 'S';
+			else
+				line->side = 'N';
 		}
+		if (cub->map->map[line->map_y][line->map_x] == '1')
+			break ;
 	}
+	if (line->side == 'E' || line->side == 'W')
+		line->reel_dist = line->lenght_x - line->sx;
+	else
+		line->reel_dist = line->lenght_y - line->sy;
 }
 
 void	draw_rays(t_cub *cub)
 {
 	t_line		*line;
-	double		fdist;
-	double		actual;
-	double		end;
 	int			i;
 
 	i = 0;
-	fdist = 0;
-	actual = cub->player->angle - (PI / 6);
-	end = cub->player->angle + (PI / 6);
-	while (actual <= end)
+	while (i < WIN_WIDTH)
 	{
 		line = cub->ray_array[i];
-		scale_for_ray(cub, actual, line);
-		calcul_offset(cub, line);
-		ray_calculus(cub, line, &fdist);
-		line->end_x = cub->player->pos_x + line->dir_x * fdist;
-		line->end_y = cub->player->pos_y + line->dir_y * fdist;
+		line->i = i;
+		line->angle = ((cub->player->angle - (PI / 6)) + (((PI / 3) / WIN_WIDTH) * i));
+		scale_for_ray(cub, line);
+		calcul_offset(line);
+		dda_algorithm(cub, line);
 		if (cub->player->ray_on)
 			draw_rayline(cub, line);
+		draw_vision(cub, line);
 		i++;
-		actual += (PI / 3) / ((NB_RAY) - 1);
-		draw_vision(cub, line, fdist);
 	}
 }
 
 void	draw_rayline(t_cub *cub, t_line *line)
 {
-	line->s_x = cub->player->pos_x;
-	line->s_y = cub->player->pos_y;
-	line->dx = line->end_x - cub->player->pos_x;
-	line->dy = line->end_y - cub->player->pos_y;
-	line->dx_p = line->dx;
-	line->dy_p = line->dy;
+	line->end_x = cub->player->pos_x * TSMAP + line->dir_x * line->reel_dist * TSMAP;
+	line->end_y = cub->player->pos_y * TSMAP + line->dir_y * line->reel_dist * TSMAP;
+	line->s_x = cub->player->pos_x * TSMAP;
+	line->s_y = cub->player->pos_y * TSMAP;
+	line->dx = line->end_x - line->s_x;
+	line->dy = line->end_y - line->s_y;
 	line->pixels = sqrt((line->dx * line->dx) + (line->dy * line->dy));
-	line->dx_p /= line->pixels;
-	line->dy_p /= line->pixels;
+	line->dx_p = line->dx / line->pixels;
+	line->dy_p = line->dy / line->pixels;
 	if (line->img)
 		mlx_delete_image(cub->mlx, line->img);
 	line->img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
-	while (line->pixels > 0 && line->s_x > 0 && line->s_y > 0)
+	while (line->pixels > 0 && line->s_x > 0 && line->s_y > 0 && line->s_x < WIN_WIDTH && line->s_y < WIN_HEIGHT)
 	{
 		mlx_put_pixel(line->img, line->s_x, line->s_y, 0x00FFFFFF);
 		line->s_x += line->dx_p;

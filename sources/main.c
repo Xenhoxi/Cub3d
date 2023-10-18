@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/11 11:43:47 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 21:42:39 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,56 @@ void	key_hook(void *param)
 		mlx_close_window(mlx);
 }
 
+mlx_image_t	*create_img_cf(int width, int height, mlx_t *mlx, uint64_t color)
+{
+	int			x;
+	int			y;
+	mlx_image_t	*img;
+
+	x = -1;
+	y = -1;
+	img = mlx_new_image(mlx, width, height);
+	if (!img)
+		return (NULL);
+	while (++y < height)
+	{
+		while (++x < width)
+			mlx_put_pixel(img, x, y, color);
+		x = -1;
+	}
+	return (img);
+}
+
+void	draw_outdoor(t_cub *cub)
+{
+	mlx_image_t	*img_celling;
+	mlx_image_t	*img_floor;
+	
+	printf("c = %llu et f = %llu\n", cub->elements->ceiling_color, cub->elements->floor_color);
+	img_celling = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2, cub->mlx, cub->elements->ceiling_color);
+	img_floor = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2, cub->mlx, cub->elements->floor_color);
+	mlx_image_to_window(cub->mlx, img_floor, 0, WIN_HEIGHT / 2);
+	mlx_image_to_window(cub->mlx, img_celling, 0, 0);
+}
+
+void	load_texture_tmp(t_elements *elements)
+{
+	elements->east_texture = mlx_load_png("./sources/textures/beige_wall.png");
+	elements->west_texture = mlx_load_png("./sources/textures/dark_wall.png");
+	elements->south_texture = mlx_load_png("./sources/textures/yellow_wall.png");
+	elements->north_texture = mlx_load_png("./sources/textures/gray_wall.png");
+}
+
 void	ft_load(t_cub *cub)
 {
-	minimap(cub);
+	load_texture_tmp(cub->elements);
+	cub->windows_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+	draw_outdoor(cub);
 	init_player(cub);
-	draw_direction(cub);
+	draw_rays(cub);
+	mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
+	minimap(cub);
+	// draw_direction(cub);
 }
 
 void	ft_update(void *param)
@@ -41,7 +86,7 @@ void	ft_update(void *param)
 
 void	run(t_cub *cub)
 {
-	cub->mlx = mlx_init(1280, 920, "Black ops 2 Zombies", true);
+	cub->mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "Black ops 2 Zombies", true);
 	if (!cub->mlx)
 		exit(EXIT_FAILURE);
 	ft_load(cub);

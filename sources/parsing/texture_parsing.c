@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/10/18 09:38:50 by sammeuss         ###   ########.fr       */
+=======
+/*   Updated: 2023/10/17 19:03:58 by ljerinec         ###   ########.fr       */
+>>>>>>> 4eeb6bd57c85a38d434861a21d37c854855263f3
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +37,17 @@ void	store_text_path(t_elements *elements, char *line)
 void	load_texture(t_elements *elements, char c)
 {
 	if (c == 'E')
-		mlx_load_png(elements->east_path);
+		elements->east_texture = mlx_load_png(elements->east_path);
 	else if (c == 'W')
-		mlx_load_png(elements->west_path);
+		elements->west_texture = mlx_load_png(elements->west_path);
 	else if (c == 'S')
-		mlx_load_png(elements->south_path);
+		elements->south_texture = mlx_load_png(elements->south_path);
 	else if (c == 'N')
+<<<<<<< HEAD
 		mlx_load_png(elements->north_path);
+=======
+		elements->north_texture = mlx_load_png(elements->north_path);	
+>>>>>>> 4eeb6bd57c85a38d434861a21d37c854855263f3
 	else
 		printf("Error\nMissing texture, can't load\n");
 }

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/11 13:59:37 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 22:15:39 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,14 @@
 # define PI 3.14159265359
 # define WIN_HEIGHT 920
 # define WIN_WIDTH 1280
-# define SPEED_SIDE 1.5
-# define H 1280
-# define SPEED 1.8
+# define TEX_SIZE 70
+# define ROTSPEED 0.04
+# define SPEED 0.05
 # define TRUE 1
 # define FALSE 0
-# define NB_RAY 60
 
 // Map
-# define TSMAP 50
+# define TSMAP 20
 # define PM_SIZE 20
 
 /*-----------------*/
@@ -68,7 +67,7 @@
 */
 
 // draw_env
-void		draw_vision(t_cub *cub, t_line *line, int fdist);
+void		draw_vision(t_cub *cub, t_line *line);
 
 // ray_drawing
 void		draw_rays(t_cub *cub);
@@ -86,6 +85,8 @@ int			entity_hitbox(char **map, int x, int y);
 void		init_player(t_cub *cub);
 void		find_spawn(char **map, int *x, int *y);
 void		draw_direction(t_cub *cub);
+void		right_rotation(t_cub *cub);
+void		left_rotation(t_cub *cub);
 
 // player_movement
 void		move_forward(t_cub *cub);

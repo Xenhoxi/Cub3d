@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/11 11:44:56 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:40:36 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_cub	*setup_cub(void)
 	cub->player = malloc(sizeof(t_player));
 	cub->map = setup_map();
 	cub->elements = setup_elements();
-	cub->ray_array = malloc(sizeof(t_line *) * (NB_RAY + 1));
+	cub->ray_array = malloc(sizeof(t_line *) * (WIN_WIDTH + 1));
 	alloc_rays(cub);
 	cub->player->pos_x = 0;
 	cub->player->pos_y = 0;
