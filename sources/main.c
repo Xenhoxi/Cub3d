@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/18 16:01:11 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:46:39 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,41 +23,46 @@ void	key_hook(void *param)
 		mlx_close_window(mlx);
 }
 
-uint32_t	get_rgba(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+uint32_t	get_rgba(u_int32_t color)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+	u_int8_t	r;
+	u_int8_t	g;
+	u_int8_t	b;
+	u_int8_t	a;
+
+	a = color >> 24;
+	r = color >> 16;
+	g = color >> 8;
+	b = color;
+	return (r << 8 | g << 16 | b << 24 | a << 0);
 }
 
 void	test(t_cub *cub)
 {
 	mlx_image_t *img;
 	mlx_image_t *img_vo;
-	mlx_image_t *img_test;
 	int u = 0;
-	int i = -1;
-	int	v1 = 0;
-	// int	v2 = 0;
-
-	img_test = create_img_cf(70, 70, cub->mlx, 0xFFFF00FF);
+	int i = 0;
+	
+	uint32_t	*pixel;
+	uint32_t	color;
 	img = mlx_new_image(cub->mlx, TEX_SIZE, TEX_SIZE);
-	img_vo = mlx_texture_to_image(cub->mlx, cub->elements->east_texture);
-	printf("nb byte by pixels %d\n", cub->elements->east_texture->bytes_per_pixel);
-	while (++i < TEX_SIZE)
+	img_vo = mlx_texture_to_image(cub->mlx, cub->elements->north_texture);
+	while (i < TEX_SIZE)
 	{
 		while (u < TEX_SIZE)
 		{
-			uint8_t	a = img_test->pixels[(i * v1 + u)];
-			uint8_t	r = img_test->pixels[(i * (v1 + 4) + u)];
-			uint8_t	g = img_test->pixels[(i * (v1 + 8) + u)];
-			uint8_t	b = img_test->pixels[(i * (v1 + 12) + u)];
-			printf("r %d g %d b %d a %d\n", r, g, b, a);
-			mlx_put_pixel(img, i, u, get_rgba(r, g, b, a));
+			pixel = (uint32_t *)(img_vo->pixels + (i + u * TEX_SIZE) * sizeof(uint32_t));
+			color = *pixel;
+			color = get_rgba(color);
+			mlx_put_pixel(img, i, u, color);
 			u++;
 		}
+		i++;
 		u = 0;
 	}
-	mlx_image_to_window(cub->mlx, img, 0, 0);
-	mlx_image_to_window(cub->mlx, img_test, 0, 70);
+	mlx_image_to_window(cub->mlx, img_vo, 0, 0);
+	mlx_image_to_window(cub->mlx, img, 0, 70);
 }
 
 void	ft_load(t_cub *cub)

@@ -41,6 +41,7 @@ SOURCES =	ft_strlen.c \
 			ft_itoa.c \
 			ft_strjoin.c \
 			ft_strchr.c \
+			ft_memset.c \
 			../get_next_line/get_next_line.c \
 			../get_next_line/get_next_line_utils.c \
 
