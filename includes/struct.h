@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/17 15:55:36 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/20 08:55:19 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct s_elements
 {
 	char			*north_path;
 	char			*south_path;
-	char			*west_path;
 	char			*east_path;
+	char			*west_path;
 	mlx_texture_t	*north_texture;
 	mlx_texture_t	*south_texture;
 	mlx_texture_t	*east_texture;

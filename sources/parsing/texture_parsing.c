@@ -6,57 +6,45 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/18 13:31:48 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/20 09:16:05 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	store_text_path(t_elements *elements, char *line)
+void	which_texture(t_elements *elements, char *line)
 {
 	while (!is_alpha(*line))
 		line++;
 	if (!ft_strncmp(line, "NO", 2))
-	{
-		elements->north_path = ft_strdup(line);
-		load_texture(elements, 'N', line);
-	}
+		store_text_path(elements, 'N', line);
 	else if (!ft_strncmp(line, "SO", 2))
-	{
-		load_texture(elements, 'S', line);
-		elements->south_path = ft_strdup(line);
-	}
+		store_text_path(elements, 'S', line);
 	else if (!ft_strncmp(line, "EA", 2))
-	{
-		load_texture(elements, 'E', line);
-		elements->east_path = ft_strdup(line);
-	}
+		store_text_path(elements, 'E', line);
 	else if (!ft_strncmp(line, "WE", 2))
-	{
-		load_texture(elements, 'W', line);
-		elements->west_path = ft_strdup(line);
-	}
+		store_text_path(elements, 'W', line);
 	else
 		printf("Error\nWrong texture identifier or format\n");
 }
 
-void	load_texture(t_elements *elements, char c, char *line)
+void	store_text_path(t_elements *elements, char c, char *line)
 {
 	while (is_alpha(*line))
 		line++;
-	while (!is_alpha(*line))
+	while (is_space(*line))
 		line++;
-	printf("%s\n", line);
 	if (c == 'E')
-		elements->east_texture = mlx_load_png(line);
+		elements->east_path = ft_strdup(line);
 	else if (c == 'W')
-		elements->west_texture = mlx_load_png(line);
+		elements->west_path = ft_strdup(line);
 	else if (c == 'S')
-		elements->south_texture = mlx_load_png(line);
+		elements->south_path = ft_strdup(line);
 	else if (c == 'N')
-		elements->north_texture = mlx_load_png(line);
+		elements->north_path = ft_strdup(line);
 	else
-		printf("Error\nMissing texture, can't load\n");
+		printf("Error\nMissing path\n");
+	load_texture(elements, c);
 }
 
 int	is_texture(char *line, int i)
@@ -73,4 +61,28 @@ int	is_texture(char *line, int i)
 		return (1);
 	else
 		return (printf("Error\nWrong texture identifier\n"), 0);
+}
+
+void	load_texture(t_elements *elements, char c)
+{
+	if (c == 'N')
+	{
+		elements->north_texture = malloc(sizeof(mlx_texture_t));
+		elements->north_texture = mlx_load_png(elements->north_path);
+	}
+	else if (c == 'S')
+	{
+		elements->south_texture = malloc(sizeof(mlx_texture_t));
+		elements->south_texture = mlx_load_png(elements->south_path);
+	}
+	else if (c == 'E')
+	{
+		elements->east_texture = malloc(sizeof(mlx_texture_t));
+		elements->east_texture = mlx_load_png(elements->east_path);
+	}
+	else if (c == 'W')
+	{
+		elements->west_texture = malloc(sizeof(mlx_texture_t));
+		elements->west_texture = mlx_load_png(elements->west_path);
+	}
 }
