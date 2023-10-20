@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/17 22:15:39 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:03:09 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@
 
 // draw_env
 void		draw_vision(t_cub *cub, t_line *line);
+void		draw_outdoor(t_cub *cub);
+void		load_texture_tmp(t_elements *elements);
+mlx_image_t	*create_img_cf(int width, int height, mlx_t *mlx, uint64_t color);
 
 // ray_drawing
 void		draw_rays(t_cub *cub);
