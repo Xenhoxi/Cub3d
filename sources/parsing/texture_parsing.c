@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/20 09:20:52 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/20 09:24:52 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	store_text_path(t_elements *elements, char c, char *line)
 	else if (c == 'S')
 		elements->south_path = ft_strdup(line);
 	else if (c == 'N')
-		elements->north_texture = mlx_load_png(line);
+		elements->north_path = ft_strdup(line);
 	else
 		printf("Error\nMissing path\n");
 	load_texture(elements, c);
