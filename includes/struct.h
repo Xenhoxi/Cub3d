@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/17 15:55:36 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/22 01:51:07 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_elements
 	mlx_texture_t	*south_texture;
 	mlx_texture_t	*east_texture;
 	mlx_texture_t	*west_texture;
+	mlx_image_t		*west_image;
 	uint64_t		floor_color;
 	uint64_t		ceiling_color;
 }	t_elements;

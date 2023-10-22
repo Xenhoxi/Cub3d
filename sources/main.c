@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/19 18:46:39 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/22 01:54:32 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,48 @@ uint32_t	get_rgba(u_int32_t color)
 	return (r << 8 | g << 16 | b << 24 | a << 0);
 }
 
+u_int32_t	get_color_coord(int x, int y, mlx_image_t *img)
+{
+	uint32_t	*pixel;
+	u_int32_t	color;
+
+	pixel = NULL;
+	if (x > 0 && x < TEX_SIZE && y > 0 && y < TEX_SIZE)
+	{
+		pixel = (uint32_t *)(img->pixels + (x + y * TEX_SIZE) * sizeof(uint32_t));
+		color = *pixel;
+		return (get_rgba(color));
+	}
+	// else
+		// printf("x = %d y = %d\n", x, y);
+	return (0);
+}
+
 void	test(t_cub *cub)
 {
 	mlx_image_t *img;
 	mlx_image_t *img_vo;
-	int u = 0;
-	int i = 0;
+	int y = 0;
+	int x = 0;
 	
 	uint32_t	*pixel;
 	uint32_t	color;
 	img = mlx_new_image(cub->mlx, TEX_SIZE, TEX_SIZE);
 	img_vo = mlx_texture_to_image(cub->mlx, cub->elements->north_texture);
-	while (i < TEX_SIZE)
+	while (x < TEX_SIZE)
 	{
-		while (u < TEX_SIZE)
+		while (y < TEX_SIZE)
 		{
-			pixel = (uint32_t *)(img_vo->pixels + (i + u * TEX_SIZE) * sizeof(uint32_t));
+			pixel = (uint32_t *)(img_vo->pixels + (x + y * TEX_SIZE) * sizeof(uint32_t));
 			color = *pixel;
 			color = get_rgba(color);
-			mlx_put_pixel(img, i, u, color);
-			u++;
+			mlx_put_pixel(img, x, y, color);
+			y++;
 		}
-		i++;
-		u = 0;
+		x++;
+		y = 0;
 	}
+	printf("%u\n", get_color_coord(69, 69, mlx_texture_to_image(cub->mlx, cub->elements->east_texture)));
 	mlx_image_to_window(cub->mlx, img_vo, 0, 0);
 	mlx_image_to_window(cub->mlx, img, 0, 70);
 }
@@ -69,12 +87,14 @@ void	ft_load(t_cub *cub)
 {
 	load_texture_tmp(cub->elements);
 	cub->windows_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+	cub->elements->west_image = mlx_texture_to_image(cub->mlx, cub->elements->west_texture);
 	draw_outdoor(cub);
 	init_player(cub);
 	draw_rays(cub);
+	printf("ici\n");
 	mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
 	minimap(cub);
-	test(cub);
+	// test(cub);
 	draw_direction(cub);
 }
 
