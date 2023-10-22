@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/22 01:54:32 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/22 16:08:08 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ u_int32_t	get_color_coord(int x, int y, mlx_image_t *img)
 		color = *pixel;
 		return (get_rgba(color));
 	}
-	// else
-		// printf("x = %d y = %d\n", x, y);
 	return (0);
 }
 
@@ -78,7 +76,7 @@ void	test(t_cub *cub)
 		x++;
 		y = 0;
 	}
-	printf("%u\n", get_color_coord(69, 69, mlx_texture_to_image(cub->mlx, cub->elements->east_texture)));
+	printf("%u\n", get_color_coord(69, 69, mlx_texture_to_image(cub->mlx, cub->elements->north_texture)));
 	mlx_image_to_window(cub->mlx, img_vo, 0, 0);
 	mlx_image_to_window(cub->mlx, img, 0, 70);
 }
@@ -87,14 +85,14 @@ void	ft_load(t_cub *cub)
 {
 	load_texture_tmp(cub->elements);
 	cub->windows_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
-	cub->elements->west_image = mlx_texture_to_image(cub->mlx, cub->elements->west_texture);
+	cub->elements->west_image = mlx_texture_to_image(cub->mlx, cub->elements->north_texture);
 	draw_outdoor(cub);
 	init_player(cub);
 	draw_rays(cub);
 	printf("ici\n");
 	mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
 	minimap(cub);
-	// test(cub);
+	test(cub);
 	draw_direction(cub);
 }
 

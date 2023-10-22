@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/22 02:01:50 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/22 18:07:39 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,37 +45,32 @@ void	drawtexture(int line_height, int draw_start, int draw_end, t_line *line, t_
 {
 	double	wallX;
 	if (line->side == 'W' || line->side == 'E')
-		wallX = line->s_x + line->reel_dist * line->dir_x;
-	else
 		wallX = line->s_y + line->reel_dist * line->dir_y;
+	else
+		wallX = line->s_x + line->reel_dist * line->dir_x;
 	wallX -= floor((wallX));
-
-	int texX = wallX * TEX_SIZE;
+	printf("wallX %f\n", wallX);
+	int texX = (int)(wallX * (double)TEX_SIZE);
 	if((line->side == 'W' || line->side == 'E') && line->dir_x > 0)
-		texX = WIN_HEIGHT - texX - 1;
+		texX = TEX_SIZE - texX - 1;
 	if((line->side == 'N' || line->side == 'S') && line->dir_y < 0)
-		texX = WIN_HEIGHT - texX - 1;
+		texX = TEX_SIZE - texX - 1;
 	double	step = 1.0 * TEX_SIZE / line_height;
 	double	texPos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
-
-	// (void) cub;
-	// (void) draw_end;
-	// (void) texPos;
 	int	y;
 	int	texY;
-	// (void) texY;
 	y = 0;
-	while (y < draw_end)
+	while (y < WIN_HEIGHT)
 	{
 		if (y >= draw_start && y <= draw_end)
 		{
-			texY = (int)texPos & (TEX_SIZE - 1);
+			texY = texPos;
 			texPos += step;
 			mlx_put_pixel(cub->windows_img, line->i, y,
 				get_color_coord(texX, texY, cub->elements->west_image));
 		}
-		// else
-		// 	mlx_put_pixel(cub->windows_img, line->i, y, 0);
+		else
+			mlx_put_pixel(cub->windows_img, line->i, y, 0);
 		y++;
 	}
 }
@@ -94,9 +89,9 @@ void	draw_vision(t_cub *cub, t_line *line)
 	draw_end = line_height / 2 + WIN_HEIGHT / 2;
 	if (draw_end >= WIN_HEIGHT)
 		draw_end = WIN_HEIGHT - 1;
-	drawline(cub, line, draw_start, draw_end);
+	// drawline(cub, line, draw_start, draw_end);
 	// printf("%u\n", get_color_coord(0, 0, mlx_texture_to_image(cub->mlx, cub->elements->east_texture)));
-	// drawtexture(line_height, draw_start, draw_end, line, cub);
+	drawtexture(line_height, draw_start, draw_end, line, cub);
 }
 
 mlx_image_t	*create_img_cf(int width, int height, mlx_t *mlx, uint64_t color)

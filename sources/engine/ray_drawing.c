@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/17 22:45:36 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/22 17:30:49 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	draw_rays(t_cub *cub)
 		scale_for_ray(cub, line);
 		calcul_offset(line);
 		dda_algorithm(cub, line);
-		if (cub->player->ray_on)
+		if (cub->player->ray_on && i % 20 == 0)
 			draw_rayline(cub, line);
 		draw_vision(cub, line);
 		i++;
