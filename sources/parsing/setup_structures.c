@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_structures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/17 15:40:36 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/20 08:56:18 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ t_elements	*setup_elements(void)
 	elements = malloc(sizeof(t_elements));
 	elements->ceiling_color = 0;
 	elements->floor_color = 0;
-	elements->east_path = NULL;
 	elements->north_path = NULL;
 	elements->south_path = NULL;
+	elements->east_path = NULL;
 	elements->west_path = NULL;
 	elements->north_texture = NULL;
 	elements->south_texture = NULL;
