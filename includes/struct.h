@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/22 02:04:33 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/22 23:43:21 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 typedef struct s_line
 {
 	int			i;
-	mlx_image_t	*img_text;
 	mlx_image_t	*img;
 	char		side;
 	double		reel_dist;

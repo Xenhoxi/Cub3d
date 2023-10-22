@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/22 16:08:08 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/22 23:40:13 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@ u_int32_t	get_color_coord(int x, int y, mlx_image_t *img)
 {
 	uint32_t	*pixel;
 	u_int32_t	color;
+	static	int	failed;
 
 	pixel = NULL;
-	if (x > 0 && x < TEX_SIZE && y > 0 && y < TEX_SIZE)
-	{
-		pixel = (uint32_t *)(img->pixels + (x + y * TEX_SIZE) * sizeof(uint32_t));
-		color = *pixel;
-		return (get_rgba(color));
-	}
+	pixel = (uint32_t *)(img->pixels + (x + y * TEX_SIZE) * sizeof(uint32_t));
+	color = *pixel;
+	return (get_rgba(color));
+	printf("failed %d\n", failed);
 	return (0);
 }
 
@@ -89,10 +88,9 @@ void	ft_load(t_cub *cub)
 	draw_outdoor(cub);
 	init_player(cub);
 	draw_rays(cub);
-	printf("ici\n");
 	mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
 	minimap(cub);
-	test(cub);
+	// test(cub);
 	draw_direction(cub);
 }
 

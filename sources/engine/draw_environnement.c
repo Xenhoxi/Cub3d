@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/22 18:07:39 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/22 23:43:40 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	drawline(t_cub *cub, t_line *line, int draw_start, int draw_end)
 	int			y;
 
 	y = -1;
-	if (!line->img_text)
-		return ;
 	while (++y < WIN_HEIGHT)
 	{
 		if (y >= draw_start && y <= draw_end)
@@ -49,7 +47,6 @@ void	drawtexture(int line_height, int draw_start, int draw_end, t_line *line, t_
 	else
 		wallX = line->s_x + line->reel_dist * line->dir_x;
 	wallX -= floor((wallX));
-	printf("wallX %f\n", wallX);
 	int texX = (int)(wallX * (double)TEX_SIZE);
 	if((line->side == 'W' || line->side == 'E') && line->dir_x > 0)
 		texX = TEX_SIZE - texX - 1;
@@ -64,8 +61,12 @@ void	drawtexture(int line_height, int draw_start, int draw_end, t_line *line, t_
 	{
 		if (y >= draw_start && y <= draw_end)
 		{
-			texY = texPos;
+			texY = (int)texPos;
 			texPos += step;
+			if (texY >= TEX_SIZE)
+				texY = TEX_SIZE - 1;
+			else if (texY < 0)
+				texY = 0;
 			mlx_put_pixel(cub->windows_img, line->i, y,
 				get_color_coord(texX, texY, cub->elements->west_image));
 		}
@@ -81,7 +82,6 @@ void	draw_vision(t_cub *cub, t_line *line)
 	int		draw_start;
 	int		draw_end;
 
-	// (void) cub;
 	line_height = (int)(WIN_HEIGHT / line->reel_dist);
 	draw_start = (-line_height / 2) + WIN_HEIGHT / 2;
 	if (draw_start < 0)
@@ -90,7 +90,6 @@ void	draw_vision(t_cub *cub, t_line *line)
 	if (draw_end >= WIN_HEIGHT)
 		draw_end = WIN_HEIGHT - 1;
 	// drawline(cub, line, draw_start, draw_end);
-	// printf("%u\n", get_color_coord(0, 0, mlx_texture_to_image(cub->mlx, cub->elements->east_texture)));
 	drawtexture(line_height, draw_start, draw_end, line, cub);
 }
 
