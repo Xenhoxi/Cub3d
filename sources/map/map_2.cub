@@ -3,7 +3,7 @@ NO sources/textures/gray_wall.png
 WE ./sources/textures/dark_wall.png
 EA ./sources/textures/beige_wall.png
 
-F 075,255,100
+F 078,176,029
 C 000,000,255                                     
 
 1111111111111111111

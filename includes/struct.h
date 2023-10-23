@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/22 23:43:21 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:27:08 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,26 @@ typedef struct s_map
 	int		width_px;
 }	t_map;
 
+typedef struct s_image
+{
+	mlx_image_t		*floor_img;
+	mlx_image_t		*wall_img;
+	mlx_image_t		*door_img;
+}	t_image;
+
 typedef struct s_cub
 {
 	mlx_t			*mlx;
 	mlx_image_t		*windows_img;
-	mlx_texture_t	*texture;
+	t_image			*image;
 	t_player		*player;
 	t_map			*map;
 	t_line			**ray_array;
 	int				game_on;
 	t_elements		*elements;
 	int				parsing_error;
+	double			dt;
+	double			prev_dt;
 }	t_cub;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/22 01:13:22 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:32:24 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@
 # define WIN_HEIGHT 920
 # define WIN_WIDTH 1280
 # define TEX_SIZE 70
-# define ROTSPEED 0.04
-# define SPEED 0.05
+# define ROTSPEED 2
+# define SPEED 3.5
 # define TRUE 1
 # define FALSE 0
 
 // Map
 # define TSMAP 20
-# define PM_SIZE 20
+# define NB_TILE 7
 
 /*-----------------*/
 /*  STRUCT S_LINE  */
@@ -65,6 +65,10 @@
 	end_x; Position de fin du segment en X
 	end_y; Position de fin du segment en Y
 */
+
+
+void		draw_minimap_v2(t_cub *cub);
+uint32_t	get_rgba(u_int32_t color);
 
 // draw_env
 void		draw_vision(t_cub *cub, t_line *line);

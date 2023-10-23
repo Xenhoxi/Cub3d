@@ -6,21 +6,30 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/22 23:40:13 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:35:35 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	key_hook(void *param)
+void	key_hook(t_cub *cub)
 {
-	t_cub	*cub;
 	mlx_t	*mlx;
 
-	cub = (t_cub *)param;
 	mlx = cub->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
+}
+
+void	delta_time(t_cub *cub)
+{
+	double		current_time;
+
+	current_time = mlx_get_time();
+	cub->dt = current_time - cub->prev_dt;
+	cub->prev_dt = current_time;
+	printf("dt = %f\r", cub->dt);
+	fflush(stdout);
 }
 
 uint32_t	get_rgba(u_int32_t color)
@@ -41,57 +50,25 @@ u_int32_t	get_color_coord(int x, int y, mlx_image_t *img)
 {
 	uint32_t	*pixel;
 	u_int32_t	color;
-	static	int	failed;
 
 	pixel = NULL;
 	pixel = (uint32_t *)(img->pixels + (x + y * TEX_SIZE) * sizeof(uint32_t));
 	color = *pixel;
 	return (get_rgba(color));
-	printf("failed %d\n", failed);
 	return (0);
-}
-
-void	test(t_cub *cub)
-{
-	mlx_image_t *img;
-	mlx_image_t *img_vo;
-	int y = 0;
-	int x = 0;
-	
-	uint32_t	*pixel;
-	uint32_t	color;
-	img = mlx_new_image(cub->mlx, TEX_SIZE, TEX_SIZE);
-	img_vo = mlx_texture_to_image(cub->mlx, cub->elements->north_texture);
-	while (x < TEX_SIZE)
-	{
-		while (y < TEX_SIZE)
-		{
-			pixel = (uint32_t *)(img_vo->pixels + (x + y * TEX_SIZE) * sizeof(uint32_t));
-			color = *pixel;
-			color = get_rgba(color);
-			mlx_put_pixel(img, x, y, color);
-			y++;
-		}
-		x++;
-		y = 0;
-	}
-	printf("%u\n", get_color_coord(69, 69, mlx_texture_to_image(cub->mlx, cub->elements->north_texture)));
-	mlx_image_to_window(cub->mlx, img_vo, 0, 0);
-	mlx_image_to_window(cub->mlx, img, 0, 70);
 }
 
 void	ft_load(t_cub *cub)
 {
 	load_texture_tmp(cub->elements);
 	cub->windows_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
-	cub->elements->west_image = mlx_texture_to_image(cub->mlx, cub->elements->north_texture);
+	cub->elements->west_image = mlx_texture_to_image(cub->mlx, cub->elements->south_texture);
 	draw_outdoor(cub);
 	init_player(cub);
 	draw_rays(cub);
 	mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
+	// draw_minimap_v2(cub); // in_progress
 	minimap(cub);
-	// test(cub);
-	draw_direction(cub);
 }
 
 void	ft_update(void *param)
@@ -100,7 +77,22 @@ void	ft_update(void *param)
 
 	cub = (t_cub *)param;
 	player_update(cub);
+	delta_time(cub);
+	key_hook(cub);
 	return ;
+}
+
+t_image	*setup_image(t_cub *cub)
+{
+	t_image	*image_struct;
+
+	image_struct = malloc(sizeof(t_image));
+	if (!image_struct)
+		return (NULL);
+	image_struct->door_img = create_img_full(TSMAP, cub->mlx, 0xFF6600FF);
+	image_struct->wall_img = create_img_full(TSMAP, cub->mlx, 0x808080FF);
+	image_struct->floor_img = create_img_full(TSMAP, cub->mlx, 0xC8AD7FFF);
+	return (image_struct);
 }
 
 void	run(t_cub *cub)
@@ -108,9 +100,9 @@ void	run(t_cub *cub)
 	cub->mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "Black ops 2 Zombies", true);
 	if (!cub->mlx)
 		exit(EXIT_FAILURE);
+	cub->image = setup_image(cub);
 	ft_load(cub);
 	mlx_loop_hook(cub->mlx, ft_update, (void *)cub);
-	mlx_loop_hook(cub->mlx, key_hook, (void *)cub);
 	mlx_loop(cub->mlx);
 	mlx_terminate(cub->mlx);
 }
@@ -124,7 +116,7 @@ int	main(int argc, char **argv)
 	if (argc != 2 || check_file(argv))
 		return (1);
 	parsing(argv[1], cub);
-	// if (!cub->parsing_error)
+	if (!cub->parsing_error)
 		run(cub);
 	return (0);
 }
