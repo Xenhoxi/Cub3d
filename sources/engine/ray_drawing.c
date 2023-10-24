@@ -6,21 +6,11 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 16:12:43 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:15:27 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// void	alloc_rays(t_cub *cub)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < WIN_WIDTH)
-// 		cub->ray_array[i] = malloc(sizeof(t_line));
-// 	cub->ray_array[i] = NULL;
-// }
 
 void	scale_for_ray(t_cub *cub, t_line *line)
 {
@@ -38,7 +28,6 @@ void	scale_for_ray(t_cub *cub, t_line *line)
 		line->sy = fabs(1.0 / line->dir_y);
 }
 
-// Offset sur la premiere case + setup case dans laquelle je suis
 void	calcul_offset(t_line *line)
 {
 	if (line->dir_x < 0)
