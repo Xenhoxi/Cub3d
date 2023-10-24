@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 15:08:42 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:49:15 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	ft_update(void *param)
 
 	cub = (t_cub *)param;
 	mlx_set_cursor(cub->mlx, NULL);
+	mlx_set_mouse_pos(cub->mlx, WIN_HEIGHT / 2, WIN_WIDTH / 2);
 	player_update(cub);
 	delta_time(cub);
 	key_hook(cub);
