@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:44:15 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 15:10:55 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:19:29 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	parsing(char *map, t_cub *cub)
 	// print_elements(cub->elements);
 	if (parsing_checker(cub))
 		cub->parsing_error = 1;
-	// convert_texture_to_image(cub);
 	free(line);
 	close(fd);
 }

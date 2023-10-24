@@ -6,19 +6,11 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/24 15:11:16 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:18:45 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	convert_texture_to_image(t_cub *cub)
-{
-	cub->elements->south_image = mlx_texture_to_image(cub->mlx, cub->elements->south_texture);
-	cub->elements->north_image = mlx_texture_to_image(cub->mlx, cub->elements->north_texture);
-	cub->elements->west_image = mlx_texture_to_image(cub->mlx, cub->elements->west_texture);
-	cub->elements->east_image = mlx_texture_to_image(cub->mlx, cub->elements->east_texture);
-}
 
 void	convert_texture_to_image(t_cub *cub)
 {
@@ -51,13 +43,13 @@ void	store_text_path(t_cub *cub, char c, char *line)
 	while (is_space(*line))
 		line++;
 	if (c == 'E')
-		cub->elements->east_path = ft_strdup(line);
+		cub->elements->east_path = ft_substr(line, 0, ft_strlen(line) - 1);
 	else if (c == 'W')
-		cub->elements->west_path = ft_strdup(line);
+		cub->elements->west_path = ft_substr(line, 0, ft_strlen(line) - 1);
 	else if (c == 'S')
-		cub->elements->south_path = ft_strdup(line);
+		cub->elements->south_path = ft_substr(line, 0, ft_strlen(line) - 1);
 	else if (c == 'N')
-		cub->elements->north_path = ft_strdup(line);
+		cub->elements->north_path = ft_substr(line, 0, ft_strlen(line) - 1);
 	else
 		printf("Error\nMissing path\n");
 	if (cub->parsing_error == 0)
