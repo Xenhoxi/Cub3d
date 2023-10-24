@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 13:23:55 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:07:52 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,18 @@ void	ft_load(t_cub *cub)
 	// draw_minimap_v2(cub); // in_progress
 	minimap(cub);
 }
-void	mouse_hook(t_cub	*cub)
-{
-	mlx_set_cursor(cub->mlx, NULL);
-}
 
 void	ft_update(void *param)
 {
 	t_cub	*cub;
 
 	cub = (t_cub *)param;
+	mlx_set_cursor(cub->mlx, NULL);
 	player_update(cub);
 	delta_time(cub);
 	key_hook(cub);
-	mouse_hook(cub);
 	return ;
 }
-
 
 t_image	*setup_image(t_cub *cub)
 {

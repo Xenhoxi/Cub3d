@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:44:15 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/17 19:08:04 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:02:23 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parsing(char *map, t_cub *cub)
 		line = get_next_line(fd);
 	}
 	// print_char_map(cub->map->map);
-	print_elements(cub->elements);
+	// print_elements(cub->elements);
 	if (parsing_checker(cub))
 		cub->parsing_error = 1;
 	free(line);
