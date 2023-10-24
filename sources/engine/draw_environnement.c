@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 16:15:14 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:13:06 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,7 @@ void	draw_outdoor(t_cub *cub)
 {
 	mlx_image_t	*img_celling;
 	mlx_image_t	*img_floor;
-	
-	printf("c = %u et f = %u\n", cub->elements->ceiling_color, cub->elements->floor_color);
+
 	img_celling = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2, cub->mlx, cub->elements->ceiling_color);
 	img_floor = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2, cub->mlx, cub->elements->floor_color);
 	mlx_image_to_window(cub->mlx, img_floor, 0, WIN_HEIGHT / 2);
