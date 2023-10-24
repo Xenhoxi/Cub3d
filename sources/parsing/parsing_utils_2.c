@@ -39,8 +39,8 @@ int	open_file(char *path)
 
 void	print_elements(t_elements *elements)
 {
-	printf("ceiling color = %llu\n", elements->ceiling_color);
-	printf("floor color = %llu\n", elements->floor_color);
+	printf("ceiling color = %u\n", elements->ceiling_color);
+	printf("floor color = %u\n", elements->floor_color);
 	printf("north_text_path = %s\n", elements->north_path);
 	printf("south_text_path = %s\n", elements->south_path);
 	printf("east_text_path = %s\n", elements->east_path);

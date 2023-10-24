@@ -68,7 +68,7 @@
 
 
 void		draw_minimap(t_cub *cub);
-uint32_t	get_rgba(u_int32_t color);
+uint32_t	get_rgba_tex(u_int32_t color);
 
 // draw_env
 void		draw_vision(t_cub *cub, t_line *line);

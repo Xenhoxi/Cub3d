@@ -71,11 +71,11 @@ void		sort_element(t_cub	*cub, char *line);
 int			element_checker(t_elements *elements);
 
 // color_parsing
-uint64_t	convert_rgb(char *line);
+u_int32_t	convert_rgb(char *line);
 int			is_color(char *line, int i);
 int			color_check(int nb_count, int comma_count);
 void		store_color(t_elements *elements, char *line);
-uint32_t	get_rgba(u_int32_t color);
+u_int32_t	get_rgba(u_int32_t color);
 
 // texture_parsing
 void		convert_texture_to_image(t_cub *cub);

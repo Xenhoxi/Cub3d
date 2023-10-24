@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:09:37 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 16:21:04 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:11:58 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,8 @@ void	left_rotation(t_cub *cub)
 
 void	player_update(t_cub *cub)
 {
-	int		i;
 	mlx_t	*mlx;
 
-	i = -1;
 	mlx = cub->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
 		move_left(cub);
@@ -75,24 +73,14 @@ void	player_update(t_cub *cub)
 		right_rotation(cub);
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
 		left_rotation(cub);
-	if (mlx_is_key_down(mlx, MLX_KEY_K))
-	{
-		cub->player->ray_on = 1;
-		draw_rays(cub);
-	}
-	if (mlx_is_key_down(mlx, MLX_KEY_L))
-	{
-		while (cub->ray_array[++i])
-			mlx_delete_image(cub->mlx, cub->ray_array[i]->img);
-		cub->player->ray_on = 0;
-	}
 	if (mlx_is_key_down(mlx, MLX_KEY_A) || mlx_is_key_down(mlx, MLX_KEY_D)
 		|| mlx_is_key_down(mlx, MLX_KEY_S) || mlx_is_key_down(mlx, MLX_KEY_W)
 		|| mlx_is_key_down(mlx, MLX_KEY_LEFT)
-		|| mlx_is_key_down(mlx, MLX_KEY_RIGHT))
+		|| mlx_is_key_down(mlx, MLX_KEY_RIGHT) || cub->mouse_moved != 0)
 	{
 		draw_rays(cub);
 		draw_minimap(cub);
+		cub->mouse_moved = 0;
 	}
 }
 

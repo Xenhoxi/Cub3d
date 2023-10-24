@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:17:23 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 15:24:38 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:22:28 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	put_image_to_image(t_cub *cub, t_vector map, t_vector pos)
 		{
 			pixel = (uint32_t *)(img->pixels + (y_img + x_img * TSMAP) * sizeof(uint32_t));
 			color = *pixel;
-			color = get_rgba(color);
+			color = get_rgba_tex(color);
 			mlx_put_pixel(cub->windows_img, map.x * TSMAP + x_img, map.y * TSMAP + y_img, color);
 			x_img++;
 		}
@@ -66,8 +66,8 @@ void	draw_minimap(t_cub *cub)
 
 	map.x = 0;
 	map.y = 0;
-	start.x = floor(cub->player->pos_x) - NB_TILE;
-	start.y = floor(cub->player->pos_y) - NB_TILE;
+	start.x = (int)(cub->player->pos_x) - NB_TILE;
+	start.y = (int)(cub->player->pos_y) - NB_TILE;
 	while (map.y <= NB_TILE * 2)
 	{
 		while (map.x <= NB_TILE * 2)
@@ -76,7 +76,7 @@ void	draw_minimap(t_cub *cub)
 			map.x++;
 			start.x++;
 		}
-		start.x = floor(cub->player->pos_x) - NB_TILE;
+		start.x = (int)(cub->player->pos_x) - NB_TILE;
 		map.x = 0;
 		start.y++;
 		map.y++;

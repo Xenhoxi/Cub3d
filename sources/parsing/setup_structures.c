@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_structures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/24 16:11:15 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:23:18 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_cub	*setup_cub(void)
 	cub->player->dir_y = 0;
 	cub->game_on = 0;
 	cub->parsing_error = 0;
+	cub->mouse_moved = 0;
 	return (cub);
 }
 
