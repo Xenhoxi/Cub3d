@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 15:08:33 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:10:43 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,6 @@ void	delta_time(t_cub *cub)
 	cub->prev_dt = current_time;
 	printf("dt = %f\r", cub->dt);
 	fflush(stdout);
-}
-
-uint32_t	get_rgba(u_int32_t color)
-{
-	u_int8_t	r;
-	u_int8_t	g;
-	u_int8_t	b;
-	u_int8_t	a;
-
-	a = color >> 24;
-	r = color >> 16;
-	g = color >> 8;
-	b = color;
-	return (r << 8 | g << 16 | b << 24 | a << 0);
 }
 
 u_int32_t	get_color_coord(int x, int y, mlx_image_t *img)
@@ -75,6 +61,7 @@ void	ft_update(void *param)
 	t_cub	*cub;
 
 	cub = (t_cub *)param;
+	mlx_set_cursor(cub->mlx, NULL);
 	player_update(cub);
 	delta_time(cub);
 	key_hook(cub);

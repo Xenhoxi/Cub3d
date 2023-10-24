@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:17:23 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 13:48:21 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:08:58 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	minimap(t_cub *cub)
 
 	img_1 = create_img_full(TSMAP, cub->mlx, 0xFFFF00FF);
 	img_0 = create_img_full(TSMAP, cub->mlx, 0xFFFFFF01);
-	draw_minimap(cub->map, cub->mlx, img_1, img_0);
+	// draw_minimap(cub->map, cub->mlx, img_1, img_0);
 }
 
 void	draw_minimap(t_map *map, mlx_t *mlx, mlx_image_t *img_1, mlx_image_t *img_0)

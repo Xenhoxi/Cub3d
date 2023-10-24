@@ -1,7 +1,7 @@
+EA ./sources/textures/beige_wall.png
 SO sources/textures/yellow_wall.png
 NO sources/textures/gray_wall.png
 WE ./sources/textures/dark_wall.png
-EA ./sources/textures/beige_wall.png
 
 F 078,176,029
 C 000,000,255                                     
