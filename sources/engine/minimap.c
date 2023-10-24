@@ -6,43 +6,11 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:17:23 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 15:51:09 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:22:28 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// void	minimap(t_cub *cub)
-// {
-// 	mlx_image_t	*img_0;
-// 	mlx_image_t	*img_1;
-
-// 	img_1 = create_img_full(TSMAP, cub->mlx, 0xFFFF00FF);
-// 	img_0 = create_img_full(TSMAP, cub->mlx, 0xFFFFFF01);
-// 	// draw_minimap(cub->map, cub->mlx, img_1, img_0);
-// }
-
-void	draw_minimap(t_map *map, mlx_t *mlx, mlx_image_t *img_1, mlx_image_t *img_0)
-{
-	char	**map_char;
-	int		x;
-	int		y;
-
-	map_char = map->map;
-	x = -1;
-	y = -1;
-	while (map_char[++y])
-	{
-		while (map_char[y][++x])
-		{
-			if (map_char[y][x] == '1')
-				mlx_image_to_window(mlx, img_1, x * TSMAP, y * TSMAP);
-			else
-				mlx_image_to_window(mlx, img_0, x * TSMAP, y * TSMAP);
-		}
-		x = -1;
-	}
-}
 
 int	is_spawn(char type)
 {
@@ -91,7 +59,7 @@ void	put_image_to_image(t_cub *cub, t_vector map, t_vector pos)
 	}
 }
 
-void	draw_minimap_v2(t_cub *cub)
+void	draw_minimap(t_cub *cub)
 {
 	t_vector	map;
 	t_vector	start;
