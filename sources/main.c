@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 15:50:38 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:20:45 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,38 @@ void	ft_load(t_cub *cub)
 	// minimap(cub);
 }
 
+void	mouse_hook(t_cub *cub)
+{
+	int	old_x;
+	int	old_y;
+
+	old_y = 0;
+	old_x = 0;
+	mlx_set_cursor(cub->mlx, NULL);
+	// mlx_set_cursor_mode(cub->mlx, MLX_MOUSE_HIDDEN);
+	mlx_get_mouse_pos(cub->mlx, &old_x, &old_y);
+	if (old_x > WIN_WIDTH / 2)
+	{
+		right_rotation(cub);
+		cub->mouse_moved = 1;
+	}
+	if (old_x < WIN_WIDTH / 2)
+	{
+		left_rotation(cub);
+		cub->mouse_moved = 1;
+	}
+	mlx_set_mouse_pos(cub->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+
+}
+
 void	ft_update(void *param)
 {
 	t_cub	*cub;
 
 	cub = (t_cub *)param;
-	mlx_set_cursor(cub->mlx, NULL);
-	mlx_set_mouse_pos(cub->mlx, WIN_HEIGHT / 2, WIN_WIDTH / 2);
 	player_update(cub);
 	delta_time(cub);
+	mouse_hook(cub);
 	key_hook(cub);
 	return ;
 }
@@ -91,6 +114,7 @@ void	run(t_cub *cub)
 		exit(EXIT_FAILURE);
 	cub->image = setup_image(cub);
 	ft_load(cub);
+	mlx_set_mouse_pos(cub->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	mlx_loop_hook(cub->mlx, ft_update, (void *)cub);
 	mlx_loop(cub->mlx);
 	mlx_terminate(cub->mlx);
