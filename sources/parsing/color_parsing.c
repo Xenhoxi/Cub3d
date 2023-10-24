@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:32:16 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/17 15:35:09 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:19:15 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,18 @@ void	store_color(t_elements *elements, char *line)
 		elements->ceiling_color = convert_rgb(line);
 	else
 		printf("Error\nWrong color syntax\n");
+}
+
+uint32_t	get_rgba(u_int32_t color)
+{
+	u_int8_t	r;
+	u_int8_t	g;
+	u_int8_t	b;
+	u_int8_t	a;
+
+	a = color >> 24;
+	r = color >> 16;
+	g = color >> 8;
+	b = color;
+	return (r << 8 | g << 16 | b << 24 | a << 0);
 }

@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/20 09:15:21 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:19:25 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,11 @@ uint64_t	convert_rgb(char *line);
 int			is_color(char *line, int i);
 int			color_check(int nb_count, int comma_count);
 void		store_color(t_elements *elements, char *line);
+uint32_t	get_rgba(u_int32_t color);
 
 // texture_parsing
-void		which_texture(t_elements *elements, char *line);
+void		which_texture(t_cub *cub, char *line);
 int			is_texture(char *line, int i);
-void		store_text_path(t_elements *elements, char c, char *line);
-void		load_texture(t_elements *elements, char c);
+void		store_text_path(t_cub *cub, char c, char *line);
+void		load_texture(t_cub *cub, char c);
 #endif

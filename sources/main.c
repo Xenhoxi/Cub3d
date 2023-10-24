@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/23 15:35:35 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:23:55 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,6 @@ void	delta_time(t_cub *cub)
 	cub->prev_dt = current_time;
 	printf("dt = %f\r", cub->dt);
 	fflush(stdout);
-}
-
-uint32_t	get_rgba(u_int32_t color)
-{
-	u_int8_t	r;
-	u_int8_t	g;
-	u_int8_t	b;
-	u_int8_t	a;
-
-	a = color >> 24;
-	r = color >> 16;
-	g = color >> 8;
-	b = color;
-	return (r << 8 | g << 16 | b << 24 | a << 0);
 }
 
 u_int32_t	get_color_coord(int x, int y, mlx_image_t *img)
@@ -70,6 +56,10 @@ void	ft_load(t_cub *cub)
 	// draw_minimap_v2(cub); // in_progress
 	minimap(cub);
 }
+void	mouse_hook(t_cub	*cub)
+{
+	mlx_set_cursor(cub->mlx, NULL);
+}
 
 void	ft_update(void *param)
 {
@@ -79,8 +69,10 @@ void	ft_update(void *param)
 	player_update(cub);
 	delta_time(cub);
 	key_hook(cub);
+	mouse_hook(cub);
 	return ;
 }
+
 
 t_image	*setup_image(t_cub *cub)
 {
