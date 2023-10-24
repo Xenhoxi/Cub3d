@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-uint64_t	convert_rgb(char *line)
+u_int32_t	convert_rgb(char *line)
 {
 	int				r;
 	int				g;
@@ -90,7 +90,7 @@ void	store_color(t_elements *elements, char *line)
 		printf("Error\nWrong color syntax\n");
 }
 
-uint32_t	get_rgba(u_int32_t color)
+u_int32_t	get_rgba_tex(u_int32_t color)
 {
 	u_int8_t	r;
 	u_int8_t	g;

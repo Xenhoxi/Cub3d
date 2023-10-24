@@ -40,7 +40,7 @@ u_int32_t	get_color_coord(int x, int y, mlx_image_t *img)
 	pixel = NULL;
 	pixel = (uint32_t *)(img->pixels + (x + y * TEX_SIZE) * sizeof(uint32_t));
 	color = *pixel;
-	return (get_rgba(color));
+	return (get_rgba_tex(color));
 	return (0);
 }
 
@@ -63,7 +63,7 @@ void	mouse_hook(t_cub *cub)
 	old_y = 0;
 	old_x = 0;
 	mlx_set_cursor(cub->mlx, NULL);
-	// mlx_set_cursor_mode(cub->mlx, MLX_MOUSE_HIDDEN);
+	mlx_set_cursor_mode(cub->mlx, MLX_MOUSE_HIDDEN);
 	mlx_get_mouse_pos(cub->mlx, &old_x, &old_y);
 	if (old_x > WIN_WIDTH / 2)
 	{

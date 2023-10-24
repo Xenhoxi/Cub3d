@@ -64,8 +64,8 @@ typedef struct s_elements
 	mlx_image_t		*east_image;
 	mlx_image_t		*north_image;
 	mlx_image_t		*south_image;
-	uint64_t		floor_color;
-	uint64_t		ceiling_color;
+	u_int32_t		floor_color;
+	u_int32_t		ceiling_color;
 }	t_elements;
 
 typedef struct s_player
