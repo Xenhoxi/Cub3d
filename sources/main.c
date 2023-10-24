@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/23 15:35:35 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:35:00 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	ft_load(t_cub *cub)
 	init_player(cub);
 	draw_rays(cub);
 	mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
-	// draw_minimap_v2(cub); // in_progress
-	minimap(cub);
+	draw_minimap_v2(cub); // in_progress
+	// minimap(cub);
 }
 
 void	ft_update(void *param)
@@ -92,6 +92,7 @@ t_image	*setup_image(t_cub *cub)
 	image_struct->door_img = create_img_full(TSMAP, cub->mlx, 0xFF6600FF);
 	image_struct->wall_img = create_img_full(TSMAP, cub->mlx, 0x808080FF);
 	image_struct->floor_img = create_img_full(TSMAP, cub->mlx, 0xC8AD7FFF);
+	image_struct->transparent_img = create_img_cf(TSMAP, TSMAP, cub->mlx, 0x808080FF);
 	return (image_struct);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/23 15:32:24 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:48:12 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 
 // Map
 # define TSMAP 20
-# define NB_TILE 7
+# define NB_TILE 6
 
 /*-----------------*/
 /*  STRUCT S_LINE  */
