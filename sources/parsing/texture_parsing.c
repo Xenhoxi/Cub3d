@@ -6,11 +6,19 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/22 02:05:00 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:07:41 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	convert_texture_to_image(t_cub *cub)
+{
+	cub->elements->south_image = mlx_texture_to_image(cub->mlx, cub->elements->south_texture);
+	cub->elements->north_image = mlx_texture_to_image(cub->mlx, cub->elements->north_texture);
+	cub->elements->west_image = mlx_texture_to_image(cub->mlx, cub->elements->west_texture);
+	cub->elements->east_image = mlx_texture_to_image(cub->mlx, cub->elements->east_texture);
+}
 
 void	which_texture(t_elements *elements, char *line)
 {

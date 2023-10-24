@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/22 23:43:40 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:09:15 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@ uint64_t	chose_color(t_line *line)
 	else if (line->side == 'E')
 		return (0xFF00FFFF);
 	return (0xFFFFFFFF);
+}
+
+mlx_image_t	*chose_image(t_cub *cub, char side)
+{
+	if (side == 'S')
+		return (cub->elements->south_image);
+	else if (side == 'N')
+		return (cub->elements->north_image);
+	else if (side == 'W')
+		return (cub->elements->west_image);
+	else if (side == 'E')
+		return (cub->elements->east_image);
+	else
+		return (NULL);
 }
 
 void	drawline(t_cub *cub, t_line *line, int draw_start, int draw_end)
@@ -68,7 +82,7 @@ void	drawtexture(int line_height, int draw_start, int draw_end, t_line *line, t_
 			else if (texY < 0)
 				texY = 0;
 			mlx_put_pixel(cub->windows_img, line->i, y,
-				get_color_coord(texX, texY, cub->elements->west_image));
+				get_color_coord(texX, texY, chose_image(cub, line->side)));
 		}
 		else
 			mlx_put_pixel(cub->windows_img, line->i, y, 0);

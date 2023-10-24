@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 13:35:00 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:08:33 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	ft_load(t_cub *cub)
 {
 	load_texture_tmp(cub->elements);
 	cub->windows_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
-	cub->elements->west_image = mlx_texture_to_image(cub->mlx, cub->elements->south_texture);
 	draw_outdoor(cub);
 	init_player(cub);
 	draw_rays(cub);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/20 09:15:21 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:01:53 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int			color_check(int nb_count, int comma_count);
 void		store_color(t_elements *elements, char *line);
 
 // texture_parsing
+void		convert_texture_to_image(t_cub *cub);
 void		which_texture(t_elements *elements, char *line);
 int			is_texture(char *line, int i);
 void		store_text_path(t_elements *elements, char c, char *line);
