@@ -6,21 +6,21 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:17:23 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 15:10:22 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:51:09 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	minimap(t_cub *cub)
-{
-	mlx_image_t	*img_0;
-	mlx_image_t	*img_1;
+// void	minimap(t_cub *cub)
+// {
+// 	mlx_image_t	*img_0;
+// 	mlx_image_t	*img_1;
 
-	img_1 = create_img_full(TSMAP, cub->mlx, 0xFFFF00FF);
-	img_0 = create_img_full(TSMAP, cub->mlx, 0xFFFFFF01);
-	draw_minimap(cub->map, cub->mlx, img_1, img_0);
-}
+// 	img_1 = create_img_full(TSMAP, cub->mlx, 0xFFFF00FF);
+// 	img_0 = create_img_full(TSMAP, cub->mlx, 0xFFFFFF01);
+// 	// draw_minimap(cub->map, cub->mlx, img_1, img_0);
+// }
 
 void	draw_minimap(t_map *map, mlx_t *mlx, mlx_image_t *img_1, mlx_image_t *img_0)
 {
