@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/24 12:41:05 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:08:51 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 # define STRUCT_H
 
 # include "../MLX42/include/MLX42/MLX42.h"
+
+typedef	struct	s_vector
+{
+	int	x;
+	int	y;
+}	t_vector;
 
 typedef struct s_line
 {
@@ -92,6 +98,7 @@ typedef struct s_image
 	mlx_image_t		*floor_img;
 	mlx_image_t		*wall_img;
 	mlx_image_t		*door_img;
+	mlx_image_t		*transparent_img;
 }	t_image;
 
 typedef struct s_cub
