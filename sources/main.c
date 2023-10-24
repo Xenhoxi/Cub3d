@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 15:19:47 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:24:11 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,13 @@ u_int32_t	get_color_coord(int x, int y, mlx_image_t *img)
 
 void	ft_load(t_cub *cub)
 {
-	// load_texture_tmp(cub->elements);
 	convert_texture_to_image(cub);
 	cub->windows_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
 	draw_outdoor(cub);
 	init_player(cub);
 	draw_rays(cub);
 	mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
-	draw_minimap_v2(cub); // in_progress
-	// minimap(cub);
+	draw_minimap(cub);
 }
 
 void	ft_update(void *param)

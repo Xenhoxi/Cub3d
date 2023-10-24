@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_structures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/24 12:29:12 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:11:15 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_cub	*setup_cub(void)
 	cub->player = malloc(sizeof(t_player));
 	cub->map = setup_map();
 	cub->elements = setup_elements();
-	cub->ray_array = malloc(sizeof(t_line *) * (WIN_WIDTH + 1));
-	alloc_rays(cub);
+	// cub->ray_array = malloc(sizeof(t_line *) * (WIN_WIDTH + 1));
+	// alloc_rays(cub);
 	cub->player->pos_x = 0;
 	cub->player->pos_y = 0;
 	cub->player->angle = 0;

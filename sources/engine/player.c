@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:09:37 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 00:33:52 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:09:11 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,7 @@ void	player_update(t_cub *cub)
 		|| mlx_is_key_down(mlx, MLX_KEY_RIGHT))
 	{
 		draw_rays(cub);
-		draw_minimap_v2(cub);
-		// draw_direction(cub);
+		draw_minimap(cub);
 	}
 }
 

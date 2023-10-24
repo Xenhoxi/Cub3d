@@ -6,21 +6,21 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/22 17:30:49 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:12:43 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	alloc_rays(t_cub *cub)
-{
-	int	i;
+// void	alloc_rays(t_cub *cub)
+// {
+// 	int	i;
 
-	i = -1;
-	while (++i < WIN_WIDTH)
-		cub->ray_array[i] = malloc(sizeof(t_line));
-	cub->ray_array[i] = NULL;
-}
+// 	i = -1;
+// 	while (++i < WIN_WIDTH)
+// 		cub->ray_array[i] = malloc(sizeof(t_line));
+// 	cub->ray_array[i] = NULL;
+// }
 
 void	scale_for_ray(t_cub *cub, t_line *line)
 {
@@ -96,21 +96,20 @@ void	dda_algorithm(t_cub *cub, t_line *line)
 
 void	draw_rays(t_cub *cub)
 {
-	t_line		*line;
+	t_line		line;
 	int			i;
 
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
-		line = cub->ray_array[i];
-		line->i = i;
-		line->angle = ((cub->player->angle - (PI / 6)) + (((PI / 3) / WIN_WIDTH) * i));
-		scale_for_ray(cub, line);
-		calcul_offset(line);
-		dda_algorithm(cub, line);
+		line.i = i;
+		line.angle = ((cub->player->angle - (PI / 6)) + (((PI / 3) / WIN_WIDTH) * i));
+		scale_for_ray(cub, &line);
+		calcul_offset(&line);
+		dda_algorithm(cub, &line);
 		if (cub->player->ray_on && i % 20 == 0)
-			draw_rayline(cub, line);
-		draw_vision(cub, line);
+			draw_rayline(cub, &line);
+		draw_vision(cub, &line);
 		i++;
 	}
 }

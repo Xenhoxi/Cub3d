@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 15:09:15 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:09:51 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,19 @@ mlx_image_t	*chose_image(t_cub *cub, char side)
 		return (NULL);
 }
 
-void	drawline(t_cub *cub, t_line *line, int draw_start, int draw_end)
-{
-	int			y;
+// void	drawline(t_cub *cub, t_line *line, int draw_start, int draw_end)
+// {
+// 	int			y;
 
-	y = -1;
-	while (++y < WIN_HEIGHT)
-	{
-		if (y >= draw_start && y <= draw_end)
-			mlx_put_pixel(cub->windows_img, line->i, y, chose_color(line));
-		else
-			mlx_put_pixel(cub->windows_img, line->i, y, 0);
-	}
-}
+// 	y = -1;
+// 	while (++y < WIN_HEIGHT)
+// 	{
+// 		if (y >= draw_start && y <= draw_end)
+// 			mlx_put_pixel(cub->windows_img, line->i, y, chose_color(line));
+// 		else
+// 			mlx_put_pixel(cub->windows_img, line->i, y, 0);
+// 	}
+// }
 
 void	drawtexture(int line_height, int draw_start, int draw_end, t_line *line, t_cub *cub)
 {
@@ -103,7 +103,6 @@ void	draw_vision(t_cub *cub, t_line *line)
 	draw_end = line_height / 2 + WIN_HEIGHT / 2;
 	if (draw_end >= WIN_HEIGHT)
 		draw_end = WIN_HEIGHT - 1;
-	// drawline(cub, line, draw_start, draw_end);
 	drawtexture(line_height, draw_start, draw_end, line, cub);
 }
 
