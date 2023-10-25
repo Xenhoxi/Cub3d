@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/25 13:06:29 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 13:18:22 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	which_texture(t_cub *cub, char *line)
 	else if (!ft_strncmp(line, "WE", 2))
 		store_text_path(cub, 'W', line);
 	else
-		printf("Error\nWrong texture identifier or format\n");
+		error_msg("Wrong texture identifier or format");
 }
 
 void	store_text_path(t_cub *cub, char c, char *line)
@@ -51,7 +51,7 @@ void	store_text_path(t_cub *cub, char c, char *line)
 	else if (c == 'N')
 		cub->elements->north_path = ft_substr(line, 0, ft_strlen(line) - 1);
 	else
-		printf("Error\nMissing path\n");
+		error_msg("Missing path");
 	if (cub->parsing_error == 0)
 		load_texture(cub, c);
 }
@@ -59,7 +59,7 @@ void	store_text_path(t_cub *cub, char c, char *line)
 int	is_texture(char *line, int i)
 {
 	if (check_ext(line, ".png") == 1)
-		return (printf("Error\nWrong texture extension\nm"));
+		return (error_msg("Wrong texture extension"), 0);
 	if (line[i] == 'S' && line[i + 1] == 'O')
 		return (1);
 	else if (line[i] == 'N' && line[i + 1] == 'O')
@@ -69,7 +69,7 @@ int	is_texture(char *line, int i)
 	else if (line[i] == 'E' && line[i + 1] == 'A')
 		return (1);
 	else
-		return (printf("Error\nWrong texture identifier\n"), 0);
+		return (error_msg("Wrong texture identifier"), 0);
 }
 
 void	load_texture(t_cub *cub, char c)
@@ -78,36 +78,24 @@ void	load_texture(t_cub *cub, char c)
 	{
 		cub->elements->north_texture = mlx_load_png(cub->elements->north_path);
 		if (cub->elements->north_texture == NULL)
-		{
-			printf("%c --> texture failed to load\n", c);
 			cub->parsing_error = 1;
-		}
 	}
 	else if (c == 'S')
 	{
 		cub->elements->south_texture = mlx_load_png(cub->elements->south_path);
 		if (cub->elements->south_texture == NULL)
-		{
-			printf("%c --> texture failed to load\n", c);
 			cub->parsing_error = 1;
-		}
 	}
 	else if (c == 'E')
 	{
 		cub->elements->east_texture = mlx_load_png(cub->elements->east_path);
 		if (cub->elements->east_texture == NULL)
-		{
-			printf("%c --> texture failed to load\n", c);
 			cub->parsing_error = 1;
-		}
 	}
 	else if (c == 'W')
 	{
 		cub->elements->west_texture = mlx_load_png(cub->elements->west_path);
 		if (cub->elements->west_texture == NULL)
-		{
-			printf("%c --> texture failed to load\n", c);
 			cub->parsing_error = 1;
-		}
 	}
 }

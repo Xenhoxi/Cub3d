@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/24 15:12:45 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:14:20 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ int			file_exist(char	*file_name);
 // parsing_utils_2
 int			selected_fd(char *map);
 int			check_file(char **argv);
-void		find_spawn(char **map, int *x, int *y);
 int			open_file(char *path);
 void		print_elements(t_elements *elements);
+void		error_msg(char *msg);
 
 // elements_parsing
 char		*element_type(char *line);

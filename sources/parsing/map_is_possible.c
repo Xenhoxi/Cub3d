@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:48:35 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 12:43:24 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 13:20:12 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,16 @@ int	map_is_possible(char	**map, t_cub *cub)
 
 	count = 2;
 	cub->map->array = init_int_array(map);
-	// print_int_array(map, cub->map->array);
 	while (nb_possibilities(cub->map->array, count, map, cub) > 0)
 		count++;
 	if (final_check(map, cub->map->array) == 1)
 	{
-		ft_printf("Error\nMap is not possible\n");
+		error_msg("Map is not possible");
 		free_int_array(cub->map->array, map);
 		return (1);
 	}
 	else if (final_check(map, cub->map->array) == 2)
-		printf("Map is missing\n");
+		error_msg("Map is missing");
 	free_int_array(cub->map->array, map);
 	return (0);
 }
@@ -73,7 +72,6 @@ int	nb_possibilities(int **array, int count, char **map, t_cub *cub)
 		}
 		u = -1;
 	}
-	print_int_array(map, array);
 	return (r);
 }
 
@@ -82,7 +80,6 @@ int	check_sides_int_array(t_cub	*cub, int count, int i, int u)
 	int		r;
 
 	r = 0;
-	printf("i =%d\n u =%d\n", i, u);
 	if (cub->map->array[i][u + 1] == -1)
 	{
 		cub->map->array[i][u + 1] = count + 1;
