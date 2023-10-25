@@ -6,7 +6,7 @@
 #    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 23:49:19 by ljerinec          #+#    #+#              #
-#    Updated: 2023/10/24 17:12:21 by ljerinec         ###   ########.fr        #
+#    Updated: 2023/10/25 10:18:17 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SOURCES =	sources/main.c \
 OBJ_DIR = object/
 OBJECTS = $(SOURCES:.c=.o)
 
-CUB3D = cub3d
+CUB3D = cub3D
 
 LIBFT_DIR = includes/libft/libft.a
 FT_PRINTF_DIR = includes/ft_printf/ft_printf.a

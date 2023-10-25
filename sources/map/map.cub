@@ -1,7 +1,7 @@
-SO ./path_to_the_north_texture
-NO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO sources/textures/beige_wall.png
+SO sources/textures/dark_wall.png
+WE sources/textures/gray_wall.png
+EA sources/textures/yellow_wall.png
 F 255,255,000                  
 C 001,001,000             
 
