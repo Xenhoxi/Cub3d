@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/25 14:05:58 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:37:39 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ mlx_image_t	*chose_image(t_cub *cub, char side)
 		return (cub->elements->west_image);
 	else if (side == 'E')
 		return (cub->elements->east_image);
+	else if (side == 'D')
+		return (cub->image->door_img_tex);
 	else
 		return (NULL);
 }
@@ -127,7 +129,6 @@ void	draw_vision(t_cub *cub, t_line *line)
 	if (draw_end >= WIN_HEIGHT)
 		draw_end = WIN_HEIGHT - 1;
 	drawtexture(line_height, draw_start, draw_end, line, cub);
-	// drawtexture_item(line_height, draw_start, draw_end, line, cub);
 }
 
 mlx_image_t	*create_img_cf(int width, int height, mlx_t *mlx, uint64_t color)
@@ -155,16 +156,10 @@ void	draw_outdoor(t_cub *cub)
 	mlx_image_t	*img_celling;
 	mlx_image_t	*img_floor;
 
-	img_celling = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2, cub->mlx, cub->elements->ceiling_color);
-	img_floor = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2, cub->mlx, cub->elements->floor_color);
+	img_celling = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2,
+			cub->mlx, cub->elements->ceiling_color);
+	img_floor = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2,
+			cub->mlx, cub->elements->floor_color);
 	mlx_image_to_window(cub->mlx, img_floor, 0, WIN_HEIGHT / 2);
 	mlx_image_to_window(cub->mlx, img_celling, 0, 0);
-}
-
-void	load_texture_tmp(t_elements *elements)
-{
-	elements->east_texture = mlx_load_png("./sources/textures/beige_wall.png");
-	elements->west_texture = mlx_load_png("./sources/textures/dark_wall.png");
-	elements->south_texture = mlx_load_png("./sources/textures/yellow_wall.png");
-	elements->north_texture = mlx_load_png("./sources/textures/gray_wall.png");
 }

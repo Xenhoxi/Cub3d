@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/25 14:04:52 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:39:20 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct s_image
 	mlx_image_t		*floor_img;
 	mlx_image_t		*wall_img;
 	mlx_image_t		*door_img;
+	mlx_image_t		*door_img_tex;
 	mlx_image_t		*transparent_img;
 }	t_image;
 

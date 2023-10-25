@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/25 14:07:07 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:42:11 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,10 @@ void	dda_algorithm(t_cub *cub, t_line *line)
 		if (cub->map->map[line->map_y][line->map_x] == '1')
 			break ;
 		else if (is_entity(cub->map->map[line->map_y][line->map_x]))
-			line->is_entity = 1;
+		{
+			line->side = 'D';
+			break ;
+		}
 	}
 	if (line->side == 'E' || line->side == 'W')
 		line->reel_dist = line->lenght_x - line->sx;

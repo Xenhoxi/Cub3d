@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/25 13:17:07 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:44:31 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ t_image	*setup_image(t_cub *cub)
 	image_struct->door_img = create_img_full(TSMAP, cub->mlx, 0xFF6600FF);
 	image_struct->wall_img = create_img_full(TSMAP, cub->mlx, 0x808080FF);
 	image_struct->floor_img = create_img_full(TSMAP, cub->mlx, 0xC8AD7FFF);
+	image_struct->door_img_tex = create_img_full(TEX_SIZE, cub->mlx, 0xFFFFFFFF);
 	image_struct->transparent_img = create_img_cf(TSMAP, TSMAP, cub->mlx, 0x808080FF);
 	return (image_struct);
 }
