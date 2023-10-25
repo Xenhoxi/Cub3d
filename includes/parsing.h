@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/25 16:31:26 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:31:22 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ typedef struct s_cub			t_cub;
 typedef struct s_map			t_map;
 typedef struct s_player			t_player;
 typedef struct s_elements		t_elements;
-typedef struct s_poop			t_poop;
+typedef struct s_var			t_var;
 
 // setup_structures
 t_cub		*setup_cub(void);
 t_map		*setup_map(void);
 t_elements	*setup_elements(void);
-void		setup_poop(t_poop *poop);
+void		setup_var(t_var *v);
 
 // parsing
 void		parsing(char *map, t_cub *cub);
 int			parsing_checker(t_cub *cub);
 
 // map_parsing_0
-int			get_map_index(char **map);
+int			get_map_index(char **map, t_cub *cub);
 int			is_wrong_char(char c);
-int			map_is_closed(char **map);
+int			map_is_closed(char **map, t_cub *cub);
 int			check_sides_char_map(char **map, int i, int u, int r);
 
 //	map_parsing_1
@@ -54,7 +54,7 @@ int			is_space(char c);
 int			ft_array_len(char	**array);
 
 // parsing_utils_1
-void		print_int_array(char **map, int **array);
+void		print_int_array(char **map, int **array, t_cub *cub);
 int			change_case(char **map, int i, int u);
 char		**array_join(char **array, char *line);
 int			check_ext(char	*file_name, char	*ext);
@@ -68,15 +68,15 @@ void		print_elements(t_elements *elements);
 void		error_msg(char *msg, t_cub *cub);
 
 // elements_parsing
-char		*element_type(char *line, t_poop	*poop, t_cub *cub);
-void		sort_element(t_cub	*cub, char *line, t_poop *poop);
+char		*element_type(char *line, t_cub *cub);
+void		sort_element(t_cub	*cub, char *line);
 int			element_checker(t_elements *elements, t_cub *cub);
 
 // color_parsing
-u_int32_t	convert_rgb(char *line, t_poop *poop);
-int			is_color(char *line, int i, t_poop *poop, t_cub *cub);
+u_int32_t	convert_rgb(char *line, t_cub *cub);
+int			is_color(char *line, int i, t_cub *cub);
 int			color_check(int nb_count, int comma_count);
-void		store_color(t_elements *elements, char *line, t_poop *poop, t_cub *cub);
+void		store_color(t_elements *elements, char *line, t_cub *cub);
 u_int32_t	get_rgba(u_int32_t color);
 
 // texture_parsing

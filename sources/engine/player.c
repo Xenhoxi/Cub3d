@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:09:37 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/25 16:32:52 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:39:55 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,8 @@ void	find_spawn(char **map, int *x, int *y)
 {
 	*x = 0;
 	*y = 0;
+	if (!map)
+		return ;
 	while (map[*x])
 	{
 		while (map[*x][*y])

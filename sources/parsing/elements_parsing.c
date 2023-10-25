@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   elements_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 16:31:42 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:24:08 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	sort_element(t_cub	*cub, char *line, t_poop *poop)
+void	sort_element(t_cub	*cub, char *line)
 {
 	static int		parsing_map;
 	char			*type;
 
-	type = element_type(line, poop, cub);
+	type = element_type(line, cub);
 	if (!line || !type)
 		return ;
 	else if (!ft_strncmp(type, "TEXTURE_PATH", 13))
@@ -35,13 +35,13 @@ void	sort_element(t_cub	*cub, char *line, t_poop *poop)
 	{
 		if (parsing_map == 1)
 			return (error_msg("Map is always last element\n", cub));
-		store_color(cub->elements, line, poop, cub);
+		store_color(cub->elements, line, cub);
 	}
 	else if (line[0] != '\n')
 		printf("%s\n", type);
 }
 
-char	*element_type(char *line, t_poop	*poop, t_cub *cub)
+char	*element_type(char *line, t_cub *cub)
 {
 	int	i;
 
@@ -52,7 +52,7 @@ char	*element_type(char *line, t_poop	*poop, t_cub *cub)
 	{
 		if (line[i] == 'F' || line[i] == 'C')
 		{
-			if (is_color(line, i, poop, cub))
+			if (is_color(line, i, cub))
 				return ("COLOR");
 		}
 		else if (is_texture(line, i, cub))

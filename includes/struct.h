@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/25 16:32:30 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:18:08 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ typedef	struct	s_vector
 	int	y;
 }	t_vector;
 
-typedef	struct	s_poop
+typedef	struct	s_var
 {
 	int	start;
 	int	len;
 	int	index;
 	int	comma;
-}	t_poop;
+}	t_var;
 
 typedef struct s_line
 {
@@ -129,6 +129,7 @@ typedef struct s_cub
 	double			prev_dt;
 	int				mouse_moved;
 	int				error;
+	t_var			v;
 }	t_cub;
 
 #endif

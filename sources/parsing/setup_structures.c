@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_structures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 16:32:58 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:22:18 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ t_elements	*setup_elements(void)
 	return (elements);
 }
 
-void	setup_poop(t_poop *poop)
+void	setup_var(t_var *v)
 {
-	poop->start = 0;
-	poop->len = 0;
-	poop->index = 0;
-	poop->comma = 0;
+	v->start = 0;
+	v->len = 0;
+	v->index = 0;
+	v->comma = 0;
 }

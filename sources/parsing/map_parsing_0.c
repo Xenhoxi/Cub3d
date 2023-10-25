@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing_0.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:09:25 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 13:38:27 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:28:35 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	get_map_index(char **map)
+int	get_map_index(char **map, t_cub *cub)
 {
 	int		i;
 	char	*type;
@@ -25,7 +25,7 @@ int	get_map_index(char **map)
 	i = -1;
 	while (map[++i])
 	{
-		type = element_type(map[i]);
+		type = element_type(map[i], cub);
 		if (!ft_strncmp(type, s, ft_strlen(type)))
 		{
 			free(s);
@@ -44,7 +44,7 @@ int	is_wrong_char(char c)
 	return (0);
 }
 
-int	map_is_closed(char **map)
+int	map_is_closed(char **map, t_cub *cub)
 {
 	int	i;
 	int	u;
@@ -61,7 +61,7 @@ int	map_is_closed(char **map)
 			{
 				if (check_sides_char_map(map, i, u, r) != 4)
 				{
-					error_msg("Map is not closed");
+					error_msg("Map is not closed", cub);
 					return (1);
 				}
 			}

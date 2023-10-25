@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   color_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:32:16 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 16:31:54 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:28:15 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-u_int32_t	convert_rgb(char *line, t_poop *poop)
+u_int32_t	convert_rgb(char *line, t_cub *cub)
 {
 	int		*rgb;
 	int		i;
@@ -21,27 +21,27 @@ u_int32_t	convert_rgb(char *line, t_poop *poop)
 	rgb = malloc(sizeof(char *) * 3);
 	while (!is_digit(line[i]))
 		i++;
-	poop->start = i;
+	cub->v.start = i;
 	while (line[i])
 	{
 		if (line[i] == ',' || line[i] == '\n')
 		{
-			rgb[poop->index++] = ft_atoi(ft_substr(line,
-						poop->start, poop->len));
-			poop->len = 0;
+			rgb[cub->v.index++] = ft_atoi(ft_substr(line,
+						cub->v.start, cub->v.len));
+			cub->v.len = 0;
 			i++;
-			poop->start = i;
+			cub->v.start = i;
 		}
 		else
 		{
-			poop->len++;
+			cub->v.len++;
 			i++;
 		}
 	}
 	return (rgb[0] << 24 | rgb[1] << 16 | rgb[2] << 8 | 255);
 }
 
-int	is_color(char *line, int i, t_poop *poop, t_cub *cub)
+int	is_color(char *line, int i, t_cub *cub)
 {
 	int	nb;
 
@@ -59,18 +59,18 @@ int	is_color(char *line, int i, t_poop *poop, t_cub *cub)
 				;
 			if (!is_digit(line[i]))
 				return (error_msg("Wrong char in color", cub), 0);
-			poop->comma++;
+			cub->v.comma++;
 		}
 		else
 			nb++;
 		i++;
 	}
-	if (poop->comma != 2 && nb < 3)
+	if (cub->v.comma != 2 && nb < 3)
 		return (error_msg("Wrong color syntax", cub), 0);
 	return (1);
 }
 
-void	store_color(t_elements *elements, char *line, t_poop *poop, t_cub *cub)
+void	store_color(t_elements *elements, char *line, t_cub *cub)
 {
 	int	i;
 
@@ -78,9 +78,9 @@ void	store_color(t_elements *elements, char *line, t_poop *poop, t_cub *cub)
 	while (is_space(line[i]))
 		i++;
 	if (line[i] == 'F')
-		elements->floor_color = convert_rgb(line, poop);
+		elements->floor_color = convert_rgb(line, cub);
 	else if (line[i] == 'C')
-		elements->ceiling_color = convert_rgb(line, poop);
+		elements->ceiling_color = convert_rgb(line, cub);
 	else
 		error_msg("Wrong color identifier", cub);
 }

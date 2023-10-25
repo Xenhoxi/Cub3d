@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:44:15 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/25 16:25:18 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:40:19 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@ void	parsing(char *map, t_cub *cub)
 {
 	char	*line;
 	int		fd;
-	t_poop	poop;
 
-	setup_poop(&poop);
+	setup_var(&cub->v);
 	fd = selected_fd(map);
 	if (fd < 0)
 		return ;
 	line = get_next_line(fd);
 	while (line)
 	{
-		sort_element(cub, line, &poop);
+		sort_element(cub, line);
 		line = get_next_line(fd);
 	}
 	// print_char_map(cub->map->map);
@@ -39,10 +38,10 @@ void	parsing(char *map, t_cub *cub)
 int	parsing_checker(t_cub *cub)
 {
 	if (!cub->map->map)
-		return (error_msg("Map missing", cub), 0);
+		return (error_msg("Map missing", cub), 1);
 	if (!map_is_valid(cub->map->map))
-		if (!map_is_closed(cub->map->map))
-			if (!element_checker(cub->elements))
+		if (!map_is_closed(cub->map->map, cub))
+			if (!element_checker(cub->elements, cub))
 				return (0);
 	return (1);
 }

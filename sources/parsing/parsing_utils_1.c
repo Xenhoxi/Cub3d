@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:26:08 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 16:24:43 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:31:01 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_int_array(char **map, int **array)
+void	print_int_array(char **map, int **array, t_cub *cub)
 {
 	int	i;
 	int	u;
@@ -21,7 +21,7 @@ void	print_int_array(char **map, int **array)
 		return ;
 	u = -1;
 	i = 0;
-	while (i < get_map_index(map))
+	while (i < get_map_index(map, cub))
 		i++;
 	while (map[i])
 	{
