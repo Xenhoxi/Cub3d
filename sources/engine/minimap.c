@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:17:23 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 16:22:28 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:20:34 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	is_spawn(char type)
 
 mlx_image_t	*chose_image_to_draw(t_cub *cub, int x, int y)
 {	
-	if (y >= ft_array_len(cub->map->map) || y < 0 || x < 0 || x >= (int)ft_strlen(cub->map->map[y]))
+	if (y >= ft_array_len(cub->map->map) || y < 0 || x < 0
+		|| x >= (int)ft_strlen(cub->map->map[y]))
 		return (cub->image->transparent_img);
 	else if (cub->map->map[y][x] == '0' || is_spawn(cub->map->map[y][x]))
 		return (cub->image->floor_img);
@@ -48,10 +49,12 @@ void	put_image_to_image(t_cub *cub, t_vector map, t_vector pos)
 	{
 		while (x_img < TSMAP)
 		{
-			pixel = (uint32_t *)(img->pixels + (y_img + x_img * TSMAP) * sizeof(uint32_t));
+			pixel = (uint32_t *)(img->pixels + (y_img + x_img * TSMAP)
+					* sizeof(uint32_t));
 			color = *pixel;
 			color = get_rgba_tex(color);
-			mlx_put_pixel(cub->windows_img, map.x * TSMAP + x_img, map.y * TSMAP + y_img, color);
+			mlx_put_pixel(cub->windows_img, map.x * TSMAP + x_img,
+				map.y * TSMAP + y_img, color);
 			x_img++;
 		}
 		y_img++;
@@ -81,7 +84,8 @@ void	draw_minimap(t_cub *cub)
 		start.y++;
 		map.y++;
 	}
-	mlx_image_to_window(cub->mlx, cub->image->door_img, NB_TILE * TSMAP, NB_TILE * TSMAP);
+	mlx_image_to_window(cub->mlx, cub->image->door_img,
+		NB_TILE * TSMAP, NB_TILE * TSMAP);
 }
 
 mlx_image_t	*create_img_full(int size, mlx_t *mlx, uint64_t color)
