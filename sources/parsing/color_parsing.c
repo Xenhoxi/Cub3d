@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:32:16 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/24 13:19:15 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:34:24 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	is_color(char *line, int i)
 
 	comma_count = 0;
 	nb_count = 0;
+	if (ft_strlen(line) < 9)
+		return (printf("Color not valid\n"), 0);
 	while (!is_digit(line[i]))
 		i++;
 	while (line[i])

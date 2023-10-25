@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:44:15 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 15:19:29 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:42:37 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	parsing_checker(t_cub *cub)
 {
 	if (!cub->map->map)
 		return (printf("Error\nMap missing\n"));
-	if (!element_checker(cub->elements))
-		if (!map_is_valid(cub->map->map))
-			if (!map_is_closed(cub->map->map))
+	if (!map_is_valid(cub->map->map))
+		if (!map_is_closed(cub->map->map))
+			if (!element_checker(cub->elements))
 				return (0);
 	return (1);
 }

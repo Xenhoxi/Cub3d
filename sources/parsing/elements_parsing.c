@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elements_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/24 12:41:19 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:28:17 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ int	element_checker(t_elements *elements)
 					if (elements->south_path != NULL)
 						if (elements->west_path != NULL)
 							return (0);
+	printf("Missing textures or colors\n");
 	return (1);
 }

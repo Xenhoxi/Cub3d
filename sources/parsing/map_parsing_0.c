@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing_0.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:09:25 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/09 17:25:00 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:45:56 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	get_map_index(char **map)
 
 int	is_wrong_char(char c)
 {
-	if (c != '0' && c != '1' && c != 'S')
+	if (c != '0' && c != '1' && c != 'S' && c != 'N' && c != 'E'
+		&& c != 'W')
 		return (1);
 	return (0);
 }

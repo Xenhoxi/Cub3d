@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_is_possible.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:48:35 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/05 15:13:01 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:43:24 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	map_is_possible(char	**map, t_cub *cub)
 
 	count = 2;
 	cub->map->array = init_int_array(map);
-	// print_int_array(map, array);
+	// print_int_array(map, cub->map->array);
 	while (nb_possibilities(cub->map->array, count, map, cub) > 0)
 		count++;
 	if (final_check(map, cub->map->array) == 1)
@@ -124,7 +124,8 @@ int	**init_int_array(char **map)
 		{
 			if (map[i][u] == '1')
 				array[i][u] = 1;
-			else if (map[i][u] == 'S')
+			else if (map[i][u] == 'S' || map[i][u] == 'E'
+					|| map[i][u] == 'W' || map[i][u] == 'N')
 				array[i][u] = 2;
 			else
 				array[i][u] = -1;
