@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:09:25 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 12:45:56 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 13:25:05 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	get_map_index(char **map)
 int	is_wrong_char(char c)
 {
 	if (c != '0' && c != '1' && c != 'S' && c != 'N' && c != 'E'
-		&& c != 'W')
+		&& c != 'W' && c != 'D')
 		return (1);
 	return (0);
 }
@@ -61,7 +61,7 @@ int	map_is_closed(char **map)
 			{
 				if (check_sides_char_map(map, i, u, r) != 4)
 				{
-					printf("Error\nMap is not closed\n");
+					error_msg("Map is not closed");
 					return (1);
 				}
 			}

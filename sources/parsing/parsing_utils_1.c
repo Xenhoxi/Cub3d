@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:26:08 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/10 13:39:32 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:22:18 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	check_ext(char	*file_name, char	*ext)
 	{
 		if (file_name[i] != ext[j])
 		{
-			ft_printf("Error\nWrong file extension, it should be %s\n", ext);
+			error_msg("Wrong file extension");
 			return (1);
 		}
 		i++;
@@ -106,7 +106,7 @@ int	file_exist(char	*file_name)
 {
 	if (open(file_name, O_RDONLY) == -1)
 	{
-		ft_printf("Error\nFile does not exist\n");
+		error_msg("File does not exist");
 		return (1);
 	}
 	return (0);

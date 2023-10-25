@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 12:28:17 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 13:16:09 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	sort_element(t_cub	*cub, char *line)
 	else if (!ft_strncmp(type, "TEXTURE_PATH", 13))
 	{
 		if (parsing_map == 1)
-			return ((void)printf("Error\nMap is always last element\n"));
+			return (error_msg("Map is always last element\n"));
 		which_texture(cub, line);
 	}
 	else if (!ft_strncmp(type, "MAP", 4))
@@ -34,7 +34,7 @@ void	sort_element(t_cub	*cub, char *line)
 	else if (!ft_strncmp(type, "COLOR", 6))
 	{
 		if (parsing_map == 1)
-			return ((void)printf("Error\n`Map is always last element\n"));
+			return (error_msg("Map is always last element\n"));
 		store_color(cub->elements, line);
 	}
 	else if (line[0] != '\n')
@@ -76,6 +76,6 @@ int	element_checker(t_elements *elements)
 					if (elements->south_path != NULL)
 						if (elements->west_path != NULL)
 							return (0);
-	printf("Missing textures or colors\n");
+	error_msg("Missing colors or textures");
 	return (1);
 }

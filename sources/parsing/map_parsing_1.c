@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:54:14 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/09 18:34:20 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:21:10 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	map_is_valid(char	**map)
 {
 	if (!check_for_spawn(map))
-		return (printf("Error\nNo spawn point\n"));
+		return (error_msg("No spawn point"), 1);
 	return (0);
 }
 
