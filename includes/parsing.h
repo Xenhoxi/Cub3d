@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/25 13:14:20 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 16:31:26 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 # define PARSING_H
 
-typedef struct s_cub		t_cub;
-typedef struct s_map		t_map;
-typedef struct s_player		t_player;
-typedef struct s_elements	t_elements;
+typedef struct s_cub			t_cub;
+typedef struct s_map			t_map;
+typedef struct s_player			t_player;
+typedef struct s_elements		t_elements;
+typedef struct s_poop			t_poop;
 
 // setup_structures
 t_cub		*setup_cub(void);
 t_map		*setup_map(void);
 t_elements	*setup_elements(void);
+void		setup_poop(t_poop *poop);
 
 // parsing
 void		parsing(char *map, t_cub *cub);
@@ -63,24 +65,24 @@ int			selected_fd(char *map);
 int			check_file(char **argv);
 int			open_file(char *path);
 void		print_elements(t_elements *elements);
-void		error_msg(char *msg);
+void		error_msg(char *msg, t_cub *cub);
 
 // elements_parsing
-char		*element_type(char *line);
-void		sort_element(t_cub	*cub, char *line);
-int			element_checker(t_elements *elements);
+char		*element_type(char *line, t_poop	*poop, t_cub *cub);
+void		sort_element(t_cub	*cub, char *line, t_poop *poop);
+int			element_checker(t_elements *elements, t_cub *cub);
 
 // color_parsing
-u_int32_t	convert_rgb(char *line);
-int			is_color(char *line, int i);
+u_int32_t	convert_rgb(char *line, t_poop *poop);
+int			is_color(char *line, int i, t_poop *poop, t_cub *cub);
 int			color_check(int nb_count, int comma_count);
-void		store_color(t_elements *elements, char *line);
+void		store_color(t_elements *elements, char *line, t_poop *poop, t_cub *cub);
 u_int32_t	get_rgba(u_int32_t color);
 
 // texture_parsing
 void		convert_texture_to_image(t_cub *cub);
 void		which_texture(t_cub *cub, char *line);
-int			is_texture(char *line, int i);
+int			is_texture(char *line, int i, t_cub *cub);
 void		store_text_path(t_cub *cub, char c, char *line);
 void		load_texture(t_cub *cub, char c);
 #endif

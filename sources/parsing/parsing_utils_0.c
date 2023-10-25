@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_0.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:41:33 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/09 17:29:05 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:35:09 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_alpha(char c)
 
 int	is_space(char c)
 {
-	if (c == '\t' || c == '\n' || c == '\v' || c == '\f'
+	if (c == '\t' || c == '\v' || c == '\f'
 		|| c == '\r' || c == ' ')
 		return (1);
 	return (0);

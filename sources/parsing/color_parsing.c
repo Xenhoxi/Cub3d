@@ -6,78 +6,71 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:32:16 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 12:34:24 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 16:31:54 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-u_int32_t	convert_rgb(char *line)
+u_int32_t	convert_rgb(char *line, t_poop *poop)
 {
-	int				r;
-	int				g;
-	int				b;
-	unsigned int	start;
+	int		*rgb;
+	int		i;
 
-	start = 0;
-	while (!is_digit(line[start]))
-		start++;
-	r = ft_atoi(ft_substr(line, start, 3));
-	if (r > 255 || r < 0)
-		return (printf("Error\nColor should be between 0 and 255\n"), 0);
-	start += 3;
-	while (!is_digit(line[start]))
-		start++;
-	g = ft_atoi(ft_substr(line, start, 3));
-	if (g > 255 || g < 0)
-		return (printf("Error\nColor should be between 0 and 255\n"), 0);
-	start += 3;
-	while (!is_digit(line[start]))
-		start++;
-	b = ft_atoi(ft_substr(line, start, 3));
-	if (b > 255 || b < 0)
-		return (printf("Error\nColor should be between 0 and 255\n"), 0);
-	return ((r << 24) | (g << 16) | (b << 8) | 255);
+	i = 0;
+	rgb = malloc(sizeof(char *) * 3);
+	while (!is_digit(line[i]))
+		i++;
+	poop->start = i;
+	while (line[i])
+	{
+		if (line[i] == ',' || line[i] == '\n')
+		{
+			rgb[poop->index++] = ft_atoi(ft_substr(line,
+						poop->start, poop->len));
+			poop->len = 0;
+			i++;
+			poop->start = i;
+		}
+		else
+		{
+			poop->len++;
+			i++;
+		}
+	}
+	return (rgb[0] << 24 | rgb[1] << 16 | rgb[2] << 8 | 255);
 }
 
-int	is_color(char *line, int i)
+int	is_color(char *line, int i, t_poop *poop, t_cub *cub)
 {
-	int	nb_count;
-	int	comma_count;
+	int	nb;
 
-	comma_count = 0;
-	nb_count = 0;
-	if (ft_strlen(line) < 9)
-		return (printf("Color not valid\n"), 0);
+	nb = 0;
 	while (!is_digit(line[i]))
 		i++;
 	while (line[i])
 	{
-		if (is_digit(line[i]))
-			nb_count++;
-		else if (line[i] == ',')
-			comma_count++;
-		else if (line[i] != '\n' && !is_space(line[i]) && nb_count < 9)
-			return (printf("Error\nWrong color syntax\n"), 0);
-		else if ((line[i] == '\n' || is_space(line[i])) && nb_count < 9)
-			return (printf("Error\nWrong color syntax\n"), 0);
+		if (!is_digit(line[i]) && line[i] != ',' && !is_space(line[i]) 
+			&& line[i] != '\n')
+			return (error_msg("Wrong char in color", cub), 0);
+		if (line[i] == ',')
+		{
+			while (is_space(line[++i]))
+				;
+			if (!is_digit(line[i]))
+				return (error_msg("Wrong char in color", cub), 0);
+			poop->comma++;
+		}
+		else
+			nb++;
 		i++;
-	}	
-	if (color_check(nb_count, comma_count))
-		return (1);
-	return (0);
+	}
+	if (poop->comma != 2 && nb < 3)
+		return (error_msg("Wrong color syntax", cub), 0);
+	return (1);
 }
 
-int	color_check(int nb_count, int comma_count)
-{
-	if (nb_count == 9 && comma_count == 2)
-		return (1);
-	else
-		printf("Error\nColors should be declared like : I 255, 255, 255\n");
-	return (0);
-}
-
-void	store_color(t_elements *elements, char *line)
+void	store_color(t_elements *elements, char *line, t_poop *poop, t_cub *cub)
 {
 	int	i;
 
@@ -85,11 +78,11 @@ void	store_color(t_elements *elements, char *line)
 	while (is_space(line[i]))
 		i++;
 	if (line[i] == 'F')
-		elements->floor_color = convert_rgb(line);
+		elements->floor_color = convert_rgb(line, poop);
 	else if (line[i] == 'C')
-		elements->ceiling_color = convert_rgb(line);
+		elements->ceiling_color = convert_rgb(line, poop);
 	else
-		printf("Error\nWrong color syntax\n");
+		error_msg("Wrong color identifier", cub);
 }
 
 u_int32_t	get_rgba_tex(u_int32_t color)

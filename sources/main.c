@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/25 12:44:53 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:16:34 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	mouse_hook(t_cub *cub)
 	old_y = 0;
 	old_x = 0;
 	mlx_get_mouse_pos(cub->mlx, &old_x, &old_y);
+	mlx_set_cursor_mode(cub->mlx, MLX_MOUSE_HIDDEN);
 	if (old_x > WIN_WIDTH / 2)
 	{
 		right_rotation(cub);
@@ -63,7 +64,6 @@ void	mouse_hook(t_cub *cub)
 		cub->mouse_moved = 1;
 	}
 	mlx_set_mouse_pos(cub->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-
 }
 
 void	ft_load(t_cub *cub)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_structures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 12:45:32 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:20:47 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_cub	*setup_cub(void)
 	cub->game_on = 0;
 	cub->parsing_error = 0;
 	cub->mouse_moved = 0;
+	cub->error = 0;
 	return (cub);
 }
 
@@ -64,4 +65,12 @@ t_elements	*setup_elements(void)
 	elements->east_texture = malloc(sizeof(mlx_texture_t));
 	elements->west_texture = malloc(sizeof(mlx_texture_t));
 	return (elements);
+}
+
+void	setup_poop(t_poop *poop)
+{
+	poop->start = 0;
+	poop->len = 0;
+	poop->index = 0;
+	poop->comma = 0;
 }

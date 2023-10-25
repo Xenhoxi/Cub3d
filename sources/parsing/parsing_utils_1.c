@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:26:08 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 13:22:18 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 16:24:43 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	check_ext(char	*file_name, char	*ext)
 		i++;
 	if (i < 5)
 	{
-		ft_printf("Error\nFile name too short\n");
+		printf("Error\nFile name too short\n");
 		return (1);
 	}
 	i -= 4;
@@ -93,7 +93,7 @@ int	check_ext(char	*file_name, char	*ext)
 	{
 		if (file_name[i] != ext[j])
 		{
-			error_msg("Wrong file extension");
+			printf("Error\nWrong file extension\n");
 			return (1);
 		}
 		i++;
@@ -106,7 +106,7 @@ int	file_exist(char	*file_name)
 {
 	if (open(file_name, O_RDONLY) == -1)
 	{
-		error_msg("File does not exist");
+		printf("Error\nFile does not exist\n");
 		return (1);
 	}
 	return (0);

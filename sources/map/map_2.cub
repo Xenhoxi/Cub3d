@@ -3,8 +3,8 @@ SO sources/textures/yellow_wall.png
 NO sources/textures/gray_wall.png
 WE ./sources/textures/dark_wall.png
 
-F 078,176,029
-C 000,000,255                                     
+F 78,176,29     
+C 000,    55   ,255                                     
 
 1111111111111111111
 1000000000000000001
