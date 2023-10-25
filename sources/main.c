@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 16:22:16 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:44:53 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,6 @@ u_int32_t	get_color_coord(int x, int y, mlx_image_t *img)
 	return (0);
 }
 
-void	ft_load(t_cub *cub)
-{
-	convert_texture_to_image(cub);
-	cub->windows_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
-	draw_outdoor(cub);
-	init_player(cub);
-	draw_rays(cub);
-	mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
-	draw_minimap(cub);
-}
-
 void	mouse_hook(t_cub *cub)
 {
 	int	old_x;
@@ -62,8 +51,6 @@ void	mouse_hook(t_cub *cub)
 
 	old_y = 0;
 	old_x = 0;
-	mlx_set_cursor(cub->mlx, NULL);
-	mlx_set_cursor_mode(cub->mlx, MLX_MOUSE_HIDDEN);
 	mlx_get_mouse_pos(cub->mlx, &old_x, &old_y);
 	if (old_x > WIN_WIDTH / 2)
 	{
@@ -77,6 +64,18 @@ void	mouse_hook(t_cub *cub)
 	}
 	mlx_set_mouse_pos(cub->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 
+}
+
+void	ft_load(t_cub *cub)
+{
+	mlx_set_mouse_pos(cub->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	convert_texture_to_image(cub);
+	cub->windows_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+	draw_outdoor(cub);
+	init_player(cub);
+	draw_rays(cub);
+	mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
+	draw_minimap(cub);
 }
 
 void	ft_update(void *param)
@@ -112,7 +111,6 @@ void	run(t_cub *cub)
 		exit(EXIT_FAILURE);
 	cub->image = setup_image(cub);
 	ft_load(cub);
-	mlx_set_mouse_pos(cub->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	mlx_loop_hook(cub->mlx, ft_update, (void *)cub);
 	mlx_loop(cub->mlx);
 	mlx_terminate(cub->mlx);

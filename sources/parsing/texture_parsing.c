@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/24 15:18:45 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:37:49 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	load_texture(t_cub *cub, char c)
 		if (cub->elements->north_texture == NULL)
 		{
 			printf("%c --> texture failed to load\n", c);
-			// cub->parsing_error = 1;
+			cub->parsing_error = 1;
 		}
 	}
 	else if (c == 'S')
@@ -89,7 +89,7 @@ void	load_texture(t_cub *cub, char c)
 		if (cub->elements->south_texture == NULL)
 		{
 			printf("%c --> texture failed to load\n", c);
-			// cub->parsing_error = 1;
+			cub->parsing_error = 1;
 		}
 	}
 	else if (c == 'E')
@@ -98,7 +98,7 @@ void	load_texture(t_cub *cub, char c)
 		if (cub->elements->east_texture == NULL)
 		{
 			printf("%c --> texture failed to load\n", c);
-			// cub->parsing_error = 1;
+			cub->parsing_error = 1;
 		}
 	}
 	else if (c == 'W')
@@ -107,7 +107,7 @@ void	load_texture(t_cub *cub, char c)
 		if (cub->elements->west_texture == NULL)
 		{
 			printf("%c --> texture failed to load\n", c);
-			// cub->parsing_error = 1;
+			cub->parsing_error = 1;
 		}
 	}
 }
