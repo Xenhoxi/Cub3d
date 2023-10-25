@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:09:37 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/25 16:11:28 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 16:32:52 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,15 @@ void	right_rotation(t_cub *cub)
 	cub->player->dir_x = cos(cub->player->angle);
 	cub->player->dir_y = sin(cub->player->angle);
 	old_dir_x = cub->player->dir_x;
-	cub->player->dir_x = cub->player->dir_x * cos(-rotspeed) - cub->player->dir_y * sin(-rotspeed);
-	cub->player->dir_y = old_dir_x * sin(-rotspeed) + cub->player->dir_y * cos(-rotspeed);
+	cub->player->dir_x = cub->player->dir_x * cos(-rotspeed)
+		- cub->player->dir_y * sin(-rotspeed);
+	cub->player->dir_y = old_dir_x * sin(-rotspeed)
+		+ cub->player->dir_y * cos(-rotspeed);
 	old_plane_x = cub->player->plane_x;
-	cub->player->plane_x = cub->player->plane_x * cos(-rotspeed) - cub->player->plane_y * sin(-rotspeed);
-	cub->player->plane_y = old_plane_x * sin(-rotspeed) + cub->player->plane_y * cos(-rotspeed);
-	printf("plane_x %f plane_y %f\n", cub->player->plane_x, cub->player->plane_y);
+	cub->player->plane_x = cub->player->plane_x * cos(-rotspeed)
+		- cub->player->plane_y * sin(-rotspeed);
+	cub->player->plane_y = old_plane_x * sin(-rotspeed)
+		+ cub->player->plane_y * cos(-rotspeed);
 }
 
 void	left_rotation(t_cub *cub)
@@ -50,12 +53,15 @@ void	left_rotation(t_cub *cub)
 	cub->player->dir_x = cos(cub->player->angle);
 	cub->player->dir_y = sin(cub->player->angle);
 	old_dir_x = cub->player->dir_x;
-	cub->player->dir_x = cub->player->dir_x * cos(rotspeed) - cub->player->dir_y * sin(rotspeed);
-	cub->player->dir_y = old_dir_x * sin(rotspeed) + cub->player->dir_y * cos(rotspeed);
+	cub->player->dir_x = cub->player->dir_x * cos(rotspeed)
+		- cub->player->dir_y * sin(rotspeed);
+	cub->player->dir_y = old_dir_x * sin(rotspeed)
+		+ cub->player->dir_y * cos(rotspeed);
 	old_plane_x = cub->player->plane_x;
-	cub->player->plane_x = cub->player->plane_x * cos(rotspeed) - cub->player->plane_y * sin(rotspeed);
-	cub->player->plane_y = old_plane_x * sin(rotspeed) + cub->player->plane_y * cos(rotspeed);
-	printf("plane_x %f plane_y %f\n", cub->player->plane_x, cub->player->plane_y);
+	cub->player->plane_x = cub->player->plane_x * cos(rotspeed)
+		- cub->player->plane_y * sin(rotspeed);
+	cub->player->plane_y = old_plane_x * sin(rotspeed)
+		+ cub->player->plane_y * cos(rotspeed);
 }
 
 void	player_update(t_cub *cub)
@@ -131,7 +137,8 @@ void	draw_direction(t_cub *cub)
 void	draw_player(t_cub *cub)
 {
 	cub->player->ray_img = create_img_full(6, cub->mlx, 0xFFFF0000);
-	mlx_image_to_window(cub->mlx, cub->player->ray_img, TSMAP * 7 - 3, TSMAP * 7 - 3);
+	mlx_image_to_window(cub->mlx, cub->player->ray_img,
+		TSMAP * 7 - 3, TSMAP * 7 - 3);
 }
 
 void	set_north(t_cub *cub)

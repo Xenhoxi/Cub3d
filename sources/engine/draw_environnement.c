@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 17:13:06 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:37:39 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,47 @@ mlx_image_t	*chose_image(t_cub *cub, char side)
 		return (cub->elements->west_image);
 	else if (side == 'E')
 		return (cub->elements->east_image);
+	else if (side == 'D')
+		return (cub->image->door_img_tex);
 	else
 		return (NULL);
+}
+
+void	drawtexture_entity(int line_height, int draw_start, int draw_end, t_line *line, t_cub *cub)
+{
+	double	wallX;
+	if (line->side == 'W' || line->side == 'E')
+		wallX = line->s_y + line->reel_dist * line->dir_y;
+	else
+		wallX = line->s_x + line->reel_dist * line->dir_x;
+	wallX -= floor((wallX));
+	int texX = (int)(wallX * (double)TEX_SIZE);
+	if((line->side == 'W' || line->side == 'E') && line->dir_x > 0)
+		texX = TEX_SIZE - texX - 1;
+	if((line->side == 'N' || line->side == 'S') && line->dir_y < 0)
+		texX = TEX_SIZE - texX - 1;
+	double	step = 1.0 * TEX_SIZE / line_height;
+	double	texPos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
+	int	y;
+	int	texY;
+	y = 0;
+	while (y < WIN_HEIGHT)
+	{
+		if (y >= draw_start && y <= draw_end)
+		{
+			texY = (int)texPos;
+			texPos += step;
+			if (texY >= TEX_SIZE)
+				texY = TEX_SIZE - 1;
+			else if (texY < 0)
+				texY = 0;
+			mlx_put_pixel(cub->windows_img, line->i, y,
+				get_color_coord(texX, texY, chose_image(cub, line->side)));
+		}
+		else
+			mlx_put_pixel(cub->windows_img, line->i, y, 0);
+		y++;
+	}
 }
 
 void	drawtexture(int line_height, int draw_start, int draw_end, t_line *line, t_cub *cub)
@@ -117,16 +156,10 @@ void	draw_outdoor(t_cub *cub)
 	mlx_image_t	*img_celling;
 	mlx_image_t	*img_floor;
 
-	img_celling = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2, cub->mlx, cub->elements->ceiling_color);
-	img_floor = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2, cub->mlx, cub->elements->floor_color);
+	img_celling = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2,
+			cub->mlx, cub->elements->ceiling_color);
+	img_floor = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2,
+			cub->mlx, cub->elements->floor_color);
 	mlx_image_to_window(cub->mlx, img_floor, 0, WIN_HEIGHT / 2);
 	mlx_image_to_window(cub->mlx, img_celling, 0, 0);
-}
-
-void	load_texture_tmp(t_elements *elements)
-{
-	elements->east_texture = mlx_load_png("./sources/textures/beige_wall.png");
-	elements->west_texture = mlx_load_png("./sources/textures/dark_wall.png");
-	elements->south_texture = mlx_load_png("./sources/textures/yellow_wall.png");
-	elements->north_texture = mlx_load_png("./sources/textures/gray_wall.png");
 }

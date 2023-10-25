@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/25 16:20:05 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 16:32:30 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_line
 	double		s_y;
 	double		end_x;
 	double		end_y;
+	int			is_entity;
 }	t_line;
 
 typedef struct s_elements
@@ -109,6 +110,7 @@ typedef struct s_image
 	mlx_image_t		*floor_img;
 	mlx_image_t		*wall_img;
 	mlx_image_t		*door_img;
+	mlx_image_t		*door_img_tex;
 	mlx_image_t		*transparent_img;
 }	t_image;
 

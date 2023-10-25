@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/25 16:16:34 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 16:32:54 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	mouse_hook(t_cub *cub)
 	int	old_y;
 
 	old_y = 0;
-	old_x = 0;
+	old_x = WIN_WIDTH / 2;
 	mlx_get_mouse_pos(cub->mlx, &old_x, &old_y);
 	mlx_set_cursor_mode(cub->mlx, MLX_MOUSE_HIDDEN);
 	if (old_x > WIN_WIDTH / 2)
@@ -68,7 +68,6 @@ void	mouse_hook(t_cub *cub)
 
 void	ft_load(t_cub *cub)
 {
-	mlx_set_mouse_pos(cub->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	convert_texture_to_image(cub);
 	cub->windows_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
 	draw_outdoor(cub);
@@ -76,6 +75,9 @@ void	ft_load(t_cub *cub)
 	draw_rays(cub);
 	mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
 	draw_minimap(cub);
+	mlx_set_cursor(cub->mlx, NULL);
+	mlx_set_cursor_mode(cub->mlx, MLX_MOUSE_HIDDEN);
+	mlx_set_mouse_pos(cub->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 }
 
 void	ft_update(void *param)
@@ -83,10 +85,10 @@ void	ft_update(void *param)
 	t_cub	*cub;
 
 	cub = (t_cub *)param;
+	key_hook(cub);
+	mouse_hook(cub);
 	player_update(cub);
 	delta_time(cub);
-	mouse_hook(cub);
-	key_hook(cub);
 	return ;
 }
 
@@ -100,6 +102,7 @@ t_image	*setup_image(t_cub *cub)
 	image_struct->door_img = create_img_full(TSMAP, cub->mlx, 0xFF6600FF);
 	image_struct->wall_img = create_img_full(TSMAP, cub->mlx, 0x808080FF);
 	image_struct->floor_img = create_img_full(TSMAP, cub->mlx, 0xC8AD7FFF);
+	image_struct->door_img_tex = create_img_full(TEX_SIZE, cub->mlx, 0xFFFFFFFF);
 	image_struct->transparent_img = create_img_cf(TSMAP, TSMAP, cub->mlx, 0x808080FF);
 	return (image_struct);
 }
@@ -111,6 +114,7 @@ void	run(t_cub *cub)
 		exit(EXIT_FAILURE);
 	cub->image = setup_image(cub);
 	ft_load(cub);
+	mlx_set_mouse_pos(cub->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	mlx_loop_hook(cub->mlx, ft_update, (void *)cub);
 	mlx_loop(cub->mlx);
 	mlx_terminate(cub->mlx);
