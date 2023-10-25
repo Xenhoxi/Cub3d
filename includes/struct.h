@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/25 18:18:08 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:46:37 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef	struct	s_var
 	int	len;
 	int	index;
 	int	comma;
+	int	mouse;
+	int	error;
 }	t_var;
 
 typedef struct s_line
@@ -128,7 +130,6 @@ typedef struct s_cub
 	double			dt;
 	double			prev_dt;
 	int				mouse_moved;
-	int				error;
 	t_var			v;
 }	t_cub;
 

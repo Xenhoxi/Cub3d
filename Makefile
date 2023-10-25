@@ -6,7 +6,7 @@
 #    By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 23:49:19 by ljerinec          #+#    #+#              #
-#    Updated: 2023/10/25 18:08:31 by sammeuss         ###   ########.fr        #
+#    Updated: 2023/10/25 19:00:32 by sammeuss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SOURCES =	sources/main.c \
 			sources/engine/player.c \
 			sources/engine/ray_drawing.c \
 			sources/engine/draw_environnement.c \
+			sources/engine/mouse_handler.c \
 			sources/freeing/free_utils.c \
 
 OBJ_DIR = object/

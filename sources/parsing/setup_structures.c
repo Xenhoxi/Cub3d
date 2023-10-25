@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 18:22:18 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:48:33 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_cub	*setup_cub(void)
 	cub->game_on = 0;
 	cub->parsing_error = 0;
 	cub->mouse_moved = 0;
-	cub->error = 0;
 	return (cub);
 }
 
@@ -73,4 +72,6 @@ void	setup_var(t_var *v)
 	v->len = 0;
 	v->index = 0;
 	v->comma = 0;
+	v->mouse = 0;
+	v->error = 0;
 }
