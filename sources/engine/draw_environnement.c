@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/26 00:07:11 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/26 14:25:14 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,16 +119,10 @@ void	draw_outdoor(t_cub *cub)
 	mlx_image_t	*img_celling;
 	mlx_image_t	*img_floor;
 
-	img_celling = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2, cub->mlx, cub->elements->ceiling_color);
-	img_floor = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2, cub->mlx, cub->elements->floor_color);
+	img_celling = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2,
+			cub->mlx, cub->elements->ceiling_color);
+	img_floor = create_img_cf(WIN_WIDTH, WIN_HEIGHT / 2,
+			cub->mlx, cub->elements->floor_color);
 	mlx_image_to_window(cub->mlx, img_floor, 0, WIN_HEIGHT / 2);
 	mlx_image_to_window(cub->mlx, img_celling, 0, 0);
-}
-
-void	load_texture_tmp(t_elements *elements)
-{
-	elements->east_texture = mlx_load_png("./sources/textures/beige_wall.png");
-	elements->west_texture = mlx_load_png("./sources/textures/dark_wall.png");
-	elements->south_texture = mlx_load_png("./sources/textures/yellow_wall.png");
-	elements->north_texture = mlx_load_png("./sources/textures/gray_wall.png");
 }
