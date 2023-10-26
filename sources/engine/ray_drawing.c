@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/26 00:05:53 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/26 14:29:49 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,33 +109,31 @@ void	draw_rays(t_cub *cub)
 		scale_for_ray(cub, &line);
 		calcul_offset(&line);
 		dda_algorithm(cub, &line);
-		if (cub->player->ray_on && i % 20 == 0)
-			draw_rayline(cub, &line);
 		draw_vision(cub, &line);
 		i++;
 	}
 }
 
-void	draw_rayline(t_cub *cub, t_line *line)
-{
-	line->end_x = cub->player->pos_x * TSMAP + line->dir_x * line->reel_dist * TSMAP;
-	line->end_y = cub->player->pos_y * TSMAP + line->dir_y * line->reel_dist * TSMAP;
-	line->s_x = cub->player->pos_x * TSMAP;
-	line->s_y = cub->player->pos_y * TSMAP;
-	line->dx = line->end_x - line->s_x;
-	line->dy = line->end_y - line->s_y;
-	line->pixels = sqrt((line->dx * line->dx) + (line->dy * line->dy));
-	line->dx_p = line->dx / line->pixels;
-	line->dy_p = line->dy / line->pixels;
-	if (line->img)
-		mlx_delete_image(cub->mlx, line->img);
-	line->img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
-	while (line->pixels > 0 && line->s_x > 0 && line->s_y > 0 && line->s_x < WIN_WIDTH && line->s_y < WIN_HEIGHT)
-	{
-		mlx_put_pixel(line->img, line->s_x, line->s_y, 0x00FFFFFF);
-		line->s_x += line->dx_p;
-		line->s_y += line->dy_p;
-		line->pixels--;
-	}
-	mlx_image_to_window(cub->mlx, line->img, 0, 0);
-}
+// void	draw_rayline(t_cub *cub, t_line *line)
+// {
+// 	line->end_x = cub->player->pos_x * TSMAP + line->dir_x * line->reel_dist * TSMAP;
+// 	line->end_y = cub->player->pos_y * TSMAP + line->dir_y * line->reel_dist * TSMAP;
+// 	line->s_x = cub->player->pos_x * TSMAP;
+// 	line->s_y = cub->player->pos_y * TSMAP;
+// 	line->dx = line->end_x - line->s_x;
+// 	line->dy = line->end_y - line->s_y;
+// 	line->pixels = sqrt((line->dx * line->dx) + (line->dy * line->dy));
+// 	line->dx_p = line->dx / line->pixels;
+// 	line->dy_p = line->dy / line->pixels;
+// 	if (line->img)
+// 		mlx_delete_image(cub->mlx, line->img);
+// 	line->img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+// 	while (line->pixels > 0 && line->s_x > 0 && line->s_y > 0 && line->s_x < WIN_WIDTH && line->s_y < WIN_HEIGHT)
+// 	{
+// 		mlx_put_pixel(line->img, line->s_x, line->s_y, 0x00FFFFFF);
+// 		line->s_x += line->dx_p;
+// 		line->s_y += line->dy_p;
+// 		line->pixels--;
+// 	}
+// 	mlx_image_to_window(cub->mlx, line->img, 0, 0);
+// }

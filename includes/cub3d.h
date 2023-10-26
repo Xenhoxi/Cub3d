@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/25 19:08:19 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/26 14:36:27 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define WIN_HEIGHT 920
 # define WIN_WIDTH 1280
 # define TEX_SIZE 70
-# define ROTSPEED 2
+# define ROTSPEED 3500
 # define SPEED 3.5
 # define TRUE 1
 # define FALSE 0
@@ -82,6 +82,7 @@ void		draw_rays(t_cub *cub);
 void		draw_rayline(t_cub *cub, t_line *line);
 mlx_image_t	**setup_array_line(void);
 void		alloc_rays(t_cub *cub);
+
 // minimap
 mlx_image_t	*create_img_full(int size, mlx_t *mlx, uint64_t color);
 

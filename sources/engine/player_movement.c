@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:31 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/23 13:09:40 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/26 14:28:05 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	is_wall(char tile_type)
 
 void	move_forward(t_cub *cub)
 {
-	int	next_pos_x;
-	int	next_pos_y;
+	int		next_pos_x;
+	int		next_pos_y;
 	double	speed;
 
 	speed = SPEED * cub->dt;
@@ -51,13 +51,15 @@ void	move_backward(t_cub *cub)
 
 void	move_left(t_cub *cub)
 {
-	int	next_pos_x;
-	int	next_pos_y;
+	int		next_pos_x;
+	int		next_pos_y;
 	double	speed;
 
 	speed = SPEED * cub->dt;
-	next_pos_x = (int)(cub->player->pos_x + (cos(cub->player->angle - (2 * PI / 4))) * speed * 5);
-	next_pos_y = (int)(cub->player->pos_y + (sin(cub->player->angle - (2 * PI / 4))) * speed * 5);
+	next_pos_x = (int)(cub->player->pos_x
+			+ (cos(cub->player->angle - (2 * PI / 4))) * speed * 5);
+	next_pos_y = (int)(cub->player->pos_y
+			+ (sin(cub->player->angle - (2 * PI / 4))) * speed * 5);
 	if (!is_wall(cub->map->map[(int)cub->player->pos_y][next_pos_x]))
 		cub->player->pos_x += (cos(cub->player->angle - (2 * PI / 4))) * speed;
 	if (!is_wall(cub->map->map[next_pos_y][(int)cub->player->pos_x]))
@@ -66,13 +68,15 @@ void	move_left(t_cub *cub)
 
 void	move_right(t_cub *cub)
 {
-	int	next_pos_x;
-	int	next_pos_y;
+	int		next_pos_x;
+	int		next_pos_y;
 	double	speed;
 
 	speed = SPEED * cub->dt;
-	next_pos_x = (int)(cub->player->pos_x - (cos(cub->player->angle - (2 * PI / 4))) * speed * 5);
-	next_pos_y = (int)(cub->player->pos_y - (sin(cub->player->angle - (2 * PI / 4))) * speed * 5);
+	next_pos_x = (int)(cub->player->pos_x
+			- (cos(cub->player->angle - (2 * PI / 4))) * speed * 5);
+	next_pos_y = (int)(cub->player->pos_y
+			- (sin(cub->player->angle - (2 * PI / 4))) * speed * 5);
 	if (!is_wall(cub->map->map[(int)cub->player->pos_y][next_pos_x]))
 		cub->player->pos_x -= (cos(cub->player->angle - (2 * PI / 4))) * speed;
 	if (!is_wall(cub->map->map[next_pos_y][(int)cub->player->pos_x]))
