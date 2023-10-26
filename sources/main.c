@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/25 13:17:07 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/26 00:09:21 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,28 +42,6 @@ u_int32_t	get_color_coord(int x, int y, mlx_image_t *img)
 	color = *pixel;
 	return (get_rgba_tex(color));
 	return (0);
-}
-
-void	mouse_hook(t_cub *cub)
-{
-	int	old_x;
-	int	old_y;
-
-	old_y = 0;
-	old_x = WIN_WIDTH / 2;
-	mlx_get_mouse_pos(cub->mlx, &old_x, &old_y);
-	if (old_x > WIN_WIDTH / 2)
-	{
-		right_rotation(cub);
-		cub->mouse_moved = 1;
-	}
-	if (old_x < WIN_WIDTH / 2)
-	{
-		left_rotation(cub);
-		cub->mouse_moved = 1;
-	}
-	mlx_set_mouse_pos(cub->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-
 }
 
 void	ft_load(t_cub *cub)
@@ -102,6 +80,7 @@ t_image	*setup_image(t_cub *cub)
 	image_struct->door_img = create_img_full(TSMAP, cub->mlx, 0xFF6600FF);
 	image_struct->wall_img = create_img_full(TSMAP, cub->mlx, 0x808080FF);
 	image_struct->floor_img = create_img_full(TSMAP, cub->mlx, 0xC8AD7FFF);
+	image_struct->door_img_tex = create_img_full(TEX_SIZE, cub->mlx, 0xFF05FFFF);
 	image_struct->transparent_img = create_img_cf(TSMAP, TSMAP, cub->mlx, 0x808080FF);
 	return (image_struct);
 }
@@ -112,6 +91,7 @@ void	run(t_cub *cub)
 	if (!cub->mlx)
 		exit(EXIT_FAILURE);
 	cub->image = setup_image(cub);
+	printf("Press 'M' to enable mouse and 'N' to disable\n");
 	ft_load(cub);
 	mlx_set_mouse_pos(cub->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	mlx_loop_hook(cub->mlx, ft_update, (void *)cub);

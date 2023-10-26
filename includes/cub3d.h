@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 15:24:58 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:08:19 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int			entity_hitbox(char **map, int x, int y);
 void		init_player(t_cub *cub);
 void		find_spawn(char **map, int *x, int *y);
 void		draw_direction(t_cub *cub);
-void		right_rotation(t_cub *cub);
-void		left_rotation(t_cub *cub);
+void		right_rotation(t_cub *cub, double rotspeed);
+void		left_rotation(t_cub *cub, double rotspeed);
 
 // player_movement
 void		move_forward(t_cub *cub);
@@ -102,6 +102,10 @@ void		move_right(t_cub *cub);
 
 // minimap_utils
 void		print_char_map(char **map);
+
+// mouse_handler
+void		mouse_hook(t_cub *cub);
+void		mouse_on_off(t_cub *cub);
 
 // free_utils
 void		free_int_array(int	**array, char **map);

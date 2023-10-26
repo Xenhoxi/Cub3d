@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 16:15:27 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/26 00:05:53 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ void	calcul_offset(t_line *line)
 	}
 }
 
+int	is_entity(char tile_check)
+{
+	if (tile_check == 'D')
+		return (1);
+	return (0);
+}
+
 void	dda_algorithm(t_cub *cub, t_line *line)
 {
 	while (1)
@@ -60,7 +67,7 @@ void	dda_algorithm(t_cub *cub, t_line *line)
 		{
 			line->lenght_x += line->sx;
 			line->map_x += line->step_x;
-			if (line->dir_x < 0) // '0'
+			if (line->dir_x < 0)
 				line->side = 'W';
 			else
 				line->side = 'E';
@@ -69,13 +76,18 @@ void	dda_algorithm(t_cub *cub, t_line *line)
 		{
 			line->lenght_y += line->sy;
 			line->map_y += line->step_y;
-			if (line->dir_y < 0)  // '1'
+			if (line->dir_y < 0)
 				line->side = 'S';
 			else
 				line->side = 'N';
 		}
 		if (cub->map->map[line->map_y][line->map_x] == '1')
 			break ;
+		else if (is_entity(cub->map->map[line->map_y][line->map_x]))
+		{
+			line->side = 'D';
+			break ;
+		}
 	}
 	if (line->side == 'E' || line->side == 'W')
 		line->reel_dist = line->lenght_x - line->sx;
@@ -89,6 +101,7 @@ void	draw_rays(t_cub *cub)
 	int			i;
 
 	i = 0;
+	line.is_entity = 0;
 	while (i < WIN_WIDTH)
 	{
 		line.i = i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:45:48 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/25 13:24:53 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:46:55 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,14 @@ void	print_elements(t_elements *elements)
 	printf("south_text_path = %s\n", elements->south_path);
 	printf("east_text_path = %s\n", elements->east_path);
 	printf("west_text_path = %s\n", elements->west_path);
-
 }
 
-void	error_msg(char *msg)
+void	error_msg(char *msg, t_cub *cub)
 {
-	static int	error;
-
-	error = 0;
-	if (error == 0)
+	if (cub->v.error == 0)
 	{
 		printf("Error\n");
-		error = 1;
+		cub->v.error = 1;
 	}
 	printf("%s\n", msg);
 }

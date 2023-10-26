@@ -6,19 +6,18 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:09:37 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/25 13:21:26 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/26 13:58:09 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	right_rotation(t_cub *cub)
+void	right_rotation(t_cub *cub, double rotspeed)
 {
 	double	old_dir_x;
 	double	old_plane_x;
-	double	rotspeed;
 
-	rotspeed = ROTSPEED * cub->dt;
+	rotspeed = rotspeed * cub->dt;
 	cub->player->angle += rotspeed;
 	if (cub->player->angle > 2 * PI)
 		cub->player->angle -= 2 * PI;
@@ -38,13 +37,12 @@ void	right_rotation(t_cub *cub)
 		+ cub->player->plane_y * cos(-rotspeed);
 }
 
-void	left_rotation(t_cub *cub)
+void	left_rotation(t_cub *cub, double rotspeed)
 {
 	double	old_dir_x;
 	double	old_plane_x;
-	double	rotspeed;
 
-	rotspeed = ROTSPEED * cub->dt;
+	rotspeed = rotspeed * cub->dt;
 	cub->player->angle -= rotspeed;
 	if (cub->player->angle < 0)
 		cub->player->angle += 2 * PI;
@@ -78,9 +76,9 @@ void	player_update(t_cub *cub)
 	if (mlx_is_key_down(mlx, MLX_KEY_S))
 		move_backward(cub);
 	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		right_rotation(cub);
+		right_rotation(cub, ROTSPEED * cub->dt);
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		left_rotation(cub);
+		left_rotation(cub, ROTSPEED * cub->dt);
 	if (mlx_is_key_down(mlx, MLX_KEY_A) || mlx_is_key_down(mlx, MLX_KEY_D)
 		|| mlx_is_key_down(mlx, MLX_KEY_S) || mlx_is_key_down(mlx, MLX_KEY_W)
 		|| mlx_is_key_down(mlx, MLX_KEY_LEFT)
@@ -202,6 +200,8 @@ void	find_spawn(char **map, int *x, int *y)
 {
 	*x = 0;
 	*y = 0;
+	if (!map)
+		return ;
 	while (map[*x])
 	{
 		while (map[*x][*y])

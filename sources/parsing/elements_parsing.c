@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elements_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 13:16:09 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:24:08 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	sort_element(t_cub	*cub, char *line)
 	static int		parsing_map;
 	char			*type;
 
-	type = element_type(line);
+	type = element_type(line, cub);
 	if (!line || !type)
 		return ;
 	else if (!ft_strncmp(type, "TEXTURE_PATH", 13))
 	{
 		if (parsing_map == 1)
-			return (error_msg("Map is always last element\n"));
+			return (error_msg("Map is always last element\n", cub));
 		which_texture(cub, line);
 	}
 	else if (!ft_strncmp(type, "MAP", 4))
@@ -34,14 +34,14 @@ void	sort_element(t_cub	*cub, char *line)
 	else if (!ft_strncmp(type, "COLOR", 6))
 	{
 		if (parsing_map == 1)
-			return (error_msg("Map is always last element\n"));
-		store_color(cub->elements, line);
+			return (error_msg("Map is always last element\n", cub));
+		store_color(cub->elements, line, cub);
 	}
 	else if (line[0] != '\n')
 		printf("%s\n", type);
 }
 
-char	*element_type(char *line)
+char	*element_type(char *line, t_cub *cub)
 {
 	int	i;
 
@@ -52,10 +52,10 @@ char	*element_type(char *line)
 	{
 		if (line[i] == 'F' || line[i] == 'C')
 		{
-			if (is_color(line, i))
+			if (is_color(line, i, cub))
 				return ("COLOR");
 		}
-		else if (is_texture(line, i))
+		else if (is_texture(line, i, cub))
 			return ("TEXTURE_PATH");
 		else
 			return ("WRONG ELEMENT IDENTIFIER");
@@ -67,7 +67,7 @@ char	*element_type(char *line)
 	return (NULL);
 }
 
-int	element_checker(t_elements *elements)
+int	element_checker(t_elements *elements, t_cub *cub)
 {
 	if (elements->ceiling_color != 0)
 		if (elements->floor_color != 0)
@@ -76,6 +76,6 @@ int	element_checker(t_elements *elements)
 					if (elements->south_path != NULL)
 						if (elements->west_path != NULL)
 							return (0);
-	error_msg("Missing colors or textures");
+	error_msg("Missing colors or textures", cub);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/25 13:18:22 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:34:44 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	which_texture(t_cub *cub, char *line)
 	else if (!ft_strncmp(line, "WE", 2))
 		store_text_path(cub, 'W', line);
 	else
-		error_msg("Wrong texture identifier or format");
+		error_msg("Wrong texture identifier or format", cub);
 }
 
 void	store_text_path(t_cub *cub, char c, char *line)
@@ -51,15 +51,15 @@ void	store_text_path(t_cub *cub, char c, char *line)
 	else if (c == 'N')
 		cub->elements->north_path = ft_substr(line, 0, ft_strlen(line) - 1);
 	else
-		error_msg("Missing path");
+		error_msg("Missing path", cub);
 	if (cub->parsing_error == 0)
 		load_texture(cub, c);
 }
 
-int	is_texture(char *line, int i)
+int	is_texture(char *line, int i, t_cub *cub)
 {
 	if (check_ext(line, ".png") == 1)
-		return (error_msg("Wrong texture extension"), 0);
+		return (error_msg("Wrong texture extension", cub), 0);
 	if (line[i] == 'S' && line[i + 1] == 'O')
 		return (1);
 	else if (line[i] == 'N' && line[i + 1] == 'O')
@@ -69,7 +69,7 @@ int	is_texture(char *line, int i)
 	else if (line[i] == 'E' && line[i + 1] == 'A')
 		return (1);
 	else
-		return (error_msg("Wrong texture identifier"), 0);
+		return (error_msg("Wrong texture identifier", cub), 0);
 }
 
 void	load_texture(t_cub *cub, char c)

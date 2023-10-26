@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/24 17:13:06 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/26 00:07:11 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ mlx_image_t	*chose_image(t_cub *cub, char side)
 		return (cub->elements->west_image);
 	else if (side == 'E')
 		return (cub->elements->east_image);
+	else if (side == 'D')
+		return (cub->image->door_img_tex);
 	else
 		return (NULL);
 }

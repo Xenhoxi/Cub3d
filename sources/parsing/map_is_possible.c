@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:48:35 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 13:20:12 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 16:22:47 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int	map_is_possible(char	**map, t_cub *cub)
 		count++;
 	if (final_check(map, cub->map->array) == 1)
 	{
-		error_msg("Map is not possible");
+		error_msg("Map is not possible", cub);
 		free_int_array(cub->map->array, map);
 		return (1);
 	}
 	else if (final_check(map, cub->map->array) == 2)
-		error_msg("Map is missing");
+		error_msg("Map is missing", cub);
 	free_int_array(cub->map->array, map);
 	return (0);
 }

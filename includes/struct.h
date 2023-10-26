@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/24 16:14:19 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:46:37 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ typedef	struct	s_vector
 	int	x;
 	int	y;
 }	t_vector;
+
+typedef	struct	s_var
+{
+	int	start;
+	int	len;
+	int	index;
+	int	comma;
+	int	mouse;
+	int	error;
+}	t_var;
 
 typedef struct s_line
 {
@@ -48,6 +58,7 @@ typedef struct s_line
 	double		s_y;
 	double		end_x;
 	double		end_y;
+	int			is_entity;
 }	t_line;
 
 typedef struct s_elements
@@ -101,6 +112,7 @@ typedef struct s_image
 	mlx_image_t		*floor_img;
 	mlx_image_t		*wall_img;
 	mlx_image_t		*door_img;
+	mlx_image_t		*door_img_tex;
 	mlx_image_t		*transparent_img;
 }	t_image;
 
@@ -118,6 +130,7 @@ typedef struct s_cub
 	double			dt;
 	double			prev_dt;
 	int				mouse_moved;
+	t_var			v;
 }	t_cub;
 
 #endif

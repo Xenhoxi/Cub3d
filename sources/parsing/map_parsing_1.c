@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:54:14 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 13:21:10 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/25 16:23:23 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	map_is_valid(char	**map)
 {
 	if (!check_for_spawn(map))
-		return (error_msg("No spawn point"), 1);
+		return (printf("No spawn point\n"), 1);
 	return (0);
 }
 
