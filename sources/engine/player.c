@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:09:37 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/26 13:58:09 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/26 14:01:20 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	right_rotation(t_cub *cub, double rotspeed)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	rotspeed = rotspeed * cub->dt;
+	rotspeed = rotspeed / 20 * cub->dt;
 	cub->player->angle += rotspeed;
 	if (cub->player->angle > 2 * PI)
 		cub->player->angle -= 2 * PI;
@@ -42,7 +42,7 @@ void	left_rotation(t_cub *cub, double rotspeed)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	rotspeed = rotspeed * cub->dt;
+	rotspeed = rotspeed / 20 * cub->dt;
 	cub->player->angle -= rotspeed;
 	if (cub->player->angle < 0)
 		cub->player->angle += 2 * PI;
