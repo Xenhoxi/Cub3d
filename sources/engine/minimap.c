@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:17:23 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/25 13:20:34 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:50:50 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ mlx_image_t	*chose_image_to_draw(t_cub *cub, int x, int y)
 {	
 	if (y >= ft_array_len(cub->map->map) || y < 0 || x < 0
 		|| x >= (int)ft_strlen(cub->map->map[y]))
-		return (cub->image->transparent_img);
+		return (cub->image->map_void);
 	else if (cub->map->map[y][x] == '0' || is_spawn(cub->map->map[y][x]))
-		return (cub->image->floor_img);
+		return (cub->image->map_floor);
 	else if (cub->map->map[y][x] == '1')
-		return (cub->image->wall_img);
-	else if (cub->map->map[y][x] == '2')
-		return (cub->image->door_img);
+		return (cub->image->map_wall);
+	else if (cub->map->map[y][x] == 'D')
+		return (cub->image->map_door);
 	else
-		return (cub->image->transparent_img);
+		return (cub->image->map_void);
 }
 
 void	put_image_to_image(t_cub *cub, t_vector map, t_vector pos)
@@ -84,7 +84,7 @@ void	draw_minimap(t_cub *cub)
 		start.y++;
 		map.y++;
 	}
-	mlx_image_to_window(cub->mlx, cub->image->door_img,
+	mlx_image_to_window(cub->mlx, cub->image->map_door,
 		NB_TILE * TSMAP, NB_TILE * TSMAP);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/27 15:06:28 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:33:08 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ typedef struct s_player
 	t_line		*line;
 	mlx_image_t	*img_map;
 	mlx_image_t	*ray_img;
-	int			ray_on;
 	double		pos_x;
 	double		pos_y;
 	double		dir_x;
@@ -109,11 +108,12 @@ typedef struct s_map
 
 typedef struct s_image
 {
-	mlx_image_t		*floor_img;
-	mlx_image_t		*wall_img;
-	mlx_image_t		*door_img;
-	mlx_image_t		*door_img_tex;
-	mlx_image_t		*transparent_img;
+	mlx_image_t		*map_floor;
+	mlx_image_t		*map_wall;
+	mlx_image_t		*map_door;
+	mlx_image_t		*map_void;
+	mlx_texture_t	**door_tex;
+	mlx_image_t		**door_img;
 }	t_image;
 
 typedef struct s_cub
@@ -123,13 +123,12 @@ typedef struct s_cub
 	t_image			*image;
 	t_player		*player;
 	t_map			*map;
-	t_line			**ray_array;
-	int				game_on;
 	t_elements		*elements;
 	int				parsing_error;
 	double			dt;
 	double			prev_dt;
 	int				mouse_moved;
+	int				game_on;
 	t_var			v;
 }	t_cub;
 

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:09:37 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/26 14:31:32 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:51:04 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,6 @@ void	init_player(t_cub *cub)
 	setup_start_dir(cub, cub->map->map[y][x]);
 	cub->player->dir_x = cos(cub->player->angle);
 	cub->player->dir_y = sin(cub->player->angle);
-	cub->player->ray_on = 0;
 	draw_player(cub);
 }
 

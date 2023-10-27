@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/27 15:12:55 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:52:01 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ uint64_t	chose_color(t_line *line)
 mlx_image_t	*chose_image(t_cub *cub, char side, int is_door)
 {
 	if (is_door == 1)
-		return (cub->image->door_img_tex);
+		return (cub->image->door_img[0]);
 	else if (side == 'S' && is_door == 0)
 		return (cub->elements->south_image);
 	else if (side == 'N' && is_door == 0)
