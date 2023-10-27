@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:44:15 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/25 18:40:19 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:03:52 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	parsing(char *map, t_cub *cub)
 	char	*line;
 	int		fd;
 
-	setup_var(&cub->v);
+	cub->v = setup_var();
 	fd = selected_fd(map);
 	if (fd < 0)
 		return ;

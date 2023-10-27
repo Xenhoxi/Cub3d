@@ -1,47 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_parsing.c                                    :+:      :+:    :+:   */
+/*   color_parsing_0.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:32:16 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 18:28:15 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:14:35 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-u_int32_t	convert_rgb(char *line, t_cub *cub)
+void	convert_rgb(char *line, t_cub *cub, char c)
 {
-	int		*rgb;
-	int		i;
+	int	i;
 
 	i = 0;
-	rgb = malloc(sizeof(char *) * 3);
 	while (!is_digit(line[i]))
 		i++;
-	cub->v.start = i;
-	while (line[i])
+	cub->v->start = i;
+	while (line[i] && cub->v->index < 3)
 	{
 		if (line[i] == ',' || line[i] == '\n')
 		{
-			rgb[cub->v.index++] = ft_atoi(ft_substr(line,
-						cub->v.start, cub->v.len));
-			cub->v.len = 0;
+			if (cub->v->index == 0)
+				get_r(cub, line);
+			else if (cub->v->index == 1)
+				get_g(cub, line);
+			else if (cub->v->index == 2)
+				get_b(cub, line);
 			i++;
-			cub->v.start = i;
+			cub->v->start = i;
 		}
 		else
 		{
-			cub->v.len++;
+			cub->v->len++;
 			i++;
 		}
 	}
-	return (rgb[0] << 24 | rgb[1] << 16 | rgb[2] << 8 | 255);
+	color_bitshift(cub, c);
 }
 
-int	is_color(char *line, int i, t_cub *cub)
+int	is_color(char *line, int i, t_cub *c)
 {
 	int	nb;
 
@@ -52,37 +53,35 @@ int	is_color(char *line, int i, t_cub *cub)
 	{
 		if (!is_digit(line[i]) && line[i] != ',' && !is_space(line[i]) 
 			&& line[i] != '\n')
-			return (error_msg("Wrong char in color", cub), 0);
+			return (error_msg("Color syntax", c), c->parsing_error = 1, 0);
 		if (line[i] == ',')
 		{
 			while (is_space(line[++i]))
 				;
 			if (!is_digit(line[i]))
-				return (error_msg("Wrong char in color", cub), 0);
-			cub->v.comma++;
+				return (error_msg("Color syntax", c), c->parsing_error = 1, 0);
+			c->v->comma++;
 		}
-		else
+		else if (!is_space(line[i]) && line[i] != '\n')
 			nb++;
 		i++;
 	}
-	if (cub->v.comma != 2 && nb < 3)
-		return (error_msg("Wrong color syntax", cub), 0);
+	if (c->v->comma != 2 && nb < 3)
+		return (error_msg("Wrong color syntax", c), 0);
 	return (1);
 }
 
-void	store_color(t_elements *elements, char *line, t_cub *cub)
+void	store_color(char *line, t_cub *cub)
 {
 	int	i;
 
 	i = 0;
 	while (is_space(line[i]))
 		i++;
-	if (line[i] == 'F')
-		elements->floor_color = convert_rgb(line, cub);
-	else if (line[i] == 'C')
-		elements->ceiling_color = convert_rgb(line, cub);
-	else
+	if (line[i] != 'F' && line[i] != 'C')
 		error_msg("Wrong color identifier", cub);
+	printf("%s\n", line);
+	convert_rgb(line, cub, 'C');
 }
 
 u_int32_t	get_rgba_tex(u_int32_t color)
@@ -97,4 +96,14 @@ u_int32_t	get_rgba_tex(u_int32_t color)
 	g = color >> 8;
 	b = color;
 	return (r << 8 | g << 16 | b << 24 | a << 0);
+}
+
+int	color_check(t_cub *cub)
+{
+	printf ("%d, %d, %d\n", cub->elements->r, cub->elements->g, cub->elements->b);
+	if (cub->elements->r <= 255 && cub->elements->r >= 0)
+		if (cub->elements->g <= 255 && cub->elements->g >= 0)
+			if (cub->elements->b <= 255 && cub->elements->b >= 0)
+				return (1);
+	return (0);
 }

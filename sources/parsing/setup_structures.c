@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 18:48:33 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:03:07 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,16 @@ t_elements	*setup_elements(void)
 	return (elements);
 }
 
-void	setup_var(t_var *v)
+t_var	*setup_var(void)
 {
+	t_var	*v;
+
+	v = malloc(sizeof(t_var));
 	v->start = 0;
 	v->len = 0;
 	v->index = 0;
 	v->comma = 0;
 	v->mouse = 0;
 	v->error = 0;
+	return (v);
 }
