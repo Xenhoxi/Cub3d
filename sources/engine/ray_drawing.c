@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/27 13:02:52 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:17:51 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,14 @@ void	calcul_offset(t_line *line)
 	}
 }
 
-int	is_entity(char tile_check)
+int	is_entity(char tile_check, t_line *line)
 {
 	if (tile_check == 'D')
+	{
+		line->is_door = 1;
+		return (1);
+	}
+	else if (tile_check == '1')
 		return (1);
 	return (0);
 }
@@ -81,13 +86,8 @@ void	dda_algorithm(t_cub *cub, t_line *line)
 			else
 				line->side = 'N';
 		}
-		if (cub->map->map[line->map_y][line->map_x] == '1')
+		if (is_entity(cub->map->map[line->map_y][line->map_x], line))
 			break ;
-		else if (is_entity(cub->map->map[line->map_y][line->map_x]))
-		{
-			line->side = 'D';
-			break ;
-		}
 	}
 	if (line->side == 'E' || line->side == 'W')
 		line->reel_dist = line->lenght_x - line->sx;
@@ -101,9 +101,9 @@ void	draw_rays(t_cub *cub)
 	int			i;
 
 	i = 0;
-	line.is_entity = 0;
 	while (i < WIN_WIDTH)
 	{
+		line.is_door = 0;
 		line.i = i;
 		line.angle = ((cub->player->angle - (PI / 6)) + (((PI / 3) / WIN_WIDTH) * i));
 		scale_for_ray(cub, &line);
