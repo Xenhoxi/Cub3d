@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/26 14:29:49 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:17:51 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,14 @@ void	calcul_offset(t_line *line)
 	}
 }
 
-int	is_entity(char tile_check)
+int	is_entity(char tile_check, t_line *line)
 {
 	if (tile_check == 'D')
+	{
+		line->is_door = 1;
+		return (1);
+	}
+	else if (tile_check == '1')
 		return (1);
 	return (0);
 }
@@ -81,13 +86,8 @@ void	dda_algorithm(t_cub *cub, t_line *line)
 			else
 				line->side = 'N';
 		}
-		if (cub->map->map[line->map_y][line->map_x] == '1')
+		if (is_entity(cub->map->map[line->map_y][line->map_x], line))
 			break ;
-		else if (is_entity(cub->map->map[line->map_y][line->map_x]))
-		{
-			line->side = 'D';
-			break ;
-		}
 	}
 	if (line->side == 'E' || line->side == 'W')
 		line->reel_dist = line->lenght_x - line->sx;
@@ -101,9 +101,9 @@ void	draw_rays(t_cub *cub)
 	int			i;
 
 	i = 0;
-	line.is_entity = 0;
 	while (i < WIN_WIDTH)
 	{
+		line.is_door = 0;
 		line.i = i;
 		line.angle = ((cub->player->angle - (PI / 6)) + (((PI / 3) / WIN_WIDTH) * i));
 		scale_for_ray(cub, &line);
@@ -114,26 +114,26 @@ void	draw_rays(t_cub *cub)
 	}
 }
 
-// void	draw_rayline(t_cub *cub, t_line *line)
-// {
-// 	line->end_x = cub->player->pos_x * TSMAP + line->dir_x * line->reel_dist * TSMAP;
-// 	line->end_y = cub->player->pos_y * TSMAP + line->dir_y * line->reel_dist * TSMAP;
-// 	line->s_x = cub->player->pos_x * TSMAP;
-// 	line->s_y = cub->player->pos_y * TSMAP;
-// 	line->dx = line->end_x - line->s_x;
-// 	line->dy = line->end_y - line->s_y;
-// 	line->pixels = sqrt((line->dx * line->dx) + (line->dy * line->dy));
-// 	line->dx_p = line->dx / line->pixels;
-// 	line->dy_p = line->dy / line->pixels;
-// 	if (line->img)
-// 		mlx_delete_image(cub->mlx, line->img);
-// 	line->img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
-// 	while (line->pixels > 0 && line->s_x > 0 && line->s_y > 0 && line->s_x < WIN_WIDTH && line->s_y < WIN_HEIGHT)
-// 	{
-// 		mlx_put_pixel(line->img, line->s_x, line->s_y, 0x00FFFFFF);
-// 		line->s_x += line->dx_p;
-// 		line->s_y += line->dy_p;
-// 		line->pixels--;
-// 	}
-// 	mlx_image_to_window(cub->mlx, line->img, 0, 0);
-// }
+void	draw_rayline(t_cub *cub, t_line *line)
+{
+	line->end_x = cub->player->pos_x * TSMAP + line->dir_x * line->reel_dist * TSMAP;
+	line->end_y = cub->player->pos_y * TSMAP + line->dir_y * line->reel_dist * TSMAP;
+	line->s_x = cub->player->pos_x * TSMAP;
+	line->s_y = cub->player->pos_y * TSMAP;
+	line->dx = line->end_x - line->s_x;
+	line->dy = line->end_y - line->s_y;
+	line->pixels = sqrt((line->dx * line->dx) + (line->dy * line->dy));
+	line->dx_p = line->dx / line->pixels;
+	line->dy_p = line->dy / line->pixels;
+	if (line->img)
+		mlx_delete_image(cub->mlx, line->img);
+	line->img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+	while (line->pixels > 0 && line->s_x > 0 && line->s_y > 0 && line->s_x < WIN_WIDTH && line->s_y < WIN_HEIGHT)
+	{
+		mlx_put_pixel(line->img, line->s_x, line->s_y, 0x00FFFFFF);
+		line->s_x += line->dx_p;
+		line->s_y += line->dy_p;
+		line->pixels--;
+	}
+	mlx_image_to_window(cub->mlx, line->img, 0, 0);
+}
