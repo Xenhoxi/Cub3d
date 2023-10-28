@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:45:48 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/25 18:46:55 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:11:29 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	print_elements(t_elements *elements)
 
 void	error_msg(char *msg, t_cub *cub)
 {
-	if (cub->v.error == 0)
+	if (cub->v->error == 0)
 	{
 		printf("Error\n");
-		cub->v.error = 1;
+		cub->v->error = 1;
 	}
 	printf("%s\n", msg);
 }

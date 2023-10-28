@@ -4,7 +4,9 @@ F 200,150,000
 NO sources/textures/beige_wall.png
 SO sources/textures/dark_wall.png
 WE sources/textures/gray_wall.png
+DE sources/textures/gray_wall.png
 EA sources/textures/yellow_wall.png
+
 
 1111111
 10E0001

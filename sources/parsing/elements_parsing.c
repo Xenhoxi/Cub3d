@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 18:24:08 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/28 12:31:13 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	sort_element(t_cub	*cub, char *line)
 	{
 		if (parsing_map == 1)
 			return (error_msg("Map is always last element\n", cub));
-		store_color(cub->elements, line, cub);
+		store_color(line, cub);
 	}
 	else if (line[0] != '\n')
 		printf("%s\n", type);

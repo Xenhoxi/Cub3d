@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_structures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 18:48:33 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/28 22:21:36 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_cub	*setup_cub(void)
 	cub->player->angle = 0;
 	cub->player->dir_x = 0;
 	cub->player->dir_y = 0;
-	cub->game_on = 0;
 	cub->parsing_error = 0;
 	cub->mouse_moved = 0;
 	return (cub);
@@ -53,6 +52,9 @@ t_elements	*setup_elements(void)
 	t_elements	*elements;
 
 	elements = malloc(sizeof(t_elements));
+	elements->r = 0;
+	elements->g = 0;
+	elements->b = 0;
 	elements->ceiling_color = 0;
 	elements->floor_color = 0;
 	elements->north_path = NULL;
@@ -66,12 +68,16 @@ t_elements	*setup_elements(void)
 	return (elements);
 }
 
-void	setup_var(t_var *v)
+t_var	*setup_var(void)
 {
+	t_var	*v;
+
+	v = malloc(sizeof(t_var));
 	v->start = 0;
 	v->len = 0;
 	v->index = 0;
 	v->comma = 0;
 	v->mouse = 0;
 	v->error = 0;
+	return (v);
 }

@@ -6,7 +6,7 @@
 #    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 23:49:19 by ljerinec          #+#    #+#              #
-#    Updated: 2023/10/28 18:27:40 by ljerinec         ###   ########.fr        #
+#    Updated: 2023/10/28 22:13:25 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SOURCES =	sources/main.c \
 			sources/parsing/parsing_utils_1.c \
 			sources/parsing/parsing_utils_2.c \
 			sources/parsing/texture_parsing.c \
-			sources/parsing/color_parsing.c \
+			sources/parsing/color_parsing_0.c \
+			sources/parsing/color_parsing_1.c \
 			sources/parsing/map_is_possible.c \
 			sources/parsing/elements_parsing.c \
 			sources/parsing/setup_structures.c \

@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/25 18:31:22 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/28 12:47:35 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_var			t_var;
 t_cub		*setup_cub(void);
 t_map		*setup_map(void);
 t_elements	*setup_elements(void);
-void		setup_var(t_var *v);
+t_var		*setup_var(void);
 
 // parsing
 void		parsing(char *map, t_cub *cub);
@@ -72,12 +72,18 @@ char		*element_type(char *line, t_cub *cub);
 void		sort_element(t_cub	*cub, char *line);
 int			element_checker(t_elements *elements, t_cub *cub);
 
-// color_parsing
-u_int32_t	convert_rgb(char *line, t_cub *cub);
+// color_parsing_0
+void		convert_rgb(char *line, t_cub *cub, char c, int i);
 int			is_color(char *line, int i, t_cub *cub);
-int			color_check(int nb_count, int comma_count);
-void		store_color(t_elements *elements, char *line, t_cub *cub);
+int			color_check(t_cub *cub);
+void		store_color(char *line, t_cub *cub);
 u_int32_t	get_rgba(u_int32_t color);
+
+// color_parsing_1
+void		get_r(t_cub *cub, char *line);
+void		get_g(t_cub *cub, char *line);
+void		get_b(t_cub *cub, char *line);
+void		color_bitshift(t_cub *cub, char c);
 
 // texture_parsing
 void		convert_texture_to_image(t_cub *cub);

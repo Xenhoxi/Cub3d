@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/28 20:53:05 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/28 22:12:28 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef	struct	s_var
 	int	comma;
 	int	mouse;
 	int	error;
+	int	*rgb;
 }	t_var;
 
 typedef	struct	s_doors
@@ -81,6 +82,9 @@ typedef struct s_elements
 	mlx_image_t		*east_image;
 	mlx_image_t		*north_image;
 	mlx_image_t		*south_image;
+	int				r;
+	int				g;
+	int				b;
 	u_int32_t		floor_color;
 	u_int32_t		ceiling_color;
 }	t_elements;
@@ -136,8 +140,7 @@ typedef struct s_cub
 	double			dt;
 	double			prev_dt;
 	int				mouse_moved;
-	int				game_on;
-	t_var			v;
+	t_var			*v;
 }	t_cub;
 
 #endif
