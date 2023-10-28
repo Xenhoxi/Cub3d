@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/27 15:44:12 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/28 22:04:33 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,13 @@ void	ft_load(t_cub *cub)
 {
 	convert_texture_to_image(cub);
 	cub->windows_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+	cub->windows_img_door = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
 	draw_outdoor(cub);
 	init_player(cub);
+	init_door(cub);
 	draw_rays(cub);
 	mlx_image_to_window(cub->mlx, cub->windows_img, 0, 0);
+	mlx_image_to_window(cub->mlx, cub->windows_img_door, 0, 0);
 	draw_minimap(cub);
 	mlx_set_cursor(cub->mlx, NULL);
 	mlx_set_cursor_mode(cub->mlx, MLX_MOUSE_HIDDEN);
@@ -74,17 +77,19 @@ mlx_texture_t	**load_door_png(void)
 {
 	mlx_texture_t	**door_array;
 
-	door_array = malloc(sizeof(mlx_texture_t *) * 10);
-	door_array[0] = mlx_load_png("sources/textures/image_door_001.png");
-	door_array[1] = mlx_load_png("sources/textures/image_door_002.png");
-	door_array[2] = mlx_load_png("sources/textures/image_door_003.png");
-	door_array[3] = mlx_load_png("sources/textures/image_door_004.png");
-	door_array[4] = mlx_load_png("sources/textures/image_door_005.png");
-	door_array[5] = mlx_load_png("sources/textures/image_door_006.png");
-	door_array[6] = mlx_load_png("sources/textures/image_door_007.png");
-	door_array[7] = mlx_load_png("sources/textures/image_door_008.png");
-	door_array[8] = mlx_load_png("sources/textures/image_door_009.png");
-	door_array[9] = NULL;
+	door_array = malloc(sizeof(mlx_texture_t *) * 12);
+	door_array[0] = mlx_load_png("sources/textures/door_frames/image_door_001.png");
+	door_array[1] = mlx_load_png("sources/textures/door_frames/image_door_002.png");
+	door_array[2] = mlx_load_png("sources/textures/door_frames/image_door_003.png");
+	door_array[3] = mlx_load_png("sources/textures/door_frames/image_door_004.png");
+	door_array[4] = mlx_load_png("sources/textures/door_frames/image_door_005.png");
+	door_array[5] = mlx_load_png("sources/textures/door_frames/image_door_006.png");
+	door_array[6] = mlx_load_png("sources/textures/door_frames/image_door_007.png");
+	door_array[7] = mlx_load_png("sources/textures/door_frames/image_door_008.png");
+	door_array[8] = mlx_load_png("sources/textures/door_frames/image_door_009.png");
+	door_array[9] = mlx_load_png("sources/textures/door_frames/image_door_010.png");
+	door_array[10] = mlx_load_png("sources/textures/door_frames/image_door_011.png");
+	door_array[11] = NULL;
 	return (door_array);
 }
 

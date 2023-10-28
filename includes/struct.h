@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/27 15:33:08 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:53:05 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ typedef	struct	s_vector
 	int	y;
 }	t_vector;
 
+typedef	struct	s_vec
+{
+	double	x;
+	double	y;
+}	t_vec;
+
 typedef	struct	s_var
 {
 	int	start;
@@ -32,33 +38,33 @@ typedef	struct	s_var
 	int	error;
 }	t_var;
 
+typedef	struct	s_doors
+{
+	int	x;
+	int	y;
+	int	state;
+	int	current_img;
+}	t_doors;
+
+
 typedef struct s_line
 {
-	int			i;
 	mlx_image_t	*img;
+	t_vector	map;
+	t_vector	step;
+	t_vec		dir;
+	t_vec		lenght;
+	t_vec		pos;
+	t_vec		scale;
+	t_vector	map_door;
+	t_vec		door_lenght;
 	char		side;
+	int			i;
 	double		reel_dist;
-	int			pixels;
-	int			map_x;
-	int			map_y;
-	double		dir_x;
-	double		dir_y;
-	int			step_x;
-	int			step_y;
 	double		angle;
-	double		lenght_x;
-	double		lenght_y;
-	double		dx;
-	double		dy;
-	double		sx;
-	double		sy;
-	double		dx_p;
-	double		dy_p;
-	double		s_x;
-	double		s_y;
-	double		end_x;
-	double		end_y;
 	int			is_door;
+	int			door_dist;
+	char		door_side;
 }	t_line;
 
 typedef struct s_elements
@@ -104,6 +110,7 @@ typedef struct s_map
 	int		width;
 	int		height_px;
 	int		width_px;
+	t_doors	**doors;
 }	t_map;
 
 typedef struct s_image
@@ -120,6 +127,7 @@ typedef struct s_cub
 {
 	mlx_t			*mlx;
 	mlx_image_t		*windows_img;
+	mlx_image_t		*windows_img_door;
 	t_image			*image;
 	t_player		*player;
 	t_map			*map;

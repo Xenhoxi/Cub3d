@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/27 15:52:01 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:02:49 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,15 @@ uint64_t	chose_color(t_line *line)
 	return (0xFFFFFFFF);
 }
 
-mlx_image_t	*chose_image(t_cub *cub, char side, int is_door)
+mlx_image_t	*chose_image(t_cub *cub, t_line *line)
 {
-	if (is_door == 1)
-		return (cub->image->door_img[0]);
-	else if (side == 'S' && is_door == 0)
+	if (line->side == 'S')
 		return (cub->elements->south_image);
-	else if (side == 'N' && is_door == 0)
+	else if (line->side == 'N')
 		return (cub->elements->north_image);
-	else if (side == 'W' && is_door == 0)
+	else if (line->side == 'W')
 		return (cub->elements->west_image);
-	else if (side == 'E' && is_door == 0)
+	else if (line->side == 'E')
 		return (cub->elements->east_image);
 	else
 		return (NULL);
@@ -45,14 +43,14 @@ void	drawtexture(int line_height, int draw_start, int draw_end, t_line *line, t_
 {
 	double	wallX;
 	if (line->side == 'W' || line->side == 'E')
-		wallX = line->s_y + line->reel_dist * line->dir_y;
+		wallX = line->pos.y + line->reel_dist * line->dir.y;
 	else
-		wallX = line->s_x + line->reel_dist * line->dir_x;
+		wallX = line->pos.x + line->reel_dist * line->dir.x;
 	wallX -= floor((wallX));
 	int texX = (int)(wallX * (double)TEX_SIZE);
-	if((line->side == 'W' || line->side == 'E') && line->dir_x > 0)
+	if((line->side == 'W' || line->side == 'E') && line->dir.x > 0)
 		texX = TEX_SIZE - texX - 1;
-	if((line->side == 'N' || line->side == 'S') && line->dir_y < 0)
+	if((line->side == 'N' || line->side == 'S') && line->dir.y < 0)
 		texX = TEX_SIZE - texX - 1;
 	double	step = 1.0 * TEX_SIZE / line_height;
 	double	texPos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
@@ -70,7 +68,7 @@ void	drawtexture(int line_height, int draw_start, int draw_end, t_line *line, t_
 			else if (texY < 0)
 				texY = 0;
 			mlx_put_pixel(cub->windows_img, line->i, y,
-				get_color_coord(texX, texY, chose_image(cub, line->side, line->is_door)));
+				get_color_coord(texX, texY, chose_image(cub, line)));
 		}
 		else
 			mlx_put_pixel(cub->windows_img, line->i, y, 0);
@@ -80,10 +78,14 @@ void	drawtexture(int line_height, int draw_start, int draw_end, t_line *line, t_
 
 void	draw_vision(t_cub *cub, t_line *line)
 {
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
+	int	line_height;
+	int	draw_start;
+	int	draw_end;
 
+	if (line->side == 'E' || line->side == 'W')
+		line->reel_dist = line->lenght.x - line->scale.x;
+	else
+		line->reel_dist = line->lenght.y - line->scale.y;
 	line_height = (int)(WIN_HEIGHT / line->reel_dist);
 	draw_start = (-line_height / 2) + WIN_HEIGHT / 2;
 	if (draw_start < 0)

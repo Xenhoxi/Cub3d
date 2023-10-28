@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:09:37 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/27 15:51:04 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/28 19:16:26 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,33 +104,33 @@ int	entity_hitbox(char **map, int x, int y)
 	return (0);
 }
 
-void	draw_direction(t_cub *cub)
-{
-	t_line	line;
+// void	draw_direction(t_cub *cub)
+// {
+// 	t_line	line;
 
-	line.end_x = cub->player->pos_x + (cub->player->dir_x * 10);
-	line.end_y = cub->player->pos_y + (cub->player->dir_y * 10);
-	line.s_x = cub->player->pos_x * TSMAP;
-	line.s_y = cub->player->pos_y * TSMAP;
-	line.dx = line.end_x - cub->player->pos_x;
-	line.dy = line.end_y - cub->player->pos_y;
-	line.pixels = sqrt((line.dx * line.dx) + (line.dy * line.dy));
-	line.dx_p = line.dx;
-	line.dy_p = line.dy;
-	line.dx_p /= line.pixels;
-	line.dy_p /= line.pixels;
-	if (cub->player->ray_img)
-		mlx_delete_image(cub->mlx, cub->player->ray_img);
-	cub->player->ray_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
-	while (line.pixels > 0 && line.s_x > 0 && line.s_y > 0)
-	{
-		mlx_put_pixel(cub->player->ray_img, line.s_x, line.s_y, 0xFF0000FF);
-		line.s_x += line.dx_p;
-		line.s_y += line.dy_p;
-		line.pixels--;
-	}
-	mlx_image_to_window(cub->mlx, cub->player->ray_img, 0, 0);
-}
+// 	line.end_x = cub->player->pos_x + (cub->player->dir_x * 10);
+// 	line.end_y = cub->player->pos_y + (cub->player->dir_y * 10);
+// 	line.pos.x = cub->player->pos_x * TSMAP;
+// 	line.pos.y = cub->player->pos_y * TSMAP;
+// 	line.dx = line.end_x - cub->player->pos_x;
+// 	line.dy = line.end_y - cub->player->pos_y;
+// 	line.pixels = sqrt((line.dx * line.dx) + (line.dy * line.dy));
+// 	line.dx_p = line.dx;
+// 	line.dy_p = line.dy;
+// 	line.dx_p /= line.pixels;
+// 	line.dy_p /= line.pixels;
+// 	if (cub->player->ray_img)
+// 		mlx_delete_image(cub->mlx, cub->player->ray_img);
+// 	cub->player->ray_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+// 	while (line.pixels > 0 && line.pos.x > 0 && line.pos.y > 0)
+// 	{
+// 		mlx_put_pixel(cub->player->ray_img, line.pos.x, line.pos.y, 0xFF0000FF);
+// 		line.pos.x += line.dx_p;
+// 		line.pos.y += line.dy_p;
+// 		line.pixels--;
+// 	}
+// 	mlx_image_to_window(cub->mlx, cub->player->ray_img, 0, 0);
+// }
 
 void	draw_player(t_cub *cub)
 {

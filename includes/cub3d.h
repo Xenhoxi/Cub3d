@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/26 14:36:27 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/28 18:43:10 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,36 +39,12 @@
 # define TSMAP 20
 # define NB_TILE 6
 
-/*-----------------*/
-/*  STRUCT S_LINE  */
-/*-----------------*/
-/*
-	img;
-	pixels; Nb pixel a draw
-	map_x; map[x][y]
-	map_y; map[x][y]
-	dir_x; Direction en trigo
-	dir_y; Direction en trigo
-	step_x; Taille sur une unite de map
-	step_y; Taille sur une unite de map
-	angle; 
-	lenght_x; Taille de la line sur le maillage en X
-	lenght_y; Taille de la line sur le maillage en X
-	dx; Difference entre start_x et end_x
-	dy; Difference entre start_y et end_y
-	sx; scaleX pente de la droite sur une unite de X
-	sy; scaleY pente de la droite sur une unite de Y
-	dx_p; Dif entre start_x et end_x diviser par pixel (draw)
-	dy_p; Dif entre start_y et end_y diviser par pixel (draw)
-	s_x; start_x
-	s_y; start_y
-	end_x; Position de fin du segment en X
-	end_y; Position de fin du segment en Y
-*/
-
 
 void		draw_minimap(t_cub *cub);
 uint32_t	get_rgba_tex(u_int32_t color);
+
+void		draw_doors(t_cub *cub, t_line *line);
+void		clear_vertical_stripe(t_cub *cub, t_line *line);
 
 // draw_env
 void		draw_vision(t_cub *cub, t_line *line);
@@ -108,9 +84,39 @@ void		print_char_map(char **map);
 void		mouse_hook(t_cub *cub);
 void		mouse_on_off(t_cub *cub);
 
+// init_doors
+t_doors 	*create_door(int x, int y);
+int			count_doors(char **map);
+void		init_door(t_cub *cub);
+
 // free_utils
 void		free_int_array(int	**array, char **map);
-# define TRUE 1
-# define FALSE 0
 
 #endif
+
+/*-----------------*/
+/*  STRUCT S_LINE  */
+/*-----------------*/
+/*
+	img;
+	pixels; Nb pixel a draw
+	map_x; map[x][y]
+	map_y; map[x][y]
+	dir_x; Direction en trigo
+	dir_y; Direction en trigo
+	step_x; Taille sur une unite de map
+	step_y; Taille sur une unite de map
+	angle; 
+	lenght_x; Taille de la line sur le maillage en X
+	lenght_y; Taille de la line sur le maillage en X
+	dx; Difference entre start_x et end_x
+	dy; Difference entre start_y et end_y
+	sx; scaleX pente de la droite sur une unite de X
+	sy; scaleY pente de la droite sur une unite de Y
+	dx_p; Dif entre start_x et end_x diviser par pixel (draw)
+	dy_p; Dif entre start_y et end_y diviser par pixel (draw)
+	s_x; start_x
+	s_y; start_y
+	end_x; Position de fin du segment en X
+	end_y; Position de fin du segment en Y
+*/
