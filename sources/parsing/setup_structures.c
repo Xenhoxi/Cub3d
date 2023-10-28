@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/27 16:03:07 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/28 12:21:30 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ t_elements	*setup_elements(void)
 	t_elements	*elements;
 
 	elements = malloc(sizeof(t_elements));
+	elements->r = 0;
+	elements->g = 0;
+	elements->b = 0;
 	elements->ceiling_color = 0;
 	elements->floor_color = 0;
 	elements->north_path = NULL;

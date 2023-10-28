@@ -4,7 +4,7 @@ NO sources/textures/gray_wall.png
 WE ./sources/textures/dark_wall.png
 
 F 78,176,54  
-C 25,255,000                                     
+C 255,255,000                                     
 
 1111111111111111111
 1000000000000000001

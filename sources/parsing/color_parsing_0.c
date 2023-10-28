@@ -6,17 +6,14 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:32:16 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/27 16:14:35 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/28 12:47:47 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	convert_rgb(char *line, t_cub *cub, char c)
+void	convert_rgb(char *line, t_cub *cub, char c, int i)
 {
-	int	i;
-
-	i = 0;
 	while (!is_digit(line[i]))
 		i++;
 	cub->v->start = i;
@@ -80,8 +77,11 @@ void	store_color(char *line, t_cub *cub)
 		i++;
 	if (line[i] != 'F' && line[i] != 'C')
 		error_msg("Wrong color identifier", cub);
-	printf("%s\n", line);
-	convert_rgb(line, cub, 'C');
+	cub->v->index = 0;
+	if (line[i] == 'C')
+		convert_rgb(line, cub, 'C', 0);
+	else if (line[i] == 'F')
+		convert_rgb(line, cub, 'F', 0);
 }
 
 u_int32_t	get_rgba_tex(u_int32_t color)
@@ -100,7 +100,6 @@ u_int32_t	get_rgba_tex(u_int32_t color)
 
 int	color_check(t_cub *cub)
 {
-	printf ("%d, %d, %d\n", cub->elements->r, cub->elements->g, cub->elements->b);
 	if (cub->elements->r <= 255 && cub->elements->r >= 0)
 		if (cub->elements->g <= 255 && cub->elements->g >= 0)
 			if (cub->elements->b <= 255 && cub->elements->b >= 0)
