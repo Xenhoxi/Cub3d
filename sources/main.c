@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 14:33:29 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 15:16:08 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	draw_update(t_cub *cub)
 		|| mlx_is_key_down(mlx, MLX_KEY_S) || mlx_is_key_down(mlx, MLX_KEY_W)
 		|| mlx_is_key_down(mlx, MLX_KEY_LEFT)
 		|| mlx_is_key_down(mlx, MLX_KEY_RIGHT) || cub->mouse_moved != 0
-		|| cub->map->door_moving == 1)
+		|| cub->map->door_moving != 0)
 	{
 		draw_rays(cub);
 		draw_minimap(cub);
@@ -137,10 +137,11 @@ t_image	*setup_image(t_cub *cub)
 	images = malloc(sizeof(t_image));
 	if (!images)
 		return (NULL);
-	images->map_door = create_img_full(TSMAP, cub->mlx, 0xFF6600FF);
+	images->map_door = create_img_full(TSMAP, cub->mlx, 0xFF660050);
+	images->map_player = create_img_full(TSMAP, cub->mlx, 0xFF6600FF);
 	images->map_wall = create_img_full(TSMAP, cub->mlx, 0x808080FF);
 	images->map_floor = create_img_full(TSMAP, cub->mlx, 0xC8AD7FFF);
-	images->map_void = create_img_cf(TSMAP, TSMAP, cub->mlx, 0x808080FF);
+	images->map_void = create_img_cf(TSMAP, TSMAP, cub->mlx, 0xFF808080);
 	images->door_tex = load_door_png();
 	door_png_to_textures(cub, images);
 	return (images);

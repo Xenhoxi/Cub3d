@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:31 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/26 14:28:05 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:57:46 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_wall(char tile_type)
 {
-	if (tile_type == '1')
+	if (tile_type == '1' || tile_type == 'D')
 		return (1);
 	return (0);
 }
@@ -26,8 +26,8 @@ void	move_forward(t_cub *cub)
 	double	speed;
 
 	speed = SPEED * cub->dt;
-	next_pos_x = (int)(cub->player->pos_x + cub->player->dir_x * 10 * speed);
-	next_pos_y = (int)(cub->player->pos_y + cub->player->dir_y * 10 * speed);
+	next_pos_x = (int)(cub->player->pos_x + cub->player->dir_x * speed);
+	next_pos_y = (int)(cub->player->pos_y + cub->player->dir_y * speed);
 	if (!is_wall(cub->map->map[(int)cub->player->pos_y][next_pos_x]))
 		cub->player->pos_x += cub->player->dir_x * speed;
 	if (!is_wall(cub->map->map[next_pos_y][(int)cub->player->pos_x]))
@@ -41,8 +41,8 @@ void	move_backward(t_cub *cub)
 	double	speed;
 
 	speed = SPEED * cub->dt;
-	next_pos_x = (int)(cub->player->pos_x - cub->player->dir_x * 10 * speed);
-	next_pos_y = (int)(cub->player->pos_y - cub->player->dir_y * 10 * speed);
+	next_pos_x = (int)(cub->player->pos_x - cub->player->dir_x * speed);
+	next_pos_y = (int)(cub->player->pos_y - cub->player->dir_y * speed);
 	if (!is_wall(cub->map->map[(int)cub->player->pos_y][next_pos_x]))
 		cub->player->pos_x -= cub->player->dir_x * speed;
 	if (!is_wall(cub->map->map[next_pos_y][(int)cub->player->pos_x]))

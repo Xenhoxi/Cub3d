@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/29 14:40:58 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 15:09:11 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct s_map
 typedef struct s_image
 {
 	mlx_image_t		*map_floor;
+	mlx_image_t		*map_player;
 	mlx_image_t		*map_wall;
 	mlx_image_t		*map_door;
 	mlx_image_t		*map_void;

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 13:09:15 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 14:41:18 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 15:22:29 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,18 @@ int	is_player_close_to_door(t_cub *cub, t_doors *door)
 
 void	open_door(t_cub *cub, t_doors *door)
 {
-	(void) cub;
 	if (door->current_img < NB_FRM_DOOR - 1)
-		door->current_img += 0.3;
-	door->state = 'O';
+		door->current_img += 0.6;
 	cub->map->door_moving = 1;
-	if (door->current_img == NB_FRM_DOOR - 1)
+	door->state = 'O';
+	if (door->current_img >= NB_FRM_DOOR - 1)
 		cub->map->map[door->y][door->x] = '0';
 }
 
 void	close_door(t_cub *cub, t_doors *door)
 {
-	(void) cub;
 	if (door->current_img > 0)
-		door->current_img -= 0.3;
+		door->current_img -= 0.6;
 	cub->map->door_moving = 1;
 	if (door->current_img < NB_FRM_DOOR - 1)
 		cub->map->map[door->y][door->x] = 'D';

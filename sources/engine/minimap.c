@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:17:23 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 12:17:51 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 15:12:30 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	draw_minimap(t_cub *cub)
 		start.y++;
 		map.y++;
 	}
-	mlx_image_to_window(cub->mlx, cub->image->map_door,
+	mlx_image_to_window(cub->mlx, cub->image->map_player,
 		NB_TILE * TSMAP, NB_TILE * TSMAP);
 }
 
