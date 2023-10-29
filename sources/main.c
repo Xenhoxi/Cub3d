@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 15:16:08 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 15:27:50 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ t_image	*setup_image(t_cub *cub)
 	images->map_player = create_img_full(TSMAP, cub->mlx, 0xFF6600FF);
 	images->map_wall = create_img_full(TSMAP, cub->mlx, 0x808080FF);
 	images->map_floor = create_img_full(TSMAP, cub->mlx, 0xC8AD7FFF);
-	images->map_void = create_img_cf(TSMAP, TSMAP, cub->mlx, 0xFF808080);
+	images->map_void = create_img_cf(TSMAP, TSMAP, cub->mlx, 0x808080FF);
 	images->door_tex = load_door_png();
 	door_png_to_textures(cub, images);
 	return (images);
