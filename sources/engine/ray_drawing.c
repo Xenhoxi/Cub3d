@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/28 20:53:12 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 12:52:04 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	is_entity(char tile_check, t_line *line)
 	{
 		line->is_door = 1;
 		line->door_side = line->side;
+		line->map_door.x = line->map.x;
+		line->map_door.y = line->map.y;
 		if (line->door_side == 'E' || line->door_side == 'W')
 			line->door_lenght.x = line->lenght.x;
 		else

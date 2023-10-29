@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/28 18:43:10 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 12:25:38 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define SPEED 3.5
 # define TRUE 1
 # define FALSE 0
+# define NB_FRM_DOOR 11
 
 // Map
 # define TSMAP 20
@@ -45,6 +46,7 @@ uint32_t	get_rgba_tex(u_int32_t color);
 
 void		draw_doors(t_cub *cub, t_line *line);
 void		clear_vertical_stripe(t_cub *cub, t_line *line);
+void		door_update(t_cub *cub);
 
 // draw_env
 void		draw_vision(t_cub *cub, t_line *line);

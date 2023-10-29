@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/28 22:12:28 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:40:58 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ typedef	struct	s_var
 
 typedef	struct	s_doors
 {
-	int	x;
-	int	y;
-	int	state;
-	int	current_img;
+	int		x;
+	int		y;
+	int		state;
+	double	current_img;
 }	t_doors;
 
 
@@ -105,7 +105,9 @@ typedef struct s_player
 
 typedef struct s_map
 {
+
 	char	**map;
+	int		door_moving;
 	int		**array;
 	int		map_index;
 	int		x;

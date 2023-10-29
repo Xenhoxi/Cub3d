@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/28 22:22:21 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:33:29 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,24 @@ void	ft_load(t_cub *cub)
 	mlx_set_mouse_pos(cub->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 }
 
+void	draw_update(t_cub *cub)
+{
+	mlx_t	*mlx;
+
+	mlx = cub->mlx;
+	if (mlx_is_key_down(mlx, MLX_KEY_A) || mlx_is_key_down(mlx, MLX_KEY_D)
+		|| mlx_is_key_down(mlx, MLX_KEY_S) || mlx_is_key_down(mlx, MLX_KEY_W)
+		|| mlx_is_key_down(mlx, MLX_KEY_LEFT)
+		|| mlx_is_key_down(mlx, MLX_KEY_RIGHT) || cub->mouse_moved != 0
+		|| cub->map->door_moving == 1)
+	{
+		draw_rays(cub);
+		draw_minimap(cub);
+		cub->mouse_moved = 0;
+		cub->map->door_moving = 0;
+	}
+}
+
 void	ft_update(void *param)
 {
 	t_cub	*cub;
@@ -69,7 +87,9 @@ void	ft_update(void *param)
 	key_hook(cub);
 	mouse_hook(cub);
 	player_update(cub);
+	door_update(cub);
 	delta_time(cub);
+	draw_update(cub);
 	return ;
 }
 
@@ -95,7 +115,7 @@ mlx_texture_t	**load_door_png(void)
 
 void	door_png_to_textures(t_cub *cub, t_image *images)
 {
-	images->door_img = malloc(sizeof(mlx_image_t *) * 10);
+	images->door_img = malloc(sizeof(mlx_image_t *) * 12);
 	images->door_img[0] = mlx_texture_to_image(cub->mlx, images->door_tex[0]);
 	images->door_img[1] = mlx_texture_to_image(cub->mlx, images->door_tex[1]);
 	images->door_img[2] = mlx_texture_to_image(cub->mlx, images->door_tex[2]);
@@ -105,7 +125,9 @@ void	door_png_to_textures(t_cub *cub, t_image *images)
 	images->door_img[6] = mlx_texture_to_image(cub->mlx, images->door_tex[6]);
 	images->door_img[7] = mlx_texture_to_image(cub->mlx, images->door_tex[7]);
 	images->door_img[8] = mlx_texture_to_image(cub->mlx, images->door_tex[8]);
-	images->door_img[9] = NULL;
+	images->door_img[9] = mlx_texture_to_image(cub->mlx, images->door_tex[9]);
+	images->door_img[10] = mlx_texture_to_image(cub->mlx, images->door_tex[10]);
+	images->door_img[11] = NULL;
 }
 
 t_image	*setup_image(t_cub *cub)

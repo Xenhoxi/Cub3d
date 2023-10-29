@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:17:23 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/27 15:50:50 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 12:17:51 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	put_image_to_image(t_cub *cub, t_vector map, t_vector pos)
 					* sizeof(uint32_t));
 			color = *pixel;
 			color = get_rgba_tex(color);
-			mlx_put_pixel(cub->windows_img, map.x * TSMAP + x_img,
+			mlx_put_pixel(cub->windows_img_door, map.x * TSMAP + x_img,
 				map.y * TSMAP + y_img, color);
 			x_img++;
 		}

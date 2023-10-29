@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 18:20:50 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/28 22:05:36 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:39:30 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	find_curr_img_door(t_cub *cub, t_line *line)
 	while (cub->map->doors[++i])
 		if (cub->map->doors[i]->x == floor(line->map.x)
 			&& cub->map->doors[i]->y == floor(line->map.y))
-			return (cub->map->doors[i]->current_img);
+				return ((int)cub->map->doors[i]->current_img);
 	return (0);
 }
 

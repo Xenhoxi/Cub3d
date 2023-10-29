@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:09:37 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/28 19:16:26 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 14:23:48 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,6 @@ void	player_update(t_cub *cub)
 		right_rotation(cub, ROTSPEED * cub->dt);
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
 		left_rotation(cub, ROTSPEED * cub->dt);
-	if (mlx_is_key_down(mlx, MLX_KEY_A) || mlx_is_key_down(mlx, MLX_KEY_D)
-		|| mlx_is_key_down(mlx, MLX_KEY_S) || mlx_is_key_down(mlx, MLX_KEY_W)
-		|| mlx_is_key_down(mlx, MLX_KEY_LEFT)
-		|| mlx_is_key_down(mlx, MLX_KEY_RIGHT) || cub->mouse_moved != 0)
-	{
-		draw_rays(cub);
-		draw_minimap(cub);
-		cub->mouse_moved = 0;
-	}
 }
 
 int	entity_hitbox(char **map, int x, int y)
