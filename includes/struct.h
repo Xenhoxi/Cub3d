@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 15:12:02 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 15:27:26 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@
 
 # include "../MLX42/include/MLX42/MLX42.h"
 
-typedef	struct	s_vector
+typedef struct s_vector
 {
 	int	x;
 	int	y;
 }	t_vector;
 
-typedef	struct	s_vec
+typedef struct s_vec
 {
 	double	x;
 	double	y;
 }	t_vec;
 
-typedef	struct	s_var
+typedef struct s_var
 {
 	int	start;
 	int	len;
@@ -40,7 +40,7 @@ typedef	struct	s_var
 	int	nb_c;
 }	t_var;
 
-typedef	struct	s_doors
+typedef struct s_doors
 {
 	int		x;
 	int		y;
@@ -51,7 +51,6 @@ typedef	struct	s_doors
 
 typedef struct s_line
 {
-	mlx_image_t	*img;
 	t_vector	map;
 	t_vector	step;
 	t_vec		dir;
@@ -95,8 +94,6 @@ typedef struct s_elements
 
 typedef struct s_player
 {
-	t_line		*line;
-	mlx_image_t	*img_map;
 	mlx_image_t	*ray_img;
 	double		pos_x;
 	double		pos_y;

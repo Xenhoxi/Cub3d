@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smunio <smunio@student.42.fr>              +#+  +:+       +#+         #
+#    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 23:49:19 by ljerinec          #+#    #+#              #
-#    Updated: 2023/10/30 12:12:45 by smunio           ###   ########.fr        #
+#    Updated: 2023/10/30 12:52:31 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address 
+CFLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=address 
 
 SOURCES =	sources/main.c \
 			sources/parsing/parsing.c \
@@ -41,6 +41,7 @@ SOURCES =	sources/main.c \
 			sources/engine/player_rotation.c \
 			sources/engine/cub3d_utils.c \
 			sources/freeing/free_utils.c \
+			sources/freeing/ft_free_cub.c \
 
 OBJ_DIR = object/
 OBJECTS = $(SOURCES:.c=.o)
@@ -50,7 +51,7 @@ CUB3D = cub3D
 LIBFT_DIR = includes/libft/libft.a
 FT_PRINTF_DIR = includes/ft_printf/ft_printf.a
 INCLUDES_DIR = includes/
-MLX42_INC = -lglfw -L /Users/smunio/.brew/Cellar/glfw/3.3.8/lib/
+MLX42_INC = -lglfw -L /Users/ljerinec/.brew/Cellar/glfw/3.3.8/lib/
 # MLX42_INC = -lglfw -L /opt/homebrew/Cellar/glfw/3.3.8/lib
 MLX42_DIR = MLX42/build/libmlx42.a
 

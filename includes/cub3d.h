@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/30 12:02:20 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:25:47 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,10 @@ void			mouse_on_off(t_cub *cub);
 /*---------*/
 /* FREEING */
 /*---------*/
+
+// ft_free_cub.c
+void			ft_free_all(t_cub *cub);
+void			ft_free_parsing(t_cub *cub);
 
 // free_utils
 void			free_int_array(int	**array, char **map);

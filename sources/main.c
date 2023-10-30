@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 17:15:36 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:26:20 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	main(int argc, char **argv)
 	if (argc != 2 || check_file(argv))
 		return (1);
 	parsing(argv[1], cub);
+	ft_free_parsing(cub);
 	if (!cub->parsing_error)
 	{
 		run(cub);
-		// free_cub();
-		// mlx_terminate(cub->mlx);
+		ft_free_all(cub);
 	}
 	return (0);
 }
