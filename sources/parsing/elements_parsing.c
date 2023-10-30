@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elements_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 12:19:16 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 16:59:36 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	sort_element(t_cub	*cub, char *line)
 	static int		parsing_map;
 	char			*type;
 
+	printf("line = %s\n", line);
 	type = element_type(line, cub);
 	if (!line || !type)
 		return ;
@@ -50,7 +51,7 @@ char	*element_type(char *line, t_cub *cub)
 		i++;
 	if (is_alpha(line[i]))
 	{
-		if (line[i] == 'F' || line[i] == 'C')
+		if (is_alpha(line[i]) && is_space(line[i + 1]))
 		{
 			if (is_color(line, i, cub))
 				return (cub->v->nb_c++, "COLOR");
