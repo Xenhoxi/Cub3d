@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_drawing.c                                      :+:      :+:    :+:   */
+/*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 12:52:04 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 17:06:36 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,6 @@ void	calcul_offset(t_line *line)
 	}
 }
 
-int	is_entity(char tile_check, t_line *line)
-{
-	if (tile_check == 'D' && !line->is_door)
-	{
-		line->is_door = 1;
-		line->door_side = line->side;
-		line->map_door.x = line->map.x;
-		line->map_door.y = line->map.y;
-		if (line->door_side == 'E' || line->door_side == 'W')
-			line->door_lenght.x = line->lenght.x;
-		else
-			line->door_lenght.y = line->lenght.y;
-		return (0);
-	}
-	else if (tile_check == '1')
-		return (1);
-	return (0);
-}
-
 void	dda_algorithm(t_cub *cub, t_line *line)
 {
 	while (1)
@@ -98,7 +79,7 @@ void	dda_algorithm(t_cub *cub, t_line *line)
 	}
 }
 
-void	draw_rays(t_cub *cub)
+void	ray_cast(t_cub *cub)
 {
 	t_line		line;
 	int			i;
@@ -123,4 +104,23 @@ void	draw_rays(t_cub *cub)
 			clear_vertical_stripe(cub, &line);
 		i++;
 	}
+}
+
+int	is_entity(char tile_check, t_line *line)
+{
+	if (tile_check == 'D' && !line->is_door)
+	{
+		line->is_door = 1;
+		line->door_side = line->side;
+		line->map_door.x = line->map.x;
+		line->map_door.y = line->map.y;
+		if (line->door_side == 'E' || line->door_side == 'W')
+			line->door_lenght.x = line->lenght.x;
+		else
+			line->door_lenght.y = line->lenght.y;
+		return (0);
+	}
+	else if (tile_check == '1')
+		return (1);
+	return (0);
 }
