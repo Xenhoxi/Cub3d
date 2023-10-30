@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:18:05 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/30 12:01:40 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:01:27 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ u_int32_t	get_color_coord(int x, int y, mlx_image_t *img)
 	return (0);
 }
 
-mlx_image_t	*create_img_cf(int width, int height, mlx_t *mlx, uint64_t color)
+mlx_image_t	*create_img_cf(int width, int h, mlx_t *mlx, uint64_t color)
 {
 	int			x;
 	int			y;
@@ -32,10 +32,10 @@ mlx_image_t	*create_img_cf(int width, int height, mlx_t *mlx, uint64_t color)
 
 	x = -1;
 	y = -1;
-	img = mlx_new_image(mlx, width, height);
+	img = mlx_new_image(mlx, width, h);
 	if (!img)
 		return (NULL);
-	while (++y < height)
+	while (++y < h)
 	{
 		while (++x < width)
 			mlx_put_pixel(img, x, y, color);

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:13:22 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/30 12:58:47 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:56:17 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_image	*setup_image(t_cub *cub)
 	images = malloc(sizeof(t_image));
 	if (!images)
 		return (NULL);
-	images->map_door = create_img_full(TSMAP, cub->mlx, 0xFF660050);
+	images->map_door = create_img_full(TSMAP, cub->mlx, 0x660666FF);
 	images->map_player = create_img_full(TSMAP, cub->mlx, 0xFF6600FF);
 	images->map_wall = create_img_full(TSMAP, cub->mlx, 0x808080FF);
 	images->map_floor = create_img_full(TSMAP, cub->mlx, 0xC8AD7FFF);

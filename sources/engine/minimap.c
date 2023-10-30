@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:17:23 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 16:49:27 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:55:07 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ mlx_image_t	*chose_image_to_draw(t_cub *cub, int x, int y)
 		return (cub->image->map_void);
 }
 
-void	put_image_to_image(t_cub *cub, t_vector map, t_vector pos)
+void	put_image_to_image(t_cub *c, t_vector map, t_vector pos, int player_pos)
 {
 	int			y_img;
 	int			x_img;
@@ -42,23 +42,24 @@ void	put_image_to_image(t_cub *cub, t_vector map, t_vector pos)
 	uint32_t	color;
 	mlx_image_t	*img;
 
-	y_img = 0;
-	x_img = 0;
-	img = chose_image_to_draw(cub, pos.x, pos.y);
-	while (y_img < TSMAP)
+	y_img = -1;
+	x_img = -1;
+	if (player_pos == 0)
+		img = chose_image_to_draw(c, pos.x, pos.y);
+	else
+		img = c->image->map_player;
+	while (++y_img < TSMAP)
 	{
-		while (x_img < TSMAP)
+		while (++x_img < TSMAP)
 		{
 			pixel = (uint32_t *)(img->pixels + (y_img + x_img * TSMAP)
 					* sizeof(uint32_t));
 			color = *pixel;
 			color = get_rgba_tex(color);
-			mlx_put_pixel(cub->windows_img_door, map.x * TSMAP + x_img,
+			mlx_put_pixel(c->windows_img_door, map.x * TSMAP + x_img,
 				map.y * TSMAP + y_img, color);
-			x_img++;
 		}
-		y_img++;
-		x_img = 0;
+		x_img = -1;
 	}
 }
 
@@ -75,7 +76,7 @@ void	draw_minimap(t_cub *cub)
 	{
 		while (map.x <= NB_TILE * 2)
 		{
-			put_image_to_image(cub, map, start);
+			put_image_to_image(cub, map, start, 0);
 			map.x++;
 			start.x++;
 		}
@@ -84,6 +85,9 @@ void	draw_minimap(t_cub *cub)
 		start.y++;
 		map.y++;
 	}
-	mlx_image_to_window(cub->mlx, cub->image->map_player,
-		NB_TILE * TSMAP, NB_TILE * TSMAP);
+	map.x = NB_TILE;
+	map.y = NB_TILE;
+	start.x = -1;
+	start.y = -1;
+	put_image_to_image(cub, map, start, 1);
 }

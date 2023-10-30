@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/30 13:25:47 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:01:46 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_image			*setup_image(t_cub *cub);
 
 // colors_utils.c
 u_int32_t		get_color_coord(int x, int y, mlx_image_t *img);
-mlx_image_t		*create_img_cf(int width, int height, mlx_t *mlx, uint64_t color);
+mlx_image_t		*create_img_cf(int width, int h, mlx_t *mlx, uint64_t color);
 mlx_image_t		*create_img_full(int size, mlx_t *mlx, uint64_t color);
 mlx_image_t		*chose_image(t_cub *cub, t_line *line);
 
@@ -117,7 +117,7 @@ void			draw_update(t_cub *cub);
 // minimap.c
 int				is_spawn(char type);
 mlx_image_t		*chose_image_to_draw(t_cub *cub, int x, int y);
-void			put_image_to_image(t_cub *cub, t_vector map, t_vector pos);
+void			put_image_to_image(t_cub *c, t_vector map, t_vector pos, int p);
 void			draw_minimap(t_cub *cub);
 
 /*---------*/
@@ -159,5 +159,8 @@ void			ft_free_parsing(t_cub *cub);
 
 // free_utils
 void			free_int_array(int	**array, char **map);
+void			ft_free_map(t_map *map);
+void			ft_free_image(t_cub *cub, t_image *image);
+void			ft_free_player(t_cub *cub, t_player *player);
 
 #endif

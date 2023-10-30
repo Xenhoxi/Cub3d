@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 12:45:34 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 16:03:52 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 void	convert_texture_to_image(t_cub *cub)
 {
-	cub->elements->south_image = mlx_texture_to_image(cub->mlx, cub->elements->south_texture);
-	cub->elements->north_image = mlx_texture_to_image(cub->mlx, cub->elements->north_texture);
-	cub->elements->west_image = mlx_texture_to_image(cub->mlx, cub->elements->west_texture);
-	cub->elements->east_image = mlx_texture_to_image(cub->mlx, cub->elements->east_texture);
+	cub->elements->south_image = mlx_texture_to_image(cub->mlx,
+			cub->elements->south_texture);
+	cub->elements->north_image = mlx_texture_to_image(cub->mlx,
+			cub->elements->north_texture);
+	cub->elements->west_image = mlx_texture_to_image(cub->mlx,
+			cub->elements->west_texture);
+	cub->elements->east_image = mlx_texture_to_image(cub->mlx,
+			cub->elements->east_texture);
 }
 
 void	which_texture(t_cub *cub, char *line)

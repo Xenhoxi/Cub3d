@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/30 15:40:37 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:04:12 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int argc, char **argv)
 		run(cub);
 		ft_free_all(cub);
 	}
-	system("leaks cub3d");
 	return (0);
 }
 

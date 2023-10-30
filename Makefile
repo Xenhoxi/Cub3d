@@ -6,7 +6,7 @@
 #    By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 23:49:19 by ljerinec          #+#    #+#              #
-#    Updated: 2023/10/30 12:52:31 by ljerinec         ###   ########.fr        #
+#    Updated: 2023/10/30 16:07:41 by ljerinec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ TOTAL_FILES = $(words $(SOURCES))
 CURRENT_FILE = 0
 BAR_WIDTH = 30
 
-PRINT_NAME		:= cub3d
+PRINT_NAME		:= cub3D
 PRINT_PREFIX	:=	\033[1m\033[38;5;240m[\033[0m\033[38;5;250m$(PRINT_NAME)\033[1m\033[38;5;240m] \033[38;5;105m~\033[0m
 
 all: $(CUB3D)
