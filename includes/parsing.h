@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 15:13:30 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 18:01:52 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int			is_digit(char c);
 int			is_alpha(char c);
 int			is_space(char c);
 int			ft_array_len(char	**array);
+void		convert_texture_to_image(t_cub *cub);
 
 // parsing_utils_1
 void		print_int_array(char **map, int **array, t_cub *cub);
@@ -84,8 +85,8 @@ void		check_color_tab(char **tab, t_cub *cub);
 void		color_bitshift(t_cub *cub, char c);
 
 // texture_parsing
-void		convert_texture_to_image(t_cub *cub);
-void		which_texture(t_cub *cub, char *line);
+void		which_texture_0(t_cub *cub, char *line);
+void		which_texture_1(t_cub *cub, char *line);
 int			is_texture(char *line, int i, t_cub *cub, char *ext);
 void		store_text_path(t_cub *cub, char c, char *line);
 void		load_texture(t_cub *cub, char c);

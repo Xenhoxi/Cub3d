@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 17:11:07 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/30 17:50:23 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	sort_element(t_cub	*cub, char *line)
 	{
 		if (cub->v->parsing_map == 1)
 			return (error_msg("Map is always last element", cub));
-		which_texture(cub, line);
+		which_texture_0(cub, line);
 	}
 	else if (!ft_strncmp(type, "MAP", 4))
 	{
@@ -52,10 +52,11 @@ char	*element_type(char *line, t_cub *cub)
 		if (is_alpha(line[i]) && is_space(line[i + 1]))
 		{
 			if (is_color(line, i, cub))
-				return (cub->v->nb_c++, "COLOR");
+				return ("COLOR");
 		}
-		else if (is_texture(line, i, cub, ".png"))
-			return (cub->v->nb_t++, "TEXTURE_PATH");
+		else if (is_alpha(line[i]) && is_alpha(line[i + 1])
+			&& is_texture(line, i, cub, ".png"))
+			return ("TEXTURE_PATH");
 		else
 			return ("WRONG ELEMENT IDENTIFIER");
 	}

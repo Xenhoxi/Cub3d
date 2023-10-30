@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_0.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:41:33 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 15:35:09 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 18:02:42 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,16 @@ int	ft_array_len(char	**array)
 	while (array[i])
 		i++;
 	return (i);
+}
+
+void	convert_texture_to_image(t_cub *cub)
+{
+	cub->elements->south_image = mlx_texture_to_image(cub->mlx,
+			cub->elements->south_texture);
+	cub->elements->north_image = mlx_texture_to_image(cub->mlx,
+			cub->elements->north_texture);
+	cub->elements->west_image = mlx_texture_to_image(cub->mlx,
+			cub->elements->west_texture);
+	cub->elements->east_image = mlx_texture_to_image(cub->mlx,
+			cub->elements->east_texture);
 }

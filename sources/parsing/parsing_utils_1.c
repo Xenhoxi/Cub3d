@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:26:08 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 11:51:47 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 17:59:22 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	file_exist(char	*file_name)
 {
 	if (open(file_name, O_RDONLY) == -1)
 	{
-		printf("Error\nFile does not exist\n");
+		printf("Error\n-File does not exist\n");
 		return (1);
 	}
 	return (0);
