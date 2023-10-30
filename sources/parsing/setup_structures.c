@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_structures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 15:35:39 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 17:10:40 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ t_elements	*setup_elements(void)
 	t_elements	*elements;
 
 	elements = malloc(sizeof(t_elements));
-	elements->ceiling_color = 0;
-	elements->floor_color = 0;
+	elements->ceiling_color = 256;
+	elements->floor_color = 256;
 	elements->r = 0;
 	elements->g = 0;
 	elements->b = 0;
@@ -77,5 +77,6 @@ t_var	*setup_var(void)
 	v->error = 0;
 	v->nb_c = 0;
 	v->nb_t = 0;
+	v->parsing_map = 0;
 	return (v);
 }

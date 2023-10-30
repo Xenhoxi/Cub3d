@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 16:59:36 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/30 17:11:07 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 void	sort_element(t_cub	*cub, char *line)
 {
-	static int		parsing_map;
 	char			*type;
 
-	printf("line = %s\n", line);
 	type = element_type(line, cub);
 	if (!line || !type)
 		return ;
 	else if (!ft_strncmp(type, "TEXTURE_PATH", 13))
 	{
-		if (parsing_map == 1)
+		if (cub->v->parsing_map == 1)
 			return (error_msg("Map is always last element", cub));
 		which_texture(cub, line);
 	}
@@ -31,12 +29,12 @@ void	sort_element(t_cub	*cub, char *line)
 	{
 		if (cub->v->nb_c != 2 && cub->v->nb_t != 4)
 			return (error_msg("Map is always last element", cub));
-		parsing_map = 1;
+		cub->v->parsing_map = 1;
 		cub->map->map = array_join(cub->map->map, line);
 	}
 	else if (!ft_strncmp(type, "COLOR", 6))
 	{
-		if (parsing_map == 1)
+		if (cub->v->parsing_map == 1)
 			return (error_msg("Map is always last element", cub));
 		store_color(line, cub);
 	}
@@ -70,8 +68,8 @@ char	*element_type(char *line, t_cub *cub)
 
 int	element_checker(t_elements *elements, t_cub *cub)
 {
-	if (elements->ceiling_color != 0)
-		if (elements->floor_color != 0)
+	if (elements->ceiling_color != 256)
+		if (elements->floor_color != 256)
 			if (elements->east_path != NULL)
 				if (elements->north_path != NULL)
 					if (elements->south_path != NULL)
