@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_parsing_0.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:32:16 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 15:25:16 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 15:30:28 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void	convert_rgb(char *line, t_cub *cub, char c)
 		cub->elements->b = ft_atoi(tab[2]);
 	}
 	color_bitshift(cub, c);
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
 }
 
 int	is_color(char *line, int i, t_cub *c)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_structures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 15:12:28 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 15:35:39 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,6 @@ t_elements	*setup_elements(void)
 	elements->south_path = NULL;
 	elements->east_path = NULL;
 	elements->west_path = NULL;
-	elements->north_texture = malloc(sizeof(mlx_texture_t));
-	elements->south_texture = malloc(sizeof(mlx_texture_t));
-	elements->east_texture = malloc(sizeof(mlx_texture_t));
-	elements->west_texture = malloc(sizeof(mlx_texture_t));
 	return (elements);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing_0.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:09:25 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 18:28:35 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:32:06 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,17 @@ int	get_map_index(char **map, t_cub *cub)
 {
 	int		i;
 	char	*type;
-	char	*s;
 
 	if (!map)
 		return (0);
-	s = ft_strdup("MAP");
 	type = NULL;
 	i = -1;
 	while (map[++i])
 	{
 		type = element_type(map[i], cub);
-		if (!ft_strncmp(type, s, ft_strlen(type)))
-		{
-			free(s);
+		if (!ft_strncmp(type, "MAP", ft_strlen(type)))
 			return (i);
-		}
 	}
-	free(s);
 	return (0);
 }
 

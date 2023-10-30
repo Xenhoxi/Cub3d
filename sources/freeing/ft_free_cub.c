@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:44:43 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/30 13:26:42 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:37:31 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ void	ft_free_cub(t_cub *cub)
 
 void	ft_free_all(t_cub *cub)
 {
+	free(cub->v);
 	ft_free_player(cub, cub->player);
 	ft_free_image(cub, cub->image);
 	ft_free_map(cub->map);
 	ft_free_elements(cub, cub->elements);
 	ft_free_cub(cub);
-	system("leaks cub3d");
 }
 
 void	ft_free_parsing(t_cub *cub)

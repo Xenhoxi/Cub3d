@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/30 13:26:20 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:40:37 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ int	main(int argc, char **argv)
 		run(cub);
 		ft_free_all(cub);
 	}
+	system("leaks cub3d");
 	return (0);
 }
 
 void	run(t_cub *cub)
 {
-	cub->mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "Black ops 2 Zombies", true);
+	cub->mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "cub3d", true);
 	if (!cub->mlx)
 		exit(EXIT_FAILURE);
 	cub->image = setup_image(cub);
