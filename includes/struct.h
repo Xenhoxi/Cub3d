@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 12:12:05 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 12:17:39 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@
 
 # include "../MLX42/include/MLX42/MLX42.h"
 
-typedef	struct	s_vector
+typedef struct s_vector
 {
 	int	x;
 	int	y;
 }	t_vector;
 
-typedef	struct	s_vec
+typedef struct s_vec
 {
 	double	x;
 	double	y;
 }	t_vec;
 
-typedef	struct	s_var
+typedef struct s_var
 {
 	int	start;
 	int	len;
@@ -40,7 +40,7 @@ typedef	struct	s_var
 	int	nb_c;
 }	t_var;
 
-typedef	struct	s_doors
+typedef struct s_doors
 {
 	int		x;
 	int		y;
