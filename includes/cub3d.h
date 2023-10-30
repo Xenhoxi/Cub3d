@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 12:25:38 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:02:20 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,85 +40,120 @@
 # define TSMAP 20
 # define NB_TILE 6
 
+// main.c
+void			run(t_cub *cub);
+void			ft_load(t_cub *cub);
+void			ft_update(void *param);
 
-void		draw_minimap(t_cub *cub);
-uint32_t	get_rgba_tex(u_int32_t color);
+// cub3d_utils.c
+void			key_hook(t_cub *cub);
+void			delta_time(t_cub *cub);
 
-void		draw_doors(t_cub *cub, t_line *line);
-void		clear_vertical_stripe(t_cub *cub, t_line *line);
-void		door_update(t_cub *cub);
+/*----------*/
+/* TEXTURES */
+/*----------*/
 
-// draw_env
-void		draw_vision(t_cub *cub, t_line *line);
-void		draw_outdoor(t_cub *cub);
-void		load_texture_tmp(t_elements *elements);
-mlx_image_t	*create_img_cf(int width, int height, mlx_t *mlx, uint64_t color);
-u_int32_t	get_color_coord(int x, int y, mlx_image_t *img);
+// loading_img.c
+mlx_texture_t	**load_door_png(void);
+void			door_png_to_textures(t_cub *cub, t_image *images);
+t_image			*setup_image(t_cub *cub);
 
-// ray_drawing
-void		draw_rays(t_cub *cub);
-void		draw_rayline(t_cub *cub, t_line *line);
-mlx_image_t	**setup_array_line(void);
-void		alloc_rays(t_cub *cub);
+// colors_utils.c
+u_int32_t		get_color_coord(int x, int y, mlx_image_t *img);
+mlx_image_t		*create_img_cf(int width, int height, mlx_t *mlx, uint64_t color);
+mlx_image_t		*create_img_full(int size, mlx_t *mlx, uint64_t color);
+mlx_image_t		*chose_image(t_cub *cub, t_line *line);
 
-// minimap
-mlx_image_t	*create_img_full(int size, mlx_t *mlx, uint64_t color);
+/*----------*/
+/*  PLAYER  */
+/*----------*/
 
-// player
-void		player_update(t_cub *cub);
-int			entity_hitbox(char **map, int x, int y);
-void		init_player(t_cub *cub);
-void		find_spawn(char **map, int *x, int *y);
-void		draw_direction(t_cub *cub);
-void		right_rotation(t_cub *cub, double rotspeed);
-void		left_rotation(t_cub *cub, double rotspeed);
+// player.c
+void			player_update(t_cub *cub);
+void			draw_player(t_cub *cub);
+void			init_player(t_cub *cub);
+void			find_spawn(char **map, int *x, int *y);
 
-// player_movement
-void		move_forward(t_cub *cub);
-void		move_backward(t_cub *cub);
-void		move_left(t_cub *cub);
-void		move_right(t_cub *cub);
+// init_player.c
+void			setup_start_dir(t_cub *cub, char direction);
+void			set_north(t_cub *cub);
+void			set_south(t_cub *cub);
+void			set_west(t_cub *cub);
+void			set_east(t_cub *cub);
 
-// minimap_utils
-void		print_char_map(char **map);
+// player_movement.c
+int				is_wall(char tile_type);
+void			move_forward(t_cub *cub);
+void			move_backward(t_cub *cub);
+void			move_left(t_cub *cub);
+void			move_right(t_cub *cub);
+
+// player_rotation.c
+void			right_rotation(t_cub *cub, double rotspeed);
+void			left_rotation(t_cub *cub, double rotspeed);
+
+/*-------------*/
+/* RAY-CASTING */
+/*-------------*/
+
+// ray_casting.c
+void			scale_for_ray(t_cub *cub, t_line *line);
+void			calcul_offset(t_line *line);
+void			dda_algorithm(t_cub *cub, t_line *line);
+void			ray_cast(t_cub *cub);
+int				is_entity(char tile_check, t_line *line);
+
+// draw_environnement.c
+void			drawline_wall(t_cub *cub, t_line *line, int tex_x);
+void			drawtexture(t_line *line, t_cub *cub);
+void			draw_vision(t_cub *cub, t_line *line);
+void			draw_outdoor(t_cub *cub);
+void			draw_update(t_cub *cub);
+
+/*----------*/
+/* MINI-MAP */
+/*----------*/
+
+// minimap.c
+int				is_spawn(char type);
+mlx_image_t		*chose_image_to_draw(t_cub *cub, int x, int y);
+void			put_image_to_image(t_cub *cub, t_vector map, t_vector pos);
+void			draw_minimap(t_cub *cub);
+
+/*---------*/
+/*  DOORS  */
+/*---------*/
+
+// init_doors.c
+t_doors			*create_door(int x, int y);
+int				count_doors(char **map);
+void			init_door(t_cub *cub);
+
+// control_doors.c
+int				is_player_close_to_door(t_cub *cub, t_doors *door);
+void			open_door(t_cub *cub, t_doors *door);
+void			close_door(t_cub *cub, t_doors *door);
+void			door_update(t_cub *cub);
+
+// draw_doors.c
+int				find_curr_img_door(t_cub *cub, t_line *line);
+void			drawtexture_doors(t_line *line, t_cub *cub);
+void			draw_doors(t_cub *cub, t_line *line);
+void			clear_vertical_stripe(t_cub *cub, t_line *line);
+
+/*---------*/
+/*  MOUSE  */
+/*---------*/
 
 // mouse_handler
-void		mouse_hook(t_cub *cub);
-void		mouse_on_off(t_cub *cub);
+void			mouse_hook(t_cub *cub);
+void			mouse_on_off(t_cub *cub);
 
-// init_doors
-t_doors 	*create_door(int x, int y);
-int			count_doors(char **map);
-void		init_door(t_cub *cub);
+/*---------*/
+/* FREEING */
+/*---------*/
 
 // free_utils
-void		free_int_array(int	**array, char **map);
+void			free_int_array(int	**array, char **map);
 
 #endif
-
-/*-----------------*/
-/*  STRUCT S_LINE  */
-/*-----------------*/
-/*
-	img;
-	pixels; Nb pixel a draw
-	map_x; map[x][y]
-	map_y; map[x][y]
-	dir_x; Direction en trigo
-	dir_y; Direction en trigo
-	step_x; Taille sur une unite de map
-	step_y; Taille sur une unite de map
-	angle; 
-	lenght_x; Taille de la line sur le maillage en X
-	lenght_y; Taille de la line sur le maillage en X
-	dx; Difference entre start_x et end_x
-	dy; Difference entre start_y et end_y
-	sx; scaleX pente de la droite sur une unite de X
-	sy; scaleY pente de la droite sur une unite de Y
-	dx_p; Dif entre start_x et end_x diviser par pixel (draw)
-	dy_p; Dif entre start_y et end_y diviser par pixel (draw)
-	s_x; start_x
-	s_y; start_y
-	end_x; Position de fin du segment en X
-	end_y; Position de fin du segment en Y
-*/

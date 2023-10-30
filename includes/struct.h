@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 11:28:54 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:43:29 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ typedef struct s_line
 	int			is_door;
 	int			door_dist;
 	char		door_side;
+	int			l_height;
+	int			d_start;
+	int			d_end;
 }	t_line;
 
 typedef struct s_elements

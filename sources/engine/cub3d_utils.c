@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_utils.c                                    :+:      :+:    :+:   */
+/*   cub3d_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 16:17:57 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/01 16:20:06 by ljerinec         ###   ########.fr       */
+/*   Created: 2023/10/29 17:07:47 by ljerinec          #+#    #+#             */
+/*   Updated: 2023/10/29 17:12:18 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_char_map(char **map)
+void	key_hook(t_cub *cub)
 {
-	int	i;
+	mlx_t	*mlx;
 
-	i = 0;
-	if (!map)
-		return ;
-	while (map[i])
-	{
-		ft_printf("%s\n", map[i]);
-		i++;
-	}
+	mlx = cub->mlx;
+	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(mlx);
+}
+
+void	delta_time(t_cub *cub)
+{
+	double		current_time;
+
+	current_time = mlx_get_time();
+	cub->dt = current_time - cub->prev_dt;
+	cub->prev_dt = current_time;
 }
