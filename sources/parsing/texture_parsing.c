@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 12:19:50 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 12:45:34 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,24 +91,24 @@ void	load_texture(t_cub *cub, char c)
 	{
 		cub->elements->north_texture = mlx_load_png(cub->elements->north_path);
 		if (cub->elements->north_texture == NULL)
-			cub->parsing_error = 1;
+			return (cub->parsing_error = 1, error_msg("Tex. load failed", cub));
 	}
 	else if (c == 'S')
 	{
 		cub->elements->south_texture = mlx_load_png(cub->elements->south_path);
 		if (cub->elements->south_texture == NULL)
-			cub->parsing_error = 1;
+			return (cub->parsing_error = 1, error_msg("Tex. load failed", cub));
 	}
 	else if (c == 'E')
 	{
 		cub->elements->east_texture = mlx_load_png(cub->elements->east_path);
 		if (cub->elements->east_texture == NULL)
-			cub->parsing_error = 1;
+			return (cub->parsing_error = 1, error_msg("Tex. load failed", cub));
 	}
 	else if (c == 'W')
 	{
 		cub->elements->west_texture = mlx_load_png(cub->elements->west_path);
 		if (cub->elements->west_texture == NULL)
-			cub->parsing_error = 1;
+			return (cub->parsing_error = 1, error_msg("Tex. load failed", cub));
 	}
 }

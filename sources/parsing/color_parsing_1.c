@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_parsing_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 15:27:13 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/28 12:42:25 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:25:05 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,24 @@ void	color_bitshift(t_cub *cub, char c)
 				| cub->elements->b << 8 | 255);
 }
 
-void	get_r(t_cub *cub, char *line)
+void	check_color_tab(char **tab, t_cub *cub)
 {
-	cub->elements->r = ft_atoi(ft_substr(line,
-				cub->v->start, cub->v->len));
-	cub->v->len = 0;
-	cub->v->index++;
-}
+	int	i;
+	int	u;
 
-void	get_g(t_cub *cub, char *line)
-{
-	cub->elements->g = ft_atoi(ft_substr(line,
-				cub->v->start, cub->v->len));
-	cub->v->len = 0;
-	cub->v->index++;
-}
-
-void	get_b(t_cub *cub, char *line)
-{
-	cub->elements->b = ft_atoi(ft_substr(line,
-				cub->v->start, cub->v->len));
-	cub->v->len = 0;
-	cub->v->index++;
+	u = -1;
+	i = -1;
+	while (tab[++i])
+	{
+		while (tab[i][++u])
+		{
+			if (is_alpha(tab[i][u]) || is_space(tab[i][u]))
+			{
+				cub->parsing_error = 1;
+				error_msg("Wrong char in color", cub);
+				break ;
+			}
+		}
+		u = -1;
+	}
 }

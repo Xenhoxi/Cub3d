@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 12:08:10 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 15:12:28 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ t_elements	*setup_elements(void)
 	t_elements	*elements;
 
 	elements = malloc(sizeof(t_elements));
+	elements->ceiling_color = 0;
+	elements->floor_color = 0;
 	elements->r = 0;
 	elements->g = 0;
 	elements->b = 0;
-	elements->ceiling_color = 0;
-	elements->floor_color = 0;
 	elements->north_path = NULL;
 	elements->south_path = NULL;
 	elements->east_path = NULL;

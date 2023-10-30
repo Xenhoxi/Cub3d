@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 11:53:01 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 15:13:30 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,14 @@ void		sort_element(t_cub	*cub, char *line);
 int			element_checker(t_elements *elements, t_cub *cub);
 
 // color_parsing_0
-void		convert_rgb(char *line, t_cub *cub, char c, int i);
+void		convert_rgb(char *line, t_cub *cub, char c);
 int			is_color(char *line, int i, t_cub *cub);
 int			color_check(t_cub *cub);
 void		store_color(char *line, t_cub *cub);
 u_int32_t	get_rgba_tex(u_int32_t color);
 
 // color_parsing_1
-void		get_r(t_cub *cub, char *line);
-void		get_g(t_cub *cub, char *line);
-void		get_b(t_cub *cub, char *line);
+void		check_color_tab(char **tab, t_cub *cub);
 void		color_bitshift(t_cub *cub, char c);
 
 // texture_parsing
