@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:45:48 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/27 16:11:29 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:51:56 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	open_file(char *path)
 {
 	if (open(path, O_RDONLY) == -1)
 	{
-		printf("Error\nFailed to open ->%s\n", path);
+		printf("Error\n-Failed to open ->%s\n", path);
 		return (1);
 	}
 	return (0);
@@ -54,5 +54,5 @@ void	error_msg(char *msg, t_cub *cub)
 		printf("Error\n");
 		cub->v->error = 1;
 	}
-	printf("%s\n", msg);
+	printf("-%s\n", msg);
 }
