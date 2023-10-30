@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_parsing_0.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:32:16 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/28 12:47:47 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:04:05 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	convert_rgb(char *line, t_cub *cub, char c, int i)
 {
-	while (!is_digit(line[i]))
+	while (line[i] && !is_digit(line[i]))
 		i++;
 	cub->v->start = i;
 	while (line[i] && cub->v->index < 3)
@@ -44,7 +44,7 @@ int	is_color(char *line, int i, t_cub *c)
 	int	nb;
 
 	nb = 0;
-	while (!is_digit(line[i]))
+	while (line[i] && !is_digit(line[i]))
 		i++;
 	while (line[i])
 	{
@@ -73,7 +73,7 @@ void	store_color(char *line, t_cub *cub)
 	int	i;
 
 	i = 0;
-	while (is_space(line[i]))
+	while (line[i] && is_space(line[i]))
 		i++;
 	if (line[i] != 'F' && line[i] != 'C')
 		error_msg("Wrong color identifier", cub);

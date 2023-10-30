@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:45:48 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 11:51:56 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 12:01:49 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void	error_msg(char *msg, t_cub *cub)
 		printf("Error\n");
 		cub->v->error = 1;
 	}
+	cub->parsing_error = 1;
 	printf("-%s\n", msg);
 }

@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 11:39:39 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 12:05:57 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef	struct	s_var
 	int	comma;
 	int	mouse;
 	int	error;
+	int	nb_t;
+	int	nb_c;
 }	t_var;
 
 typedef	struct	s_doors

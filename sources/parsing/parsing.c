@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:44:15 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/30 11:37:19 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 12:10:28 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	parsing(char *map, t_cub *cub)
 	if (fd < 0)
 		return ;
 	line = get_next_line(fd);
-	while (line)
+	while (line && cub->parsing_error != 1)
 	{
 		sort_element(cub, line);
 		line = get_next_line(fd);
 	}
 	// print_char_map(cub->map->map);
 	// print_elements(cub->elements);
-	if (parsing_checker(cub))
+	if (cub->parsing_error != 1 && parsing_checker(cub))
 		cub->parsing_error = 1;
 	free(line);
 	close(fd);

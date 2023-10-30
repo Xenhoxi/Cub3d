@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_structures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:30:15 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/28 22:21:36 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:08:10 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ t_var	*setup_var(void)
 	v->comma = 0;
 	v->mouse = 0;
 	v->error = 0;
+	v->nb_c = 0;
+	v->nb_t = 0;
 	return (v);
 }

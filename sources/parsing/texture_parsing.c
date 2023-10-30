@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 11:51:32 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 12:02:05 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	is_texture(char *line, int i, t_cub *cub, char *ext)
 	while (line[u] && ext[j])
 	{
 		if (line[u++] != ext[j++])
-			return (printf("Error\n-Wrong file extension\n"), 0);
+			return (error_msg("Wrong texture extension", cub), 0);
 	}
 	if (line[i] == 'S' && line[i + 1] == 'O')
 		return (1);

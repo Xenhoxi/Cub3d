@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 11:48:13 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 12:09:40 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,20 @@ void	sort_element(t_cub	*cub, char *line)
 	else if (!ft_strncmp(type, "TEXTURE_PATH", 13))
 	{
 		if (parsing_map == 1)
-			return (error_msg("Map is always last element\n", cub));
+			return (error_msg("Map is always last element", cub));
 		which_texture(cub, line);
 	}
 	else if (!ft_strncmp(type, "MAP", 4))
 	{
+		if (cub->v->nb_c != 2 && cub->v->nb_t != 4)
+			return (error_msg("Map is always last element", cub));
 		parsing_map = 1;
 		cub->map->map = array_join(cub->map->map, line);
 	}
 	else if (!ft_strncmp(type, "COLOR", 6))
 	{
 		if (parsing_map == 1)
-			return (error_msg("Map is always last element\n", cub));
+			return (error_msg("Map is always last element", cub));
 		store_color(line, cub);
 	}
 }
@@ -51,10 +53,10 @@ char	*element_type(char *line, t_cub *cub)
 		if (line[i] == 'F' || line[i] == 'C')
 		{
 			if (is_color(line, i, cub))
-				return ("COLOR");
+				return (cub->v->nb_c++, "COLOR");
 		}
 		else if (is_texture(line, i, cub, ".cub"))
-			return ("TEXTURE_PATH");
+			return (cub->v->nb_t++, "TEXTURE_PATH");
 		else
 			return ("WRONG ELEMENT IDENTIFIER");
 	}
