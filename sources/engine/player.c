@@ -6,61 +6,11 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:09:37 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 15:02:39 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 16:31:36 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	right_rotation(t_cub *cub, double rotspeed)
-{
-	double	old_dir_x;
-	double	old_plane_x;
-
-	rotspeed = rotspeed / 30 * cub->dt;
-	cub->player->angle += rotspeed;
-	if (cub->player->angle > 2 * PI)
-		cub->player->angle -= 2 * PI;
-	else if (cub->player->angle < 0)
-		cub->player->angle += 2 * PI;
-	cub->player->dir_x = cos(cub->player->angle);
-	cub->player->dir_y = sin(cub->player->angle);
-	old_dir_x = cub->player->dir_x;
-	cub->player->dir_x = cub->player->dir_x * cos(-rotspeed)
-		- cub->player->dir_y * sin(-rotspeed);
-	cub->player->dir_y = old_dir_x * sin(-rotspeed)
-		+ cub->player->dir_y * cos(-rotspeed);
-	old_plane_x = cub->player->plane_x;
-	cub->player->plane_x = cub->player->plane_x * cos(-rotspeed)
-		- cub->player->plane_y * sin(-rotspeed);
-	cub->player->plane_y = old_plane_x * sin(-rotspeed)
-		+ cub->player->plane_y * cos(-rotspeed);
-}
-
-void	left_rotation(t_cub *cub, double rotspeed)
-{
-	double	old_dir_x;
-	double	old_plane_x;
-
-	rotspeed = rotspeed / 30 * cub->dt;
-	cub->player->angle -= rotspeed;
-	if (cub->player->angle < 0)
-		cub->player->angle += 2 * PI;
-	else if (cub->player->angle > 2 * PI)
-		cub->player->angle -= 2 * PI;
-	cub->player->dir_x = cos(cub->player->angle);
-	cub->player->dir_y = sin(cub->player->angle);
-	old_dir_x = cub->player->dir_x;
-	cub->player->dir_x = cub->player->dir_x * cos(rotspeed)
-		- cub->player->dir_y * sin(rotspeed);
-	cub->player->dir_y = old_dir_x * sin(rotspeed)
-		+ cub->player->dir_y * cos(rotspeed);
-	old_plane_x = cub->player->plane_x;
-	cub->player->plane_x = cub->player->plane_x * cos(rotspeed)
-		- cub->player->plane_y * sin(rotspeed);
-	cub->player->plane_y = old_plane_x * sin(rotspeed)
-		+ cub->player->plane_y * cos(rotspeed);
-}
 
 void	player_update(t_cub *cub)
 {
@@ -81,93 +31,11 @@ void	player_update(t_cub *cub)
 		left_rotation(cub, ROTSPEED * cub->dt);
 }
 
-int	entity_hitbox(char **map, int x, int y)
-{
-	int	x_map;
-	int	y_map;
-
-	x_map = x / TSMAP;
-	y_map = y / TSMAP;
-	printf("x = %d | y = %d\n", x_map, y_map);
-	printf("map[] = %c\n", map[y_map][x_map]);
-	if (map[y_map][x_map] == '1')
-		return (1);
-	return (0);
-}
-
-// void	draw_direction(t_cub *cub)
-// {
-// 	t_line	line;
-
-// 	line.end_x = cub->player->pos_x + (cub->player->dir_x * 10);
-// 	line.end_y = cub->player->pos_y + (cub->player->dir_y * 10);
-// 	line.pos.x = cub->player->pos_x * TSMAP;
-// 	line.pos.y = cub->player->pos_y * TSMAP;
-// 	line.dx = line.end_x - cub->player->pos_x;
-// 	line.dy = line.end_y - cub->player->pos_y;
-// 	line.pixels = sqrt((line.dx * line.dx) + (line.dy * line.dy));
-// 	line.dx_p = line.dx;
-// 	line.dy_p = line.dy;
-// 	line.dx_p /= line.pixels;
-// 	line.dy_p /= line.pixels;
-// 	if (cub->player->ray_img)
-// 		mlx_delete_image(cub->mlx, cub->player->ray_img);
-// 	cub->player->ray_img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
-// 	while (line.pixels > 0 && line.pos.x > 0 && line.pos.y > 0)
-// 	{
-// 		mlx_put_pixel(cub->player->ray_img, line.pos.x, line.pos.y, 0xFF0000FF);
-// 		line.pos.x += line.dx_p;
-// 		line.pos.y += line.dy_p;
-// 		line.pixels--;
-// 	}
-// 	mlx_image_to_window(cub->mlx, cub->player->ray_img, 0, 0);
-// }
-
 void	draw_player(t_cub *cub)
 {
 	cub->player->ray_img = create_img_full(6, cub->mlx, 0xFFFF0000);
 	mlx_image_to_window(cub->mlx, cub->player->ray_img,
 		TSMAP * 7 - 3, TSMAP * 7 - 3);
-}
-
-void	set_north(t_cub *cub)
-{
-	cub->player->angle = -(2 * PI) / 4;
-	cub->player->plane_x = 0;
-	cub->player->plane_y = -0.66;
-}
-
-void	set_south(t_cub *cub)
-{
-	cub->player->angle = (2 * PI) / 4;
-	cub->player->plane_x = 0;
-	cub->player->plane_y = 0.66;
-}
-
-void	set_west(t_cub *cub)
-{
-	cub->player->angle = PI;
-	cub->player->plane_x = 0.66;
-	cub->player->plane_y = 0;
-}
-
-void	set_east(t_cub *cub)
-{
-	cub->player->angle = 2 * PI;
-	cub->player->plane_x = -0.66;
-	cub->player->plane_y = 0;
-}
-
-void	setup_start_dir(t_cub *cub, char direction)
-{
-	if (direction == 'C')
-		set_north(cub);
-	else if (direction == 'S')
-		set_south(cub);
-	else if (direction == 'E')
-		set_west(cub);
-	else if (direction == 'D')
-		set_east(cub);
 }
 
 void	init_player(t_cub *cub)

@@ -6,24 +6,11 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 14:57:29 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 17:11:16 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-uint64_t	chose_color(t_line *line)
-{
-	if (line->side == 'S')
-		return (0xFF0000FF);
-	else if (line->side == 'N')
-		return (0x00FFFFFF);
-	else if (line->side == 'W')
-		return (0xFFFF00FF);
-	else if (line->side == 'E')
-		return (0xFF00FFFF);
-	return (0xFFFFFFFF);
-}
 
 mlx_image_t	*chose_image(t_cub *cub, t_line *line)
 {
@@ -96,26 +83,6 @@ void	draw_vision(t_cub *cub, t_line *line)
 	drawtexture(line_height, draw_start, draw_end, line, cub);
 }
 
-mlx_image_t	*create_img_cf(int width, int height, mlx_t *mlx, uint64_t color)
-{
-	int			x;
-	int			y;
-	mlx_image_t	*img;
-
-	x = -1;
-	y = -1;
-	img = mlx_new_image(mlx, width, height);
-	if (!img)
-		return (NULL);
-	while (++y < height)
-	{
-		while (++x < width)
-			mlx_put_pixel(img, x, y, color);
-		x = -1;
-	}
-	return (img);
-}
-
 void	draw_outdoor(t_cub *cub)
 {
 	mlx_image_t	*img_celling;
@@ -127,4 +94,22 @@ void	draw_outdoor(t_cub *cub)
 			cub->mlx, cub->elements->floor_color);
 	mlx_image_to_window(cub->mlx, img_floor, 0, WIN_HEIGHT / 2);
 	mlx_image_to_window(cub->mlx, img_celling, 0, 0);
+}
+
+void	draw_update(t_cub *cub)
+{
+	mlx_t	*mlx;
+
+	mlx = cub->mlx;
+	if (mlx_is_key_down(mlx, MLX_KEY_A) || mlx_is_key_down(mlx, MLX_KEY_D)
+		|| mlx_is_key_down(mlx, MLX_KEY_S) || mlx_is_key_down(mlx, MLX_KEY_W)
+		|| mlx_is_key_down(mlx, MLX_KEY_LEFT)
+		|| mlx_is_key_down(mlx, MLX_KEY_RIGHT) || cub->mouse_moved != 0
+		|| cub->map->door_moving != 0)
+	{
+		ray_cast(cub);
+		draw_minimap(cub);
+		cub->mouse_moved = 0;
+		cub->map->door_moving = 0;
+	}
 }

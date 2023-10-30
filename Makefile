@@ -6,7 +6,7 @@
 #    By: smunio <smunio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 23:49:19 by ljerinec          #+#    #+#              #
-#    Updated: 2023/10/30 11:26:09 by smunio           ###   ########.fr        #
+#    Updated: 2023/10/30 11:52:37 by smunio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,15 +27,19 @@ SOURCES =	sources/main.c \
 			sources/parsing/elements_parsing.c \
 			sources/parsing/setup_structures.c \
 			sources/engine/minimap.c \
-			sources/engine/minimap_utils.c \
 			sources/engine/player_movement.c \
 			sources/engine/player.c \
-			sources/engine/ray_drawing.c \
+			sources/engine/ray_casting.c \
 			sources/engine/draw_environnement.c \
 			sources/engine/mouse_handler.c \
 			sources/engine/init_doors.c \
 			sources/engine/control_doors.c \
 			sources/engine/draw_doors.c \
+			sources/engine/load_textures.c \
+			sources/engine/colors_img_utils.c \
+			sources/engine/player_initilisation.c \
+			sources/engine/player_rotation.c \
+			sources/engine/cub3d_utils.c \
 			sources/freeing/free_utils.c \
 
 OBJ_DIR = object/

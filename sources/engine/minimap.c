@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:17:23 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 15:12:30 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/29 16:49:27 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,29 +86,4 @@ void	draw_minimap(t_cub *cub)
 	}
 	mlx_image_to_window(cub->mlx, cub->image->map_player,
 		NB_TILE * TSMAP, NB_TILE * TSMAP);
-}
-
-mlx_image_t	*create_img_full(int size, mlx_t *mlx, uint64_t color)
-{
-	int			x;
-	int			y;
-	mlx_image_t	*img;
-
-	x = -1;
-	y = -1;
-	img = mlx_new_image(mlx, size, size);
-	if (!img)
-		return (NULL);
-	while (++y < size)
-	{
-		while (++x < size)
-		{
-			if (x == 0 || x == size - 1 || y == 0 || y == size - 1)
-				mlx_put_pixel(img, x, y, 0xFFFFFFFF);
-			else
-				mlx_put_pixel(img, x, y, color);
-		}
-		x = -1;
-	}
-	return (img);
 }
