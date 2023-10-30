@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 12:02:05 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 12:19:50 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int	is_texture(char *line, int i, t_cub *cub, char *ext)
 		u++;
 	if (u < 5)
 		return (error_msg("Missing text path", cub), 0);
-	u -= 4;
-	while (line[u] && ext[j])
+	u -= 5;
+	while (line[u] && ext[j] && line[u] != '\n')
 	{
 		if (line[u++] != ext[j++])
 			return (error_msg("Wrong texture extension", cub), 0);
