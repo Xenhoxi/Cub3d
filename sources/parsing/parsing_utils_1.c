@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:26:08 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 18:31:01 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:51:47 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	check_ext(char	*file_name, char	*ext)
 		i++;
 	if (i < 5)
 	{
-		printf("Error\nFile name too short\n");
+		printf("Error\n-File name too short\n");
 		return (1);
 	}
 	i -= 4;
@@ -93,7 +93,7 @@ int	check_ext(char	*file_name, char	*ext)
 	{
 		if (file_name[i] != ext[j])
 		{
-			printf("Error\nWrong file extension\n");
+			printf("Error\n-Wrong file extension\n");
 			return (1);
 		}
 		i++;

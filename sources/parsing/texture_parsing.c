@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/25 18:34:44 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:51:32 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,23 @@ void	store_text_path(t_cub *cub, char c, char *line)
 		load_texture(cub, c);
 }
 
-int	is_texture(char *line, int i, t_cub *cub)
+int	is_texture(char *line, int i, t_cub *cub, char *ext)
 {
-	if (check_ext(line, ".png") == 1)
-		return (error_msg("Wrong texture extension", cub), 0);
+	int	u;
+	int	j;
+
+	u = 0;
+	j = 0;
+	while (line[u] && line[i] != '\n')
+		u++;
+	if (u < 5)
+		return (error_msg("Missing text path", cub), 0);
+	u -= 4;
+	while (line[u] && ext[j])
+	{
+		if (line[u++] != ext[j++])
+			return (printf("Error\n-Wrong file extension\n"), 0);
+	}
 	if (line[i] == 'S' && line[i + 1] == 'O')
 		return (1);
 	else if (line[i] == 'N' && line[i + 1] == 'O')

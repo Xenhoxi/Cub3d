@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/28 12:47:35 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:48:27 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void		color_bitshift(t_cub *cub, char c);
 // texture_parsing
 void		convert_texture_to_image(t_cub *cub);
 void		which_texture(t_cub *cub, char *line);
-int			is_texture(char *line, int i, t_cub *cub);
+int			is_texture(char *line, int i, t_cub *cub, char *ext);
 void		store_text_path(t_cub *cub, char c, char *line);
 void		load_texture(t_cub *cub, char c);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elements_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/28 12:31:13 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:48:13 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	sort_element(t_cub	*cub, char *line)
 			return (error_msg("Map is always last element\n", cub));
 		store_color(line, cub);
 	}
-	else if (line[0] != '\n')
-		printf("%s\n", type);
 }
 
 char	*element_type(char *line, t_cub *cub)
@@ -55,7 +53,7 @@ char	*element_type(char *line, t_cub *cub)
 			if (is_color(line, i, cub))
 				return ("COLOR");
 		}
-		else if (is_texture(line, i, cub))
+		else if (is_texture(line, i, cub, ".cub"))
 			return ("TEXTURE_PATH");
 		else
 			return ("WRONG ELEMENT IDENTIFIER");
