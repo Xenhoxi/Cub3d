@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/29 15:09:11 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:28:54 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ typedef struct s_player
 
 typedef struct s_map
 {
-
 	char	**map;
 	int		door_moving;
 	int		**array;
