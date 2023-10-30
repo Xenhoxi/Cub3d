@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 13:09:15 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 15:22:29 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:51:49 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	is_player_close_to_door(t_cub *cub, t_doors *door)
 	delta = 2;
 	result.x = cub->player->pos_x - (door->x + 0.5);
 	result.y = cub->player->pos_y - (door->y + 0.5);
-	if (result.x > -delta && result.x < delta && result.y > -delta && result.y < delta)
+	if (result.x > -delta && result.x < delta
+		&& result.y > -delta && result.y < delta)
 		return (1);
 	else
 		return (0);

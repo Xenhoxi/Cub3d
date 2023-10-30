@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:32:16 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 12:04:05 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 12:12:02 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	is_color(char *line, int i, t_cub *c)
 		i++;
 	while (line[i])
 	{
-		if (!is_digit(line[i]) && line[i] != ',' && !is_space(line[i]) 
+		if (!is_digit(line[i]) && line[i] != ',' && !is_space(line[i])
 			&& line[i] != '\n')
 			return (error_msg("Color syntax", c), c->parsing_error = 1, 0);
 		if (line[i] == ',')

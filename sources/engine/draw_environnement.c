@@ -6,56 +6,34 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 11:19:17 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 17:11:16 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:01:37 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-mlx_image_t	*chose_image(t_cub *cub, t_line *line)
+void	drawline_wall(t_cub *cub, t_line *line, int tex_x)
 {
-	if (line->side == 'S')
-		return (cub->elements->south_image);
-	else if (line->side == 'N')
-		return (cub->elements->north_image);
-	else if (line->side == 'W')
-		return (cub->elements->west_image);
-	else if (line->side == 'E')
-		return (cub->elements->east_image);
-	else
-		return (NULL);
-}
+	double	step;
+	double	texpos;
+	int		y;
+	int		tex_y;
 
-void	drawtexture(int line_height, int draw_start, int draw_end, t_line *line, t_cub *cub)
-{
-	double	wallX;
-	if (line->side == 'W' || line->side == 'E')
-		wallX = line->pos.y + line->reel_dist * line->dir.y;
-	else
-		wallX = line->pos.x + line->reel_dist * line->dir.x;
-	wallX -= floor((wallX));
-	int texX = (int)(wallX * (double)TEX_SIZE);
-	if((line->side == 'W' || line->side == 'E') && line->dir.x > 0)
-		texX = TEX_SIZE - texX - 1;
-	if((line->side == 'N' || line->side == 'S') && line->dir.y < 0)
-		texX = TEX_SIZE - texX - 1;
-	double	step = 1.0 * TEX_SIZE / line_height;
-	double	texPos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
-	int	y;
-	int	texY;
+	step = 1.0 * TEX_SIZE / line->l_height;
+	texpos = (line->d_start - WIN_HEIGHT / 2 + line->l_height / 2) * step;
 	y = 0;
 	while (y < WIN_HEIGHT)
 	{
-		if (y >= draw_start && y <= draw_end)
+		if (y >= line->d_start && y <= line->d_end)
 		{
-			texY = (int)texPos;
-			texPos += step;
-			if (texY >= TEX_SIZE)
-				texY = TEX_SIZE - 1;
-			else if (texY < 0)
-				texY = 0;
+			tex_y = (int)texpos;
+			texpos += step;
+			if (tex_y >= TEX_SIZE)
+				tex_y = TEX_SIZE - 1;
+			else if (tex_y < 0)
+				tex_y = 0;
 			mlx_put_pixel(cub->windows_img, line->i, y,
-				get_color_coord(texX, texY, chose_image(cub, line)));
+				get_color_coord(tex_x, tex_y, chose_image(cub, line)));
 		}
 		else
 			mlx_put_pixel(cub->windows_img, line->i, y, 0);
@@ -63,24 +41,38 @@ void	drawtexture(int line_height, int draw_start, int draw_end, t_line *line, t_
 	}
 }
 
+void	drawtexture(t_line *line, t_cub *cub)
+{
+	double	wall_x;
+	int		tex_x;
+
+	if (line->side == 'W' || line->side == 'E')
+		wall_x = line->pos.y + line->reel_dist * line->dir.y;
+	else
+		wall_x = line->pos.x + line->reel_dist * line->dir.x;
+	wall_x -= floor((wall_x));
+	tex_x = (int)(wall_x * (double)TEX_SIZE);
+	if ((line->side == 'W' || line->side == 'E') && line->dir.x > 0)
+		tex_x = TEX_SIZE - tex_x - 1;
+	if ((line->side == 'N' || line->side == 'S') && line->dir.y < 0)
+		tex_x = TEX_SIZE - tex_x - 1;
+	drawline_wall(cub, line, tex_x);
+}
+
 void	draw_vision(t_cub *cub, t_line *line)
 {
-	int	line_height;
-	int	draw_start;
-	int	draw_end;
-
 	if (line->side == 'E' || line->side == 'W')
 		line->reel_dist = line->lenght.x - line->scale.x;
 	else
 		line->reel_dist = line->lenght.y - line->scale.y;
-	line_height = (int)(WIN_HEIGHT / line->reel_dist);
-	draw_start = (-line_height / 2) + WIN_HEIGHT / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-	draw_end = line_height / 2 + WIN_HEIGHT / 2;
-	if (draw_end >= WIN_HEIGHT)
-		draw_end = WIN_HEIGHT - 1;
-	drawtexture(line_height, draw_start, draw_end, line, cub);
+	line->l_height = (int)(WIN_HEIGHT / line->reel_dist);
+	line->d_start = (-line->l_height / 2) + WIN_HEIGHT / 2;
+	if (line->d_start < 0)
+		line->d_start = 0;
+	line->d_end = line->l_height / 2 + WIN_HEIGHT / 2;
+	if (line->d_end >= WIN_HEIGHT)
+		line->d_end = WIN_HEIGHT - 1;
+	drawtexture(line, cub);
 }
 
 void	draw_outdoor(t_cub *cub)

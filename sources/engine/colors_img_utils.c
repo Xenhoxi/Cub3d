@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:18:05 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 16:47:42 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:01:40 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,18 @@ mlx_image_t	*create_img_full(int size, mlx_t *mlx, uint64_t color)
 		x = -1;
 	}
 	return (img);
+}
+
+mlx_image_t	*chose_image(t_cub *cub, t_line *line)
+{
+	if (line->side == 'S')
+		return (cub->elements->south_image);
+	else if (line->side == 'N')
+		return (cub->elements->north_image);
+	else if (line->side == 'W')
+		return (cub->elements->west_image);
+	else if (line->side == 'E')
+		return (cub->elements->east_image);
+	else
+		return (NULL);
 }

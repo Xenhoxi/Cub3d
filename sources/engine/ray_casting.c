@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:00:33 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 17:06:36 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:07:32 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ void	ray_cast(t_cub *cub)
 		line.is_door = 0;
 		line.door_dist = 0;
 		line.i = i;
-		line.angle = ((cub->player->angle - (PI / 6)) + (((PI / 3) / WIN_WIDTH) * i));
+		line.angle = ((cub->player->angle
+					- (PI / 6)) + (((PI / 3) / WIN_WIDTH) * i));
 		scale_for_ray(cub, &line);
 		calcul_offset(&line);
 		dda_algorithm(cub, &line);

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:43:06 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 17:13:35 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:02:20 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_image			*setup_image(t_cub *cub);
 u_int32_t		get_color_coord(int x, int y, mlx_image_t *img);
 mlx_image_t		*create_img_cf(int width, int height, mlx_t *mlx, uint64_t color);
 mlx_image_t		*create_img_full(int size, mlx_t *mlx, uint64_t color);
+mlx_image_t		*chose_image(t_cub *cub, t_line *line);
 
 /*----------*/
 /*  PLAYER  */
@@ -103,8 +104,8 @@ void			ray_cast(t_cub *cub);
 int				is_entity(char tile_check, t_line *line);
 
 // draw_environnement.c
-mlx_image_t		*chose_image(t_cub *cub, t_line *line);
-void			drawtexture(int line_height, int draw_start, int draw_end, t_line *line, t_cub *cub);
+void			drawline_wall(t_cub *cub, t_line *line, int tex_x);
+void			drawtexture(t_line *line, t_cub *cub);
 void			draw_vision(t_cub *cub, t_line *line);
 void			draw_outdoor(t_cub *cub);
 void			draw_update(t_cub *cub);
@@ -136,7 +137,7 @@ void			door_update(t_cub *cub);
 
 // draw_doors.c
 int				find_curr_img_door(t_cub *cub, t_line *line);
-void			drawtexture_doors(int line_height, int draw_start, int draw_end, t_line *line, t_cub *cub);
+void			drawtexture_doors(t_line *line, t_cub *cub);
 void			draw_doors(t_cub *cub, t_line *line);
 void			clear_vertical_stripe(t_cub *cub, t_line *line);
 
@@ -145,14 +146,14 @@ void			clear_vertical_stripe(t_cub *cub, t_line *line);
 /*---------*/
 
 // mouse_handler
-void		mouse_hook(t_cub *cub);
-void		mouse_on_off(t_cub *cub);
+void			mouse_hook(t_cub *cub);
+void			mouse_on_off(t_cub *cub);
 
 /*---------*/
 /* FREEING */
 /*---------*/
 
 // free_utils
-void		free_int_array(int	**array, char **map);
+void			free_int_array(int	**array, char **map);
 
 #endif
