@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:00:24 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 12:17:39 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:16:42 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_doors
 
 typedef struct s_line
 {
-	mlx_image_t	*img;
 	t_vector	map;
 	t_vector	step;
 	t_vec		dir;
@@ -95,8 +94,6 @@ typedef struct s_elements
 
 typedef struct s_player
 {
-	t_line		*line;
-	mlx_image_t	*img_map;
 	mlx_image_t	*ray_img;
 	double		pos_x;
 	double		pos_y;
