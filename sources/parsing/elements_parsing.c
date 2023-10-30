@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 12:09:40 by smunio           ###   ########.fr       */
+/*   Updated: 2023/10/30 12:19:16 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*element_type(char *line, t_cub *cub)
 			if (is_color(line, i, cub))
 				return (cub->v->nb_c++, "COLOR");
 		}
-		else if (is_texture(line, i, cub, ".cub"))
+		else if (is_texture(line, i, cub, ".png"))
 			return (cub->v->nb_t++, "TEXTURE_PATH");
 		else
 			return ("WRONG ELEMENT IDENTIFIER");
