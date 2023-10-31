@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 18:03:19 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/10/31 09:23:04 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,19 +96,19 @@ void	which_texture_0(t_cub *cub, char *line)
 {
 	while (!is_alpha(*line))
 		line++;
-	if (!ft_strncmp(line, "NO", 2))
+	if (!ft_strncmp(line, "NO ", 3))
 	{
 		if (cub->elements->north_path != NULL)
 			return (error_msg("NO texture already filled", cub));
 		store_text_path(cub, 'N', line);
 	}
-	else if (!ft_strncmp(line, "SO", 2))
+	else if (!ft_strncmp(line, "SO ", 3))
 	{
 		if (cub->elements->south_path != NULL)
 			return (error_msg("SO texture already filled", cub));
 		store_text_path(cub, 'S', line);
 	}
-	else if (!ft_strncmp(line, "EA", 2) || !ft_strncmp(line, "WE", 2))
+	else if (!ft_strncmp(line, "EA ", 3) || !ft_strncmp(line, "WE ", 3))
 		which_texture_1(cub, line);
 	else
 		error_msg("Wrong texture identifier or format", cub);
@@ -116,13 +116,13 @@ void	which_texture_0(t_cub *cub, char *line)
 
 void	which_texture_1(t_cub *cub, char *line)
 {
-	if (!ft_strncmp(line, "EA", 2))
+	if (!ft_strncmp(line, "EA ", 3))
 	{
 		if (cub->elements->east_path != NULL)
 			return (error_msg("EA texture already filled", cub));
 		store_text_path(cub, 'E', line);
 	}	
-	else if (!ft_strncmp(line, "WE", 2))
+	else if (!ft_strncmp(line, "WE ", 3))
 	{
 		if (cub->elements->west_path != NULL)
 			return (error_msg("WE texture already filled", cub));
