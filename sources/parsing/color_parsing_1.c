@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 15:27:13 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 17:56:58 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:26:40 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,6 @@ void	check_color_tab(char **tab, t_cub *cub)
 		}
 		u = -1;
 	}
+	if (i < 3)
+		error_msg("Missing digit(s) in color", cub);
 }
