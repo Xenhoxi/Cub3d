@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   player_initilisation.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:21:32 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/10/29 16:33:57 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:47:52 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	set_north(t_cub *cub)
+void	set_south(t_cub *cub)
 {
 	cub->player->angle = -(2 * PI) / 4;
 	cub->player->plane_x = 0;
 	cub->player->plane_y = -0.66;
 }
 
-void	set_south(t_cub *cub)
+void	set_north(t_cub *cub)
 {
 	cub->player->angle = (2 * PI) / 4;
 	cub->player->plane_x = 0;
@@ -42,12 +42,13 @@ void	set_east(t_cub *cub)
 
 void	setup_start_dir(t_cub *cub, char direction)
 {
-	if (direction == 'C')
-		set_north(cub);
-	else if (direction == 'S')
+	(void)direction;
+	if (cub->v->first_texture == 'S')
 		set_south(cub);
-	else if (direction == 'E')
+	else if (cub->v->first_texture == 'N')
+		set_north(cub);
+	else if (cub->v->first_texture == 'W')
 		set_west(cub);
-	else if (direction == 'D')
+	else if (cub->v->first_texture == 'E')
 		set_east(cub);
 }

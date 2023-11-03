@@ -1,9 +1,9 @@
 F 255,176,00
-C 255,255,0
+C 0,255,0
 
-EA ./sources/textures/beige_wall.png
-SO sources/textures/yellow_wall.png
 NO sources/textures/gray_wall.png
+SO sources/textures/yellow_wall.png
+EA ./sources/textures/beige_wall.png
 WE ./sources/textures/dark_wall.png
 
 1111111111111111111

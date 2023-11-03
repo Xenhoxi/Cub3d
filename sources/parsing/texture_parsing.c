@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/31 09:23:04 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:31:29 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	store_text_path(t_cub *cub, char c, char *line)
 	if (cub->parsing_error == 0)
 	{
 		cub->v->nb_t++;
+		if (cub->v->first_texture == 0)
+			cub->v->first_texture = c;
 		load_texture(cub, c);
 	}
 }

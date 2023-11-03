@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 23:50:45 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/11/01 10:27:13 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:40:20 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int	main(int argc, char **argv)
 {
 	t_cub	*cub;
 
-	(void)argc;
 	cub = setup_cub();
-	if (argc != 2 || check_file(argv))
+	if (argc != 2)
+		return (printf("Wrong amount of args\n"));
+	if (check_file(argv))
 		return (1);
 	parsing(argv[1], cub);
 	ft_free_parsing(cub);
