@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:21:32 by ljerinec          #+#    #+#             */
-/*   Updated: 2023/11/03 16:47:52 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/11/05 20:23:37 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,12 @@ void	set_east(t_cub *cub)
 
 void	setup_start_dir(t_cub *cub, char direction)
 {
-	(void)direction;
-	if (cub->v->first_texture == 'S')
-		set_south(cub);
-	else if (cub->v->first_texture == 'N')
+	if (direction == 'C')
 		set_north(cub);
-	else if (cub->v->first_texture == 'W')
+	else if (direction == 'S')
+		set_south(cub);
+	else if (direction == 'E')
 		set_west(cub);
-	else if (cub->v->first_texture == 'E')
+	else if (direction == 'D')
 		set_east(cub);
 }

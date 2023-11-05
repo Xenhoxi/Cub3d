@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/10/30 18:01:52 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/11/05 20:55:37 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void		error_msg(char *msg, t_cub *cub);
 char		*element_type(char *line, t_cub *cub);
 void		sort_element(t_cub	*cub, char *line);
 int			element_checker(t_elements *elements, t_cub *cub);
+int			texture_identifier_checker(char *line, t_cub *cub);
 
 // color_parsing_0
 void		convert_rgb(char *line, t_cub *cub, char c);

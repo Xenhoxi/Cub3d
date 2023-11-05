@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 17:50:23 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/11/05 20:55:12 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,23 @@ int	element_checker(t_elements *elements, t_cub *cub)
 							return (0);
 	error_msg("Missing colors or textures", cub);
 	return (1);
+}
+
+int	texture_identifier_checker(char *line, t_cub *cub)
+{
+	int	i;
+
+	i = 0;
+	while (is_space(*line))
+		line++;
+	if (!is_alpha(*line))
+		return (error_msg("Wrong texture identifier", cub), 1);
+	while (is_alpha(line[i]))
+		i++;
+	if (i > 2)
+		return (error_msg("Wrong texture identifier", cub), 1);
+	if (!is_space(line[i]))
+		return (error_msg("Texture identifier are be followed by a white space"
+				, cub), 1);
+	return (0);
 }

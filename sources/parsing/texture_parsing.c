@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:24:44 by smunio            #+#    #+#             */
-/*   Updated: 2023/11/03 16:31:29 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/11/05 20:57:24 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,59 +72,61 @@ void	load_texture(t_cub *cub, char c)
 	{
 		cub->elements->north_texture = mlx_load_png(cub->elements->north_path);
 		if (cub->elements->north_texture == NULL)
-			return (error_msg("Tex. load failed", cub));
+			error_msg("North texture load failed", cub);
 	}
 	else if (c == 'S')
 	{
 		cub->elements->south_texture = mlx_load_png(cub->elements->south_path);
 		if (cub->elements->south_texture == NULL)
-			return (error_msg("Tex. load failed", cub));
+			error_msg("South texture load failed", cub);
 	}
 	else if (c == 'E')
 	{
 		cub->elements->east_texture = mlx_load_png(cub->elements->east_path);
 		if (cub->elements->east_texture == NULL)
-			return (error_msg("Tex. load failed", cub));
+			error_msg("East texture load failed", cub);
 	}
 	else if (c == 'W')
 	{
 		cub->elements->west_texture = mlx_load_png(cub->elements->west_path);
 		if (cub->elements->west_texture == NULL)
-			return (error_msg("Tex. load failed", cub));
+			error_msg("West texture load failed", cub);
 	}
 }
 
 void	which_texture_0(t_cub *cub, char *line)
 {
+	if (texture_identifier_checker(line, cub))
+		return ;
 	while (!is_alpha(*line))
 		line++;
-	if (!ft_strncmp(line, "NO ", 3))
+	if (!ft_strncmp(line, "NO", 2))
 	{
 		if (cub->elements->north_path != NULL)
 			return (error_msg("NO texture already filled", cub));
 		store_text_path(cub, 'N', line);
 	}
-	else if (!ft_strncmp(line, "SO ", 3))
+	else if (!ft_strncmp(line, "SO", 2))
 	{
 		if (cub->elements->south_path != NULL)
 			return (error_msg("SO texture already filled", cub));
 		store_text_path(cub, 'S', line);
 	}
-	else if (!ft_strncmp(line, "EA ", 3) || !ft_strncmp(line, "WE ", 3))
+	else if (!ft_strncmp(line, "EA", 2) || !ft_strncmp(line, "WE", 2))
 		which_texture_1(cub, line);
 	else
-		error_msg("Wrong texture identifier or format", cub);
+		error_msg("Wrong texture format", cub);
 }
 
 void	which_texture_1(t_cub *cub, char *line)
 {
-	if (!ft_strncmp(line, "EA ", 3))
+	if (!ft_strncmp(line, "EA", 2))
 	{
 		if (cub->elements->east_path != NULL)
 			return (error_msg("EA texture already filled", cub));
 		store_text_path(cub, 'E', line);
 	}	
-	else if (!ft_strncmp(line, "WE ", 3))
+	else if (!ft_strncmp(line, "WE", 2))
 	{
 		if (cub->elements->west_path != NULL)
 			return (error_msg("WE texture already filled", cub));
