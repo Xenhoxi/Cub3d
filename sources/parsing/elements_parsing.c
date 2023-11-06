@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   elements_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:33:31 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/11/05 20:55:12 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:49:03 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*element_type(char *line, t_cub *cub)
 			&& is_texture(line, i, cub, ".png"))
 			return ("TEXTURE_PATH");
 		else
-			return ("WRONG ELEMENT IDENTIFIER");
+			error_msg("Wrong element identifier", cub);
 	}
 	else if (line[i] == '1')
 		return ("MAP");

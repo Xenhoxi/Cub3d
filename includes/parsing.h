@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:19:46 by smunio            #+#    #+#             */
-/*   Updated: 2023/11/05 20:55:37 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:44:49 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,13 @@ int			parsing_checker(t_cub *cub);
 // map_parsing_0
 int			get_map_index(char **map, t_cub *cub);
 int			is_wrong_char(char c);
-int			map_is_closed(char **map, t_cub *cub);
+int			map_is_closed(char **map);
 int			check_sides_char_map(char **map, int i, int u, int r);
 
 //	map_parsing_1
-int			map_is_valid(char	**map);
+int			map_is_valid(char	**map, t_cub *cub);
 int			check_for_spawn(char **map);
 int			ft_array_len_int(int	**array, char **map);
-
-// map_is_possible
-int			check_sides_int_array(t_cub *cub, int count, int i, int u);
-int			nb_possibilities(int **array, int count, char **map, t_cub *cub);
-int			final_check(char **map, int **array);
-int			**init_int_array(char **map);
 
 // parsing_utils_0
 int			is_digit(char c);

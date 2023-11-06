@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+         #
+#    By: smunio <smunio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 23:49:19 by ljerinec          #+#    #+#              #
-#    Updated: 2023/11/01 10:29:03 by sammeuss         ###   ########.fr        #
+#    Updated: 2023/11/06 12:56:10 by smunio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ CUB3D = cub3D
 LIBFT_DIR = includes/libft/libft.a
 FT_PRINTF_DIR = includes/ft_printf/ft_printf.a
 INCLUDES_DIR = includes/
-MLX42_INC = -lglfw -L /opt/homebrew/Cellar/glfw/3.3.8/lib/
+MLX42_INC = -lglfw -L /Users/smunio/.brew/Cellar/glfw/3.3.8/lib/
 MLX42_DIR = MLX42/build/libmlx42.a
 
 ####################COMPILATION STYLING####################

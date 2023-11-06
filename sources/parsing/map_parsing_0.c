@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing_0.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:09:25 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/30 15:32:06 by ljerinec         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:45:34 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	is_wrong_char(char c)
 	return (0);
 }
 
-int	map_is_closed(char **map, t_cub *cub)
+int	map_is_closed(char **map)
 {
 	int	i;
 	int	u;
@@ -51,13 +51,11 @@ int	map_is_closed(char **map, t_cub *cub)
 	{
 		while (map[i][++u])
 		{
-			if (map[i][u] == '0')
+			if (map[i][u] == '0' || map[i][u] == 'D' || map[i][u] == 'S'
+				|| map[i][u] == 'N' || map[i][u] == 'W' || map[i][u] == 'E')
 			{
 				if (check_sides_char_map(map, i, u, r) != 4)
-				{
-					error_msg("Map is not closed", cub);
 					return (1);
-				}
 			}
 		}
 		u = -1;

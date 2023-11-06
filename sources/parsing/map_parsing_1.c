@@ -6,16 +6,18 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:54:14 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/10/25 16:23:23 by smunio           ###   ########.fr       */
+/*   Updated: 2023/11/06 13:45:57 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	map_is_valid(char	**map)
+int	map_is_valid(char	**map, t_cub *cub)
 {
+	if (map_is_closed(map))
+		return (error_msg("Map is not closed", cub), 1);
 	if (!check_for_spawn(map))
-		return (printf("No spawn point\n"), 1);
+		return (error_msg("No spawn point", cub), 1);
 	return (0);
 }
 
